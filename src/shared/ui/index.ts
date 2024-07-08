@@ -1,1 +1,1 @@
-export { default as Header } from './Header/ui/index.vue';
+export { default as Icon } from './Icon/index.vue';
