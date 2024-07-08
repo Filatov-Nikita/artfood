@@ -1,8 +1,11 @@
 import { createApp } from 'vue';
 import { createRouter } from 'vue-router';
 
-export default function(fn: (...args: any[]) => any) {
-  return function(app: ReturnType<typeof createApp>, router: ReturnType<typeof createRouter>): void {
+type App =  ReturnType<typeof createApp>;
+type Router =  ReturnType<typeof createRouter>;
+
+export default function(fn: (app: App, router: Router) => any) {
+  return function(app: App, router: Router): void {
     fn(app, router);
   }
 }
