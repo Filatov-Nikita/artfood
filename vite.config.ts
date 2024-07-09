@@ -6,6 +6,13 @@ import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "@/assets/scss/mixins/index.scss";`
+      }
+    }
+  },
   resolve: {
     alias: [
       { find: '@', replacement: fileURLToPath(new URL('./src', import.meta.url)) }

@@ -1,0 +1,20 @@
+$lg: 1024px;
+$xl: 1440px;
+
+@mixin screen($size) {
+  @media screen and (min-width: $size) {
+    @content;
+  }
+}
+
+@mixin lg() {
+  @include screen($lg) {
+    @content;
+  }
+}
+
+@mixin xl() {
+  @include screen($xl) {
+    @content;
+  }
+}
