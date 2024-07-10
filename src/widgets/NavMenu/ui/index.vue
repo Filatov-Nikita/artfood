@@ -24,7 +24,7 @@
               />
             </div>
             <div class="nav-menu__phone-wrap">
-              <a class="nav-menu__phone" href="tel:+7 (347) 285-00-07">+7 (347) 285-00-07</a>
+              <a class="nav-menu__phone" :href="`tel:${contacts.phone}`">{{ contacts.phone }}</a>
             </div>
           </div>
         </div>
@@ -37,6 +37,7 @@
   import { watch, onMounted, ref } from 'vue';
   import Item from './Item.vue';
   import navLinks from '../model/links';
+  import contacts from '../model/contacts';
 
   const primaryLinks = navLinks.primary;
   const secondaryLinks = navLinks.secondary;
