@@ -3,4 +3,5 @@ export default {
   worktime: 'Пн-Вс, 10:00-20:00',
   email: 'info@artfood.ru',
   phone: '+7 (347) 285-00-07',
+  wa: '#',
 }

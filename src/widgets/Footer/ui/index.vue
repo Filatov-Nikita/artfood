@@ -38,11 +38,11 @@
               <a :href="`mailto:${contacts.email}`">{{ contacts.email }}</a>
             </div>
           </div>
-          </div>
+        </div>
         <div class="footer__col-wrap">
-          <button class="tw-text-white">
-            wa
-          </button>
+          <AppButton theme="primary" leftIcon="whatsapp-logo-regular" size="48" :model="{ is: 'link-native', href: contacts.wa }" target="_blank">
+            Написать нам
+          </AppButton>
         </div>
       </div>
       <div class="footer__row3">
@@ -121,7 +121,7 @@
       gap: 20px;
     }
 
-    &__contacts {
+    &__contacts-wrap {
       margin-bottom: 24px;
     }
 
