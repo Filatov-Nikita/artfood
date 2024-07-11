@@ -132,6 +132,7 @@ export default {
     borderRadius: {
       'xl': '16px',
       '1.5xl': '24px',
+      'full': '999px',
     },
     spacing: {
       '0': '0px',
