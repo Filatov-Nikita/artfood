@@ -1,319 +1,412 @@
 <template>
   <component
-    class="app-button"
-    :class="[
-      `app-button--${themeVal}`,
-      {
-        [ `app-button--size-${sizeVal}` ]: themeVal !== 'ghost' && themeVal !== 'ghost-neutral',
-        [ `app-button--ghost-${sizeVal}` ]: themeVal === 'ghost' || themeVal === 'ghost-neutral',
-      }
-    ]"
-    :is="root.tag"
-    v-bind="root.opts"
+    class="btn"
+    :is="rootAttrs.tag"
+    :class="rootClasses"
+    v-bind="rootAttrs.attrs"
   >
-    <span
-      v-if="leftIcon"
-      class="app-button__left-icon"
-      :class="[ `app-button__left-icon--size-${sizeVal}`, `app-button__left-icon--${themeVal}` ]"
-    >
+    <span class="left-icon" v-if="leftIcon">
       <AppIcon :name="leftIcon" fit />
     </span>
-    <span v-if="image">
-      <img :src="image" />
-    </span>
     <span>
-      <slot></slot>
+      <slot />
     </span>
-    <span
-      v-if="rightIcon"
-      class="app-button__right-icon"
-      :class="[ `app-button__right-icon--size-${sizeVal}`, `app-button__right-icon--${themeVal}` ]"
-    >
+    <span class="right-icon" v-if="rightIcon">
       <AppIcon :name="rightIcon" fit />
     </span>
   </component>
 </template>
 
 <script setup lang="ts">
-  import { computed, toRef } from 'vue';
-  import { ButtonProps, ModelButton } from './types';
-  import useTheme from './composables/useTheme';
-  import useSize from './composables/useSize';
+  import { computed } from 'vue';
+  import type { RouteLocationRaw } from 'vue-router';
 
-  const props = defineProps<ButtonProps>();
+  type Design = 'primary' | 'secondary' | 'secondary-neutral' | 'outline' | 'outline-neutral' | 'ghost' | 'ghost-neutral';
+  type Size = '56' | '48' | '36';
+  type BtnType = 'submit' | 'button';
 
-  const { theme: themeVal } = useTheme(toRef(props, 'theme'));
-  const { size: sizeVal } = useSize(toRef(props, 'size'));
+  interface Props {
+    design?: Design,
+    size?: Size,
+    lgSize?: Size,
+    xlSize?: Size,
+    leftIcon?: string,
+    rightIcon?: string,
+    disabled?: boolean,
+    to?: RouteLocationRaw,
+    href?: string,
+    type?: BtnType,
+  }
 
-  const model = computed(() => {
-    if(!props.model) {
-      const modelBtn: ModelButton = { is: 'button', type: 'button' };
-      return modelBtn;
-    }
-    return props.model;
+  const props = withDefaults(
+    defineProps<Props>(),
+    {
+      design: 'primary',
+      size: '36',
+      disabled: false,
+      type: 'button',
+    },
+  );
+
+  const sizeClasses = computed(() => {
+    return [
+      `size-${props.size}`,
+      props.lgSize ? `lg-size-${props.lgSize}` : '',
+      props.xlSize ? `xl-size-${props.xlSize}`: '',
+    ];
   });
 
-  const root = computed(() => {
-    if(model.value.is === 'link-native') {
-      const { is, ...opts } = model.value;
+  const rootClasses = computed(() => {
+    return [ `btn-design-${props.design}` ].concat(sizeClasses.value);
+  });
+
+  const isNativeLink = computed(() => {
+    return props.href !== undefined;
+  });
+
+  const isRouteLink = computed(() => {
+    return props.to !== undefined;
+  });
+
+  const rootAttrs = computed(() => {
+    if(isNativeLink.value) {
       return {
-        is,
-        tag: 'a' as const,
-        opts: {
-          href: opts.href,
+        tag: 'a',
+        attrs: {
+          href: props.href,
         }
       }
-    } else if(model.value.is === 'link') {
-      const { is, ...opts } = model.value;
+    } else if(isRouteLink.value) {
       return {
-        is,
-        tag: 'router-link' as const,
-        opts: {
-          to: opts.to,
+        tag: 'router-link',
+        attrs: {
+          to: props.to,
         }
-      };
+      }
     } else {
-      const { is, ...opts } = model.value;
       return {
-        is,
-        tag: 'button' as const,
-        opts: {
-          type: opts.type ?? 'button',
-          disabled: opts.disabled ?? false,
-        } as typeof opts,
-      };
+        tag: 'button',
+        attrs: {
+          type: props.type,
+          disabled: props.disabled,
+        }
+      }
     }
   });
 </script>
 
 <style scoped lang="scss">
-  %withFill {
-    @apply tw-rounded-full;
+  @mixin size_56($paddings: true) {
+    @if $paddings {
+      @apply tw-py-12 tw-px-20;
+    }
+
+    @apply tw-text-body-m-bold;
+
+    .left-icon, .right-icon {
+      width: 24px;
+      height: 24px;
+    }
   }
 
-  %withBorder {
-    @apply tw-rounded-full tw-border tw-border-solid;
+  @mixin size_48($paddings: true) {
+    @if $paddings {
+      @apply tw-py-12 tw-px-20;
+    }
+
+    @apply tw-text-body-m-bold;
+
+    .left-icon, .right-icon {
+      width: 24px;
+      height: 24px;
+    }
   }
 
-  @mixin withFillDisabled {
+  @mixin size_36($paddings: true) {
+    @if $paddings {
+      @apply tw-px-16 tw-py-8;
+    }
+
+    @apply tw-text-body-s-bold;
+
+    .left-icon, .right-icon {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  @mixin design_primary() {
+    @apply tw-bg-primary tw-text-white;
+
+    &:hover {
+      @apply tw-bg-primary-hover;
+    }
+
+    &:active {
+      @apply tw-bg-primary-press;
+    }
+
     &:disabled {
-      pointer-events: none;
       @apply tw-bg-primary-bg-disabled tw-text-disabled-text;
     }
   }
 
-  @mixin withBorderDisabled {
+  @mixin design_secondary() {
+    @apply tw-bg-secondary tw-text-primary;
+
+    &:hover {
+      @apply tw-bg-secondary-hover;
+    }
+
+    &:active {
+      @apply tw-bg-secondary-press;
+    }
+
     &:disabled {
-      pointer-events: none;
+      @apply tw-bg-primary-bg-disabled tw-text-disabled-text;
+    }
+  }
+
+  @mixin design_secondary_neutral() {
+    @apply tw-bg-neutral tw-text-text00;
+
+    &:hover {
+      @apply tw-bg-neutral-hover;
+    }
+
+    &:active {
+      @apply tw-bg-neutral-press;
+    }
+
+    &:disabled {
+      @apply tw-bg-primary-bg-disabled tw-text-disabled-text;
+    }
+
+    .left-icon, .right-icon {
+      @apply tw-text-text01;
+    }
+  }
+
+  @mixin design_outline() {
+    @apply tw-border tw-border-solid tw-border-border01 tw-text-primary;
+
+    &:hover {
+      @apply tw-text-primary-hover tw-border-primary-hover;
+    }
+
+    &:active {
+      @apply tw-text-primary-press tw-border-primary-press;
+    }
+
+    &:disabled {
       @apply tw-border-primary-bg-disabled tw-text-disabled-text;
     }
   }
 
-  @mixin ghostDisabled {
+  @mixin design_outline_neutral() {
+    @apply tw-border tw-border-solid tw-border-border01 tw-text-text00;
+
+    &:hover {
+      @apply tw-text-primary-hover tw-border-primary-hover;
+
+      .left-icon, .right-icon {
+        @apply tw-text-primary-hover;
+      }
+    }
+
+    &:active {
+      @apply tw-text-primary-press tw-border-primary-press;
+
+      .left-icon, .right-icon {
+        @apply tw-text-primary-press;
+      }
+    }
+
     &:disabled {
-      pointer-events: none;
+      @apply tw-border-primary-bg-disabled tw-text-disabled-text;
+
+      .left-icon, .right-icon {
+        @apply tw-text-disabled-text;
+      }
+    }
+
+    .left-icon, .right-icon {
+      @apply tw-text-text01;
+    }
+  }
+
+  @mixin design_ghost() {
+    @apply tw-text-primary;
+
+    &:hover {
+      @apply tw-text-primary-hover;
+    }
+
+    &:active {
+      @apply tw-text-primary-press;
+    }
+
+    &:disabled {
       @apply tw-text-disabled-text;
     }
   }
 
-  @mixin primary {
-    &--primary {
-      @extend %withFill;
-      @apply tw-bg-primary tw-text-white;
+  @mixin design_ghost_neutral() {
+    @apply tw-text-text00;
 
-      @include withFillDisabled();
+    &:hover {
+      @apply tw-text-primary-hover;
 
-      @include lg {
-        &:hover {
-          @apply tw-bg-primary-hover;
-        }
+      .left-icon, .right-icon {
+        @apply tw-text-primary-hover;
+      }
+    }
 
-        &:active {
-          @apply tw-bg-primary-press;
-        }
+    &:active {
+      @apply tw-text-primary-press;
+
+      .left-icon, .right-icon {
+        @apply tw-text-primary-press;
+      }
+    }
+
+    &:disabled {
+      @apply tw-text-disabled-text;
+
+      .left-icon, .right-icon {
+        @apply tw-text-disabled-text;
+      }
+    }
+
+    .left-icon, .right-icon {
+      @apply tw-text-text01;
+    }
+  }
+
+  @mixin with_bg_sizes() {
+    &.size-36 {
+      @include size_36();
+    }
+
+    &.size-48 {
+      @include size_48();
+    }
+
+    &.size-56 {
+      @include size_56();
+    }
+
+    &.lg-size-36 {
+      @include screen($lg) {
+        @include size_36();
+      }
+    }
+
+    &.lg-size-48 {
+      @include screen($lg) {
+        @include size_48();
+      }
+    }
+
+    &.lg-size-56 {
+      @include screen($lg) {
+        @include size_56();
+      }
+    }
+
+    &.xl-size-36 {
+      @include screen($xl) {
+        @include size_36();
+      }
+    }
+
+    &.xl-size-48 {
+      @include screen($xl) {
+        @include size_48();
+      }
+    }
+
+    &.xl-size-56 {
+      @include screen($xl) {
+        @include size_56();
       }
     }
   }
 
-  @mixin secondary {
-    &--secondary {
-      @extend %withFill;
-      @apply tw-bg-secondary tw-text-primary;
+  @mixin non_bg_sizes() {
+    &.size-36 {
+      @include size_36(false);
+    }
 
-      @include withFillDisabled();
+    &.size-56 {
+      @include size_56(false);
+    }
 
-      @include lg {
-        &:hover {
-          @apply tw-bg-secondary-hover;
-        }
+    &.lg-size-36 {
+      @include screen($lg) {
+        @include size_36(false);
+      }
+    }
 
-        &:active {
-          @apply tw-bg-secondary-press;
-        }
+    &.lg-size-56 {
+      @include screen($lg) {
+        @include size_56(false);
+      }
+    }
+
+    &.xl-size-36 {
+      @include screen($xl) {
+        @include size_36(false);
+      }
+    }
+
+    &.xl-size-56 {
+      @include screen($xl) {
+        @include size_56(false);
       }
     }
   }
 
-  @mixin secondaryNeutral {
-    &--secondary-neutral {
-      @extend %withFill;
-      @apply tw-bg-neutral tw-text-text00;
-
-      @include withFillDisabled();
-
-      @include lg {
-        &:hover {
-          @apply tw-bg-neutral-hover;
-        }
-
-        &:active {
-          @apply tw-bg-neutral-press;
-        }
-      }
-    }
-  }
-
-  @mixin outline {
-    &--outline {
-      @extend %withBorder;
-      @apply tw-border-border01 tw-text-primary;
-
-      @include withBorderDisabled();
-
-      @include lg {
-        &:hover {
-          @apply tw-border-primary-hover tw-text-primary-hover;
-        }
-
-        &:active {
-          @apply tw-border-primary-press tw-text-primary-press;
-        }
-      }
-    }
-  }
-
-  @mixin outlineNeutral {
-    &--outline-neutral {
-      @extend %withBorder;
-      @apply tw-border-border01 tw-text-text00;
-
-      @include withBorderDisabled();
-
-      @include lg {
-        &:hover {
-          @apply tw-border-primary-hover tw-text-primary-hover;
-        }
-
-        &:active {
-          @apply tw-border-primary-press tw-text-primary-press;
-        }
-      }
-    }
-
-    &--outline-neutral:hover &__left-icon, &--outline-neutral:hover &__right-icon {
-      color: inherit !important;
-    }
-
-    &--outline-neutral:active &__left-icon, &--outline-neutral:active &__right-icon {
-      color: inherit !important;
-    }
-  }
-
-  @mixin ghostSizes() {
-    &--ghost-56, &--ghost-48 {
-      @apply tw-text-body-m-bold;
-    }
-
-    &--ghost-36 {
-      @apply tw-text-body-s-bold;
-    }
-  }
-
-  @mixin ghost {
-    &--ghost {
-      @apply tw-text-primary;
-
-      @include ghostDisabled();
-
-      @include lg {
-        &:hover {
-          @apply tw-text-primary-hover;
-        }
-
-        &:active {
-          @apply tw-text-primary-press;
-        }
-      }
-
-
-    }
-  }
-
-  @mixin ghostNeutral {
-    &--ghost-neutral {
-      @apply tw-text-text00;
-
-      @include ghostDisabled();
-
-      @include lg {
-        &:hover {
-          @apply tw-text-primary-hover;
-        }
-
-        &:active {
-          @apply tw-text-primary-press;
-        }
-      }
-    }
-
-    &--ghost-neutral:hover &__left-icon, &--ghost-neutral:hover &__right-icon {
-      color: inherit !important;
-    }
-
-    &--ghost-neutral:active &__left-icon, &--ghost-neutral:active &__right-icon {
-      color: inherit !important;
-    }
-  }
-
-  .app-button {
-    display: flex;
+  .btn {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
+    @apply tw-rounded-full;
 
-    &--size-56, &--size-48 {
-      padding: 12px 20px;
-      @apply tw-text-body-m-bold;
+    &-design-primary {
+      @include design_primary();
+      @include with_bg_sizes();
     }
 
-    &--size-36 {
-      padding: 8px 16px;
-      @apply tw-text-body-s-bold;
+    &-design-secondary {
+      @include design_secondary();
+      @include with_bg_sizes();
     }
 
-    &__left-icon, &__right-icon {
-      &--size-56, &--size-48 {
-        width: 24px;
-        height: 24px;
-      }
-
-      &--size-36 {
-        width: 16px;
-        height: 16px;
-      }
-
-      &--secondary-neutral,  &--outline-neutral, &--ghost-neutral  {
-        @apply tw-text-text01;
-      }
+    &-design-secondary-neutral {
+      @include design_secondary_neutral();
+      @include with_bg_sizes();
     }
 
-    @include primary();
-    @include secondary();
-    @include secondaryNeutral();
-    @include outline();
-    @include outlineNeutral();
-    @include ghost();
-    @include ghostNeutral();
-    @include ghostSizes();
+    &-design-outline {
+      @include design_outline();
+      @include with_bg_sizes();
+    }
+
+    &-design-outline-neutral {
+      @include design_outline_neutral();
+      @include with_bg_sizes();
+    }
+
+    &-design-ghost {
+      @include design_ghost();
+      @include non_bg_sizes();
+    }
+
+    &-design-ghost-neutral {
+      @include design_ghost_neutral();
+      @include non_bg_sizes();
+    }
   }
 </style>
