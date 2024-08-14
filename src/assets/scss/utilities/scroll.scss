@@ -1,0 +1,7 @@
+.scroll-x {
+  overflow-y: hidden;
+
+  &--pb-8 {
+    @apply tw-pb-8;
+  }
+}
