@@ -4,6 +4,7 @@ import registerComponents from '../boot/registerComponents';
 import registerValidationRules from '../boot/registerValidationRules';
 import createRouter from '../router';
 import { createPinia } from 'pinia';
+import { init as initHttp, exposedSymbol as httpKey } from '@/shared/api/useHttp';
 
 export default function() {
   const app = createApp(App);
@@ -13,6 +14,8 @@ export default function() {
   app
   .use(router)
   .use(pinia);
+
+  app.provide(httpKey, initHttp());
 
   registerComponents(app, router);
   registerValidationRules(app, router);
