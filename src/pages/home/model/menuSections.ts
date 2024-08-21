@@ -20,7 +20,7 @@ const items: MenuItem[] = [
     name: 'Меню',
     priceFrom: 'от 250 ₽',
     color: 'yellow',
-    to: { name: 'home' },
+    to: { name: 'menu.section.index', params: { section: 'sety' } },
   },
   {
     name: 'Кейтеринг',
