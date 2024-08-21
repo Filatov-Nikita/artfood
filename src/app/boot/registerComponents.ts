@@ -8,6 +8,8 @@ import {
 } from '@/shared/ui';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Field, Form } from 'vee-validate';
+//@ts-ignore
+import SlideUpDown from 'vue-slide-up-down';
 
 export default boot((app) => {
   app.component('AppIcon', Icon);
@@ -19,4 +21,5 @@ export default boot((app) => {
   app.component('SwiperSlide', SwiperSlide);
   app.component('Form', Form);
   app.component('Field', Field);
+  app.component('SlideUpDown', SlideUpDown);
 });

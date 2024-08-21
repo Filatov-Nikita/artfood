@@ -7,6 +7,7 @@ import {
 } from '@/shared/ui';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Field, Form } from 'vee-validate';
+import SlideUpDown from 'vue-slide-up-down';
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
@@ -19,5 +20,6 @@ declare module '@vue/runtime-core' {
     SwiperSlide: typeof SwiperSlide,
     Form: typeof Form,
     Field: typeof Field,
+    SlideUpDown: typeof SlideUpDown,
   }
 }
