@@ -5,6 +5,7 @@
         <MenuSections />
         <HomeSectionList v-if="homeSections" :items="homeSections"/>
         <TeamSection />
+        <FaqSection />
       </div>
     </main>
   </PrimaryLayout>
@@ -16,6 +17,7 @@
   import { TeamSection } from '@/widgets/TeamSection';
   import HomeSectionList from './HomeSectionList/index.vue';
   import useHomeMenu from '../model/useHomeMenu';
+  import { FaqSection } from '@/widgets/FaqSection';
 
   const { homeSections, load: getHomeMenu } = useHomeMenu();
 

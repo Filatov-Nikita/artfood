@@ -156,5 +156,8 @@ export default {
       '64': '64px',
       '96': '96px',
     },
+    letterSpacing: {
+      '2': '0.02em',
+    },
   },
 }

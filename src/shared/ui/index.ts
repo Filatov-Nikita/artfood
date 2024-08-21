@@ -6,3 +6,4 @@ export { default as Input } from './Input/index.vue';
 export { default as Badge } from './Badge/index.vue';
 export { default as InnerSectionBase } from './InnerSection/Base.vue';
 export { default as ProductItem } from './Product/Item/index.vue';
+export { default as SlideItem } from './SlideItem/index.vue';
