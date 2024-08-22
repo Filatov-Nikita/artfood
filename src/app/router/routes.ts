@@ -11,6 +11,11 @@ export default function createRoutes() {
       name: 'menu.section.index',
     },
     {
+      path: '/about',
+      component: () => import('@/pages/about/ui/AboutPage.vue'),
+      name: 'about',
+    },
+    {
       path: '/debug',
       children: [
         {

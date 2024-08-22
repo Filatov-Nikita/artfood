@@ -29,6 +29,6 @@ export default [
   },
   {
     label: 'О компании',
-    to: '#',
+    to: { name: 'about' },
   },
 ];
