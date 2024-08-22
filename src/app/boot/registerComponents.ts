@@ -6,6 +6,7 @@ import {
   Button,
   Input,
   Modal,
+  Tabs,
 } from '@/shared/ui';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Field, Form } from 'vee-validate';
@@ -24,4 +25,5 @@ export default boot((app) => {
   app.component('Field', Field);
   app.component('SlideUpDown', SlideUpDown);
   app.component('AppModal', Modal);
+  app.component('AppTabs', Tabs);
 });

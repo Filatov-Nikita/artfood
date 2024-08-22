@@ -7,3 +7,4 @@ export { default as Badge } from './Badge/index.vue';
 export { default as InnerSectionBase } from './InnerSection/Base.vue';
 export { default as SlideItem } from './SlideItem/index.vue';
 export { default as Modal } from './Modal/index.vue';
+export { default as Tabs } from './Tabs/index.vue';
