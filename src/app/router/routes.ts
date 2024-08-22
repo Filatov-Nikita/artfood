@@ -6,6 +6,11 @@ export default function createRoutes() {
       name: 'home',
     },
     {
+      path: '/menu/:section',
+      component: () => import('@/pages/menu/ui/MenuPage.vue'),
+      name: 'menu.section.index',
+    },
+    {
       path: '/debug',
       children: [
         {
