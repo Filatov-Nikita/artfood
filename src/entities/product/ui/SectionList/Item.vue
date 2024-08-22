@@ -1,28 +1,29 @@
 <template>
   <section class="section">
-    <p class="name">{{ item.name }}</p>
+    <p class="name">{{ name }}</p>
     <div class="items">
       <ProductItem
         class="item"
-        v-for="good in item.goods"
-        :key="good.id"
-        :name="good.name"
-        :image="good.img"
-        :gram="good.ves"
-        :badge="good.tag"
-        :personsCount="good.presons_count"
-        :text="good.podpis"
+        v-for="product in products"
+        :key="product.id"
+        :name="product.name"
+        :image="product.img"
+        :gram="product.ves"
+        :badge="product.tag"
+        :personsCount="product.presons_count"
+        :text="product.podpis"
       />
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-  import type { HomeSection } from '../../model/useHomeMenu';
-  import { ProductItem } from '@/shared/ui';
+  import ProductItem from '../Item/index.vue';
+  import type { MenuElement } from '@/shared/api/models/MenuElement';
 
   defineProps<{
-    item: HomeSection,
+    name: string,
+    products: MenuElement[],
   }>();
 </script>
 

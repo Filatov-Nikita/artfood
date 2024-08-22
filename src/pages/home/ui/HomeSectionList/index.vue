@@ -1,16 +1,17 @@
 <template>
   <div>
-    <Item
+    <SectionListItem
       v-for="item in items"
       :key="item.id"
-      :item="item"
+      :name="item.name"
+      :products="item.goods"
     />
   </div>
 </template>
 
 <script setup lang="ts">
   import type { HomeSection } from '../../model/useHomeMenu';
-  import Item from './Item.vue';
+  import { SectionListItem } from '@/entities/product';
 
   defineProps<{
     items: HomeSection[],
