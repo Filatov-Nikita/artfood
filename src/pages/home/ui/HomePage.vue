@@ -3,9 +3,14 @@
     <main>
       <div class="wrapper">
         <MenuSections />
-        <HomeSectionList v-if="homeSections" :items="homeSections"/>
+        <HomeSectionList
+          v-if="homeSections"
+          :items="homeSections"
+          @change:product="changeProduct"
+        />
         <TeamSection />
         <FaqSection />
+        <CardDetailed v-if="productDetailed" v-model="showedDetailed" :product="productDetailed" />
       </div>
     </main>
   </PrimaryLayout>
@@ -18,8 +23,11 @@
   import HomeSectionList from './HomeSectionList/index.vue';
   import useHomeMenu from '../model/useHomeMenu';
   import { FaqSection } from '@/widgets/FaqSection';
+  import { useCardModal, CardDetailed } from '@/entities/product';
 
   const { homeSections, load: getHomeMenu } = useHomeMenu();
+
+  const { productDetailed, showedDetailed, changeProduct } = useCardModal();
 
   await getHomeMenu();
 </script>
