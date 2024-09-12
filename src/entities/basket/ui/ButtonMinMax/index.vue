@@ -46,6 +46,7 @@
     justify-content: center;
     gap: 8px;
     user-select: none;
+    overflow: hidden;
     @apply tw-bg-neutral tw-rounded-full tw-text-body-m-bold;
 
     &--zero {
@@ -70,14 +71,18 @@
       .action {
         transition: opacity 100ms;
         &:hover {
-          opacity: 0.6;
+          background-color: #59ac44;
+        }
+
+        &:active {
+          background-color: #4e993b;
         }
       }
     }
   }
 
   .action {
-    padding: 16px 0;
+    padding: 16px 4px;
     flex-grow: 1;
   }
 
