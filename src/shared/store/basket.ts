@@ -67,7 +67,7 @@ export const useBasketStore = defineStore('basketStore', () => {
     basket.value = data;
   }
 
-  async function remove(productId: string) {
+  async function reduce(productId: string) {
     if(!basketId.value) return;
     const { data } = await http.post<Item[]>('removefrombasket.php', jsonFormData({
       basket_id: basketId.value,
@@ -91,7 +91,7 @@ export const useBasketStore = defineStore('basketStore', () => {
     remember,
     forgot,
     append,
-    remove,
+    reduce,
     getItem,
   }
 });

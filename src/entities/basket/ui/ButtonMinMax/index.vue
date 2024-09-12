@@ -33,7 +33,7 @@
 
   function onClick(e: Event) {
     const target = e.target as HTMLElement;
-    if(target.closest('.action') === removeRef.value) basketStore.remove(props.productId);
+    if(target.closest('.action') === removeRef.value) basketStore.reduce(props.productId);
     else if(target.closest('.action') === appendRef.value) basketStore.append(props.productId);
     else if(props.count === 0) basketStore.append(props.productId);
   }
