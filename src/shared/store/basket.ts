@@ -60,27 +60,20 @@ export const useBasketStore = defineStore('basketStore', () => {
 
   async function append(productId: string) {
     if(!basketId.value) return;
-    const { data } = await http.post<Item>('add2basket.php', jsonFormData({
+    const { data } = await http.post<Item[]>('add2basket.php', jsonFormData({
       basket_id: basketId.value,
       good_id: productId,
     }));
-    const ind = basket.value.findIndex(item => item.good_id === data.good_id);
-    if(!ind) basket.value.push(data);
-    else basket.value[ind] = data;
+    basket.value = data;
   }
 
   async function remove(productId: string) {
     if(!basketId.value) return;
-    const { data } = await http.post<Item>('removefrombasket.php', jsonFormData({
+    const { data } = await http.post<Item[]>('removefrombasket.php', jsonFormData({
       basket_id: basketId.value,
       good_id: productId,
     }));
-    const ind = basket.value.findIndex(item => item.good_id === data.good_id);
-    if(!ind) return;
-    basket.value[ind] = data;
-    basket.value = basket.value.filter(item => {
-      return item.count !== '0';
-    });
+    basket.value = data;
   }
 
   function getItem(productId: string): Item | undefined {
