@@ -2,7 +2,8 @@
   <div class="primary-layout">
     <div class="primary-layout__header-wrap">
       <div class="wrapper">
-        <Header v-model:showedMenu="showedMenu" />
+        <Header v-model:showedMenu="showedMenu" @showBasket="showedBasket = true" />
+        <ModalDetailed v-model="showedBasket" />
         <NavMenu
           :showed="showedMenu"
           headerSelector=".primary-layout__header-wrap"
@@ -23,8 +24,10 @@
   import { Footer } from '@/widgets/Footer';
   import { NavMenu } from '@/widgets/NavMenu';
   import { ref, watch } from 'vue';
+  import { ModalDetailed } from '@/entities/basket';
 
   const showedMenu = ref(false);
+  const showedBasket = ref(false);
 
   watch(showedMenu, (val) => {
     if(val) {
