@@ -76,6 +76,23 @@ export const useBasketStore = defineStore('basketStore', () => {
     basket.value = data;
   }
 
+  async function remove(productId: string) {
+    if(!basketId.value) return;
+    const { data } = await http.post<Item[]>('clear_good_basket.php', jsonFormData({
+      basket_id: basketId.value,
+      good_id: productId,
+    }));
+    basket.value = data;
+  }
+
+  async function clearAll() {
+    if(!basketId.value) return;
+    await http.get<Item[]>('clear_basket.php', {
+      params: { id: basketId.value },
+    });
+    basket.value = [];
+  }
+
   function getItem(productId: string): Item | undefined {
     const item = basket.value.find(item => item.good_id === productId);
     return item;
@@ -93,5 +110,7 @@ export const useBasketStore = defineStore('basketStore', () => {
     append,
     reduce,
     getItem,
+    remove,
+    clearAll,
   }
 });
