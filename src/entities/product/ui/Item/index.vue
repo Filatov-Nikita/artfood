@@ -8,7 +8,12 @@
     </div>
     <div class="gram">{{ gram }} г</div>
     <div v-if="text" class="text">{{ text }}</div>
-    <AppButton class="price" size="48" design="secondary-neutral">14 000 ₽</AppButton>
+    <ButtonMinMax
+      class="price"
+      :price="price"
+      :productId="id"
+      :count="count"
+    />
   </article>
 </template>
 
