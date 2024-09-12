@@ -16,7 +16,7 @@
           <AppLogo class="header__logo" />
         </router-link>
         <div class="header__actions">
-          <ButtonRound size="40px" icon="shopping-cart-regular"></ButtonRound>
+          <ButtonState :hasItems="hasItems" @click="$emit('showBasket')" />
           <ButtonRound
             size="40px"
             :icon="showedMenu ? 'x-regular' : 'list-regular'"
@@ -29,7 +29,10 @@
 </template>
 
 <script setup lang="ts">
+  import { useBasketStore } from '@/shared/store/basket';
   import contacts from '../model/contacts';
+  import { ButtonState } from '@/entities/basket';
+  import { storeToRefs } from 'pinia';
 
   defineProps<{
     showedMenu: boolean,
@@ -37,7 +40,10 @@
 
   defineEmits<{
     (event: 'update:showedMenu', value: boolean): void,
+    (event: 'showBasket'): void,
   }>();
+
+  const { hasItems } = storeToRefs(useBasketStore());
 </script>
 
 <style scoped lang="scss">

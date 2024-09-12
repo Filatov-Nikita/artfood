@@ -16,6 +16,7 @@ export const useBasketStore = defineStore('basketStore', () => {
 
   const basketId = ref<number | null>(null);
   const basket = ref<Item[]>([]);
+  const hasItems = computed(() => basket.value.length > 0);
 
   async function create() {
     const res = await http.get<[ { id: number } ]>('create_basket.php');
@@ -91,6 +92,7 @@ export const useBasketStore = defineStore('basketStore', () => {
     basketId,
     basket,
     total,
+    hasItems,
     init,
     create,
     remember,
