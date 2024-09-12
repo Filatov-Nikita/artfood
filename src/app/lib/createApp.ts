@@ -5,6 +5,7 @@ import registerValidationRules from '../boot/registerValidationRules';
 import createRouter from '../router';
 import { createPinia } from 'pinia';
 import { init as initHttp, exposedSymbol as httpKey } from '@/shared/api/useHttp';
+import prettyAmount from '@/shared/plugins/prettyAmount';
 
 export default function() {
   const app = createApp(App);
@@ -13,7 +14,8 @@ export default function() {
 
   app
   .use(router)
-  .use(pinia);
+  .use(pinia)
+  .use(prettyAmount);
 
   app.provide(httpKey, initHttp());
 
