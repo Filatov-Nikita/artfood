@@ -8,3 +8,5 @@ export { default as InnerSectionBase } from './InnerSection/Base.vue';
 export { default as SlideItem } from './SlideItem/index.vue';
 export { default as Modal } from './Modal/index.vue';
 export { default as Tabs } from './Tabs/index.vue';
+export { default as Plural } from './Plural/index.vue';
+export { default as InnerDialog } from './InnerDialog/index.vue';

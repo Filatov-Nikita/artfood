@@ -28,7 +28,7 @@
 <style scoped lang="scss">
   .slide-leave-active {
     animation: fadeOutRight;
-    animation-duration: 300ms;
+    animation-duration: 400ms;
   }
 
   .empty {
