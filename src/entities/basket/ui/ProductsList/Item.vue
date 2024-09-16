@@ -14,8 +14,15 @@
         />
       </div>
       <div class="price-wrap">
-        <div></div>
-        <p class="price">{{ item.price }}</p>
+        <ButtonMinMaxMini :productId="item.good_id" :count="count" />
+        <p class="price">
+          <span class="forone">
+            {{ $amount(price) }} / за шт
+          </span>
+          <span>
+            {{ $amount(total) }}
+          </span>
+        </p>
       </div>
     </div>
   </div>
@@ -24,6 +31,7 @@
 <script setup lang="ts">
   import type { Item as TItem } from '@/shared/store/basket';
   import useImg from '@/shared/lib/useImg';
+  import ButtonMinMaxMini from '../ButtonMinMaxMini/index.vue';
   import { computed } from 'vue';
 
   const props = defineProps<{
@@ -37,6 +45,18 @@
   const { url } = useImg(
     computed(() => props.item.img)
   );
+
+  const count = computed(() => {
+    return parseInt(props.item.count);
+  });
+
+  const price = computed(() => {
+    return parseInt(props.item.price);
+  });
+
+  const total = computed(() => {
+    return count.value * price.value;
+  });
 </script>
 
 <style scoped lang="scss">
@@ -74,7 +94,14 @@
   }
 
   .price {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
     @apply tw-text-body-m-bold -tw-tracking-2;
+  }
+
+  .forone {
+    @apply tw-text-body-xs-medium tw-text-text01 tw-py-4;
   }
 
   .body {
