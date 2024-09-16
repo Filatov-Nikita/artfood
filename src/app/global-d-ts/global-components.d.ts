@@ -6,6 +6,7 @@ import {
   Input,
   Modal,
   Tabs,
+  Plural,
 } from '@/shared/ui';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Field, Form } from 'vee-validate';
@@ -25,5 +26,6 @@ declare module '@vue/runtime-core' {
     SlideUpDown: typeof SlideUpDown,
     AppModal: typeof Modal,
     AppTabs: typeof Tabs,
+    AppPlural: typeof Plural,
   }
 }

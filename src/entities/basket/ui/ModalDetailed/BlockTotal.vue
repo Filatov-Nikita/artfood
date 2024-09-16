@@ -1,9 +1,7 @@
 <template>
   <div class="block">
     <div class="row count">
-      <span>
-        {{ basket.length }} товаров
-      </span>
+      <AppPlural :total="basket.length" :cases="cases" />
       <span class="sum">{{ $amount(sum) }}</span>
     </div>
     <div class="row total">
@@ -29,6 +27,8 @@
       return acc;
     }, 0);
   });
+
+  const cases = [ 'товар', 'товара', 'товаров' ];
 </script>
 
 <style scoped lang="scss">
