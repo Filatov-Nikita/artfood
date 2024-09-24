@@ -9,6 +9,7 @@ import {
   Tabs,
   Plural,
   InnerDialog,
+  PhoneInput,
   ToggleInput,
   Textarea,
 } from '@/shared/ui';
@@ -32,6 +33,7 @@ export default boot((app) => {
   app.component('AppTabs', Tabs);
   app.component('AppPlural', Plural);
   app.component('InnerDialog', InnerDialog);
+  app.component('PhoneInput', PhoneInput);
   app.component('ToggleInput', ToggleInput);
   app.component('AppTextarea', Textarea);
 });
