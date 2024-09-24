@@ -31,5 +31,6 @@ declare module '@vue/runtime-core' {
     AppPlural: typeof Plural,
     InnerDialog: typeof InnerDialog,
     ToggleInput: typeof ToggleInput,
+    AppTextarea: typeof Textarea,
   }
 }

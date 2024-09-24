@@ -11,3 +11,4 @@ export { default as Tabs } from './Tabs/index.vue';
 export { default as Plural } from './Plural/index.vue';
 export { default as InnerDialog } from './InnerDialog/index.vue';
 export { default as ToggleInput } from './ToggleInput/index.vue';
+export { default as Textarea } from './Textarea/index.vue';

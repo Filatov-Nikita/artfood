@@ -10,6 +10,7 @@ import {
   Plural,
   InnerDialog,
   ToggleInput,
+  Textarea,
 } from '@/shared/ui';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Field, Form } from 'vee-validate';
@@ -32,4 +33,5 @@ export default boot((app) => {
   app.component('AppPlural', Plural);
   app.component('InnerDialog', InnerDialog);
   app.component('ToggleInput', ToggleInput);
+  app.component('AppTextarea', Textarea);
 });
