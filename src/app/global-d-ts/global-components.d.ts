@@ -8,6 +8,7 @@ import {
   Tabs,
   Plural,
   InnerDialog,
+  ToggleInput,
 } from '@/shared/ui';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Field, Form } from 'vee-validate';
@@ -29,5 +30,6 @@ declare module '@vue/runtime-core' {
     AppTabs: typeof Tabs,
     AppPlural: typeof Plural,
     InnerDialog: typeof InnerDialog,
+    ToggleInput: typeof ToggleInput,
   }
 }
