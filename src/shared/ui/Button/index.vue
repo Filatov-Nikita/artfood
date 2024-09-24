@@ -5,15 +5,19 @@
     :class="rootClasses"
     v-bind="rootAttrs.attrs"
   >
-    <span class="left-icon" v-if="leftIcon">
-      <AppIcon :name="leftIcon" fit />
-    </span>
-    <span>
+    <slot name="left">
+      <span class="left-icon" v-if="leftIcon">
+        <AppIcon :name="leftIcon" fit />
+      </span>
+    </slot>
+    <span class="label" v-if="$slots.default">
       <slot />
     </span>
-    <span class="right-icon" v-if="rightIcon">
-      <AppIcon :name="rightIcon" fit />
-    </span>
+    <slot name="right">
+      <span class="right-icon" v-if="rightIcon">
+        <AppIcon :name="rightIcon" fit />
+      </span>
+    </slot>
   </component>
 </template>
 

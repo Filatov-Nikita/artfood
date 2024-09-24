@@ -11,11 +11,11 @@
         <input
           class="inp"
           :class="{ 'inp--filled': filled }"
-          v-bind="$attrs"
           :id="name"
           :name="name"
           :type="type"
           :value="value"
+          v-maska="maska"
           @input="handleChange"
           @focus="focused = true"
           @blur="focused = false"
@@ -28,13 +28,14 @@
         <AppIcon :name="iconRight" fit />
       </span>
     </div>
-    <div class="error">{{ errorMessage }}</div>
+    <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
   </div>
 </template>
 
 <script setup lang="ts">
-  import { computed, ref, toRefs } from 'vue';
-  import { useField } from 'vee-validate';
+  import { computed, ref, toRefs, type Ref } from 'vue';
+  import { useField, type RuleExpression } from 'vee-validate';
+  import { vMaska } from 'maska/vue';
 
   type IType = 'text' | 'number' | 'email' | 'tel';
 
@@ -44,10 +45,12 @@
     type?: IType,
     iconLeft?: string,
     iconRight?: string,
+    rules?: RuleExpression<string>,
+    maska?: string,
   }
 
   defineOptions({
-    inheritAttrs: false,
+    inheritAttrs: true,
   });
 
   const props = withDefaults(
@@ -61,12 +64,12 @@
     (event: 'update:modelValue', value: string): void,
   }>();
 
-  const { name } = toRefs(props);
+  const { name, rules } = toRefs(props);
 
   const model = defineModel<string>();
 
-  const { value, handleChange, errorMessage } = useField(name, undefined, {
-    initialValue: model,
+  const { value, handleChange, errorMessage } = useField<string>(name, rules, {
+    initialValue: model as Ref<string>,
     syncVModel: true,
   });
 

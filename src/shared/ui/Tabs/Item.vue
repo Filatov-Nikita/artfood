@@ -1,5 +1,5 @@
 <template>
-  <button class="item" :class="{ 'item--active': active }">
+  <button type="button" class="item" :class="{ 'item--active': active }">
     <slot></slot>
   </button>
 </template>
