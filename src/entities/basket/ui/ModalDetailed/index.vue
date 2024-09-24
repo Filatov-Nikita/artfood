@@ -27,7 +27,7 @@
         <ProductsList class="list" :basket="basket" @remove="basketStore.remove" />
         <div class="card-bottom" v-if="basket.length > 0">
           <BlockTotal :basket="basket" />
-          <AppButton class="order" design="primary" size="56">Оформить заказ</AppButton>
+          <AppButton class="order" design="primary" size="56" :to="{ name: 'order' }">Оформить заказ</AppButton>
         </div>
       </div>
     </div>

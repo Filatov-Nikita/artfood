@@ -1,4 +1,4 @@
-import { watch, type Ref } from 'vue';
+import { onUnmounted, watch, type Ref } from 'vue';
 
 export default function(value: Ref<boolean>, disabled?: Ref<boolean>) {
   watch(value, () => {
@@ -10,4 +10,8 @@ export default function(value: Ref<boolean>, disabled?: Ref<boolean>) {
       document.body.classList.remove('tw-overflow-hidden');
     }
   }, { immediate: true });
+
+  onUnmounted(() => {
+    document.body.classList.remove('tw-overflow-hidden');
+  });
 }

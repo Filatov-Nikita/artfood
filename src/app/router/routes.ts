@@ -16,6 +16,11 @@ export default function createRoutes() {
       name: 'about',
     },
     {
+      path: '/order',
+      component: () => import('@/pages/order/ui/OrderPage.vue'),
+      name: 'order',
+    },
+    {
       path: '/debug',
       children: [
         {
