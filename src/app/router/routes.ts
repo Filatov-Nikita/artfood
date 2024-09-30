@@ -21,6 +21,11 @@ export default function createRoutes() {
       name: 'order',
     },
     {
+      path: '/portfolio',
+      component: () => import('@/pages/portfolio/ui/PortfolioPage.vue'),
+      name: 'portfolio',
+    },
+    {
       path: '/debug',
       children: [
         {

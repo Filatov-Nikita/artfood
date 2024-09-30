@@ -24,7 +24,7 @@ export default {
     },
     {
       label: 'Портфолио',
-      to: '#',
+      to: { name: 'portfolio' },
     },
     {
       label: 'Оплата и доставка',
