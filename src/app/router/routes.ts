@@ -31,6 +31,11 @@ export default function createRoutes() {
       name: 'halls',
     },
     {
+      path: '/programs',
+      component: () => import('@/pages/programs/ui/ProgramsPage.vue'),
+      name: 'programs',
+    },
+    {
       path: '/debug',
       children: [
         {
