@@ -6,9 +6,10 @@
       <div class="name">{{ name }}</div>
       <div v-if="personsCount" class="notice">на {{ personsCount }} персон</div>
     </div>
-    <div class="gram">{{ gram }} г</div>
+    <div v-if="gram" class="gram">{{ gram }} г</div>
     <div v-if="text" class="text">{{ text }}</div>
     <ButtonMinMax
+      v-if="price"
       class="price"
       :price="price"
       :productId="id"
@@ -29,7 +30,7 @@
     defineProps<{
       id: string,
       name: string,
-      price: string,
+      price?: string,
       disabled?: boolean,
       badge?: string | null,
       personsCount?: string,
