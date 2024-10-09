@@ -1,7 +1,7 @@
 <template>
   <article class="pr-item" :class="{ 'pr-item--disabled': disabled }">
     <Badge v-if="badge" class="pr-item__badge" color="yellow" design="primary">{{ badge }}</Badge>
-    <Image class="pr-item__img" :path="imgUrl" />
+    <Image class="pr-item__img" :path="imgUrl" :showCount="count > 0" :count="count" @click="$emit('show:product', id)" />
     <div class="name-wrap">
       <div class="name">{{ name }}</div>
       <div v-if="personsCount" class="notice">на {{ personsCount }} персон</div>
@@ -22,10 +22,14 @@
   import Image from '../Image/index.vue';
   import Badge from '@/shared/ui/Badge/index.vue';
   import { baseURL } from '@/shared/api/useHttp';
+  import { ButtonMinMax } from '@/entities/basket';
+  import { useBasketStore } from '@/shared/store/basket';
 
   const props = withDefaults(
     defineProps<{
+      id: string,
       name: string,
+      price: string,
       disabled?: boolean,
       badge?: string | null,
       personsCount?: string,
@@ -38,11 +42,25 @@
     }
   );
 
+  defineEmits<{
+    (event: 'show:product', id: string): void,
+  }>();
+
   const origin = baseURL.replace('/api', '');
 
   const imgUrl = computed(() => {
     if(!props.image) return null;
     return origin + props.image;
+  });
+
+  const basketStore = useBasketStore();
+
+  const basketItem = computed(() => {
+    return basketStore.getItem(props.id);
+  });
+
+  const count = computed(() => {
+    return parseInt(basketItem.value?.count ?? '0');
   });
 </script>
 
@@ -64,6 +82,7 @@
 
     &__img {
       z-index: 1;
+      cursor: pointer;
     }
   }
 

@@ -5,12 +5,14 @@
       <ProductItem
         class="item"
         v-for="product in products"
+        :id="product.id"
         :name="product.name"
         :image="product.img"
         :gram="product.ves"
         :badge="product.tag"
         :personsCount="product.presons_count"
         :text="product.podpis"
+        :price="product.price"
       />
     </div>
   </div>

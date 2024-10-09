@@ -6,13 +6,15 @@
         class="item"
         v-for="product in products"
         :key="product.id"
+        :id="product.id"
         :name="product.name"
         :image="product.img"
         :gram="product.ves"
         :badge="product.tag"
         :personsCount="product.presons_count"
         :text="product.podpis"
-        @click="$emit('change:product', product)"
+        :price="product.price"
+        @show:product="$emit('change:product', product)"
       />
     </div>
   </section>
@@ -27,7 +29,7 @@
     products: MenuElement[],
   }>();
 
-  defineEmits<{
+  const emit = defineEmits<{
     (event: 'change:product', product: MenuElement): void,
   }>();
 </script>
@@ -51,6 +53,5 @@
   .item {
     width: 100%;
     margin-top: 40px;
-    cursor: pointer;
   }
 </style>

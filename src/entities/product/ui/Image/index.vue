@@ -72,7 +72,7 @@
   }
 
   .overlay-enter-active, .overlay-leave-active {
-    transition: opacity 300ms;
+    transition: opacity 200ms;
   }
 
   .count {
