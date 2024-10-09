@@ -2,11 +2,11 @@ export default {
   primary: [
     {
       label: 'Сеты',
-      to: '#',
+      to: { name: 'menu.section.index', params: { section: 'sety' } },
     },
     {
       label: 'Меню',
-      to: '#',
+      to: { name: 'menu.section.index', params: { section: 'sety' } },
     },
     {
       label: 'Кейтеринг',
@@ -20,7 +20,7 @@ export default {
   secondary: [
     {
       label: 'Программы питания',
-      to: '#',
+      to: { name: 'programs' },
     },
     {
       label: 'Портфолио',

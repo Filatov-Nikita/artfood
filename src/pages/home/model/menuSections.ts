@@ -14,7 +14,7 @@ const items: MenuItem[] = [
     name: 'Сеты',
     priceFrom: 'от 1 300 ₽',
     color: 'red',
-    to: { name: 'home' },
+    to: { name: 'menu.section.index', params: { section: 'sety' } },
   },
   {
     name: 'Меню',
