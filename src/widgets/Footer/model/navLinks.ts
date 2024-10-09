@@ -13,7 +13,7 @@ export default [
   },
   {
     label: 'Залы для мероприятий',
-    to: '#',
+    to: { name: 'halls' },
   },
   {
     label: 'Программы питания',

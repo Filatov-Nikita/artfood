@@ -26,6 +26,11 @@ export default function createRoutes() {
       name: 'portfolio',
     },
     {
+      path: '/halls',
+      component: () => import('@/pages/halls/ui/HallsPage.vue'),
+      name: 'halls',
+    },
+    {
       path: '/debug',
       children: [
         {

@@ -14,7 +14,7 @@ export default {
     },
     {
       label: 'Залы для мероприятий',
-      to: '#',
+      to: { name: 'halls' },
     },
   ],
   secondary: [
