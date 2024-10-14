@@ -2,6 +2,7 @@
   <RouterLink class="item" :class="`item--${item.color}`" :to="item.to">
     <div class="name">{{ item.name }}</div>
     <div class="price">{{ item.priceFrom }}</div>
+    <img class="img" :src="item.image" />
   </RouterLink>
 </template>
 
@@ -15,8 +16,10 @@
 
 <style scoped lang="scss">
   .item {
+    position: relative;
     display: block;
     height: 180px;
+    overflow: hidden;
     @apply tw-rounded-1.5xl tw-p-24;
 
     &--red {
@@ -39,5 +42,23 @@
 
   .price {
     @apply tw-text-body-m-medium tw-mt-4;
+  }
+
+  .name, .price {
+    position: relative;
+    z-index: 10;
+  }
+
+  .img {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 190px;
+    z-index: 0;
+    right: -24px;
+
+    @include xl {
+      right: 0;
+    }
   }
 </style>

@@ -7,6 +7,7 @@ export type MenuItem = {
   priceFrom: string,
   color: Color,
   to: RouteLocationRaw,
+  image: string,
 };
 
 const items: MenuItem[] = [
@@ -15,18 +16,21 @@ const items: MenuItem[] = [
     priceFrom: 'от 1 300 ₽',
     color: 'red',
     to: { name: 'menu.section.index', params: { section: 'sety' } },
+    image: '/images/menu-sections/sety.png',
   },
   {
     name: 'Меню',
     priceFrom: 'от 250 ₽',
     color: 'yellow',
     to: { name: 'menu.section.index', params: { section: 'sety' } },
+    image: '/images/menu-sections/menu.png',
   },
   {
     name: 'Кейтеринг',
     priceFrom: 'от 2 000 ₽ / персона',
     color: 'orange',
     to: { name: 'home' },
+    image: '/images/menu-sections/keit.png',
   },
 ];
 
