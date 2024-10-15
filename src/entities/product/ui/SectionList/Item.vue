@@ -40,18 +40,30 @@
   }
 
   .name {
-    letter-spacing: -0.02em;
-    @apply tw-text-body-l-bold tw-mb-24;
+    @apply tw-text-body-l-bold tw-mb-24 -tw-tracking-2;
+
+    @include lg {
+      @apply tw-text-heading-2-bold tw-mb-32;
+    }
   }
 
   .items {
     display: flex;
     flex-wrap: wrap;
     margin-top: -40px;
+
+    @include lg {
+      margin-left: -20px;
+    }
   }
 
   .item {
     width: 100%;
     margin-top: 40px;
+
+    @include lg {
+      width: calc(100% / 12 * 4 - 20px);
+      margin-left: 20px;
+    }
   }
 </style>

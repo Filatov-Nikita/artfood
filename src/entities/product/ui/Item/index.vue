@@ -3,7 +3,7 @@
     <Badge v-if="badge" class="pr-item__badge" color="yellow" design="primary">{{ badge }}</Badge>
     <Image class="pr-item__img" :path="imgUrl" :showCount="count > 0" :count="count" @click="$emit('show:product', id)" />
     <div class="name-wrap">
-      <div class="name">{{ name }}</div>
+      <div class="name" v-html="name"></div>
       <div v-if="personsCount" class="notice">на {{ personsCount }} персон</div>
     </div>
     <div v-if="gram" class="gram">{{ gram }} г</div>
