@@ -26,20 +26,51 @@
 
   .title-wrap {
     @apply tw-mb-24;
+
+    @include lg {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 24px;
+      @apply tw-mb-32;
+    }
+
+    @include xl {
+      @apply tw-mb-40;
+    }
   }
 
   .items {
     display: flex;
     flex-wrap: wrap;
+    align-items: flex-start;
     margin: -6px;
+
+    @include lg {
+      margin: -10px;
+    }
   }
 
   .item {
     width: 100%;
     margin: 6px;
+
+    @include lg {
+      width: calc(50% - 20px);
+      margin: 10px;
+    }
+
   }
 
   .subtitle {
     @apply tw-text-body-m-medium tw-mt-12;
+
+    @include lg {
+      @apply tw-mt-0;
+    }
+
+    @include xl {
+      padding-right: 185px;
+    }
   }
 </style>

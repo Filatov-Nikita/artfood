@@ -1,5 +1,9 @@
 h1, .h1 {
   @apply tw-text-heading-3-bold;
+
+  @include lg {
+    @apply tw-text-heading-2-bold;
+  }
 }
 
 .h-mb-16 {

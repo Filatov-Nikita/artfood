@@ -38,7 +38,8 @@
       display: flex;
       align-items: center;
       gap: 16px;
-      padding: 16px 16px 12px 24px;
+      padding: 12px;
+      padding-left: 24px;
       width: 100%;
       text-align: left;
     }
@@ -46,6 +47,10 @@
     &__label {
       flex-grow: 1;
       @apply tw-text-body-m-bold -tw-tracking-2;
+
+      @include lg {
+        @apply tw-text-body-l-bold;
+      }
     }
 
     &__body {
