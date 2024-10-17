@@ -22,6 +22,10 @@
 <style scoped lang="scss">
   .faq {
     padding-top: 40px;
+
+    @include xl {
+      padding-top: 64px;
+    }
   }
 
   .title-wrap {

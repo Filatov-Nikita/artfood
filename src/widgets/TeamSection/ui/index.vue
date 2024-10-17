@@ -50,6 +50,10 @@
     @include lg {
       @apply tw-pt-40;
     }
+
+    @include xl {
+      @apply tw-pt-64;
+    }
   }
 
   .logo-col {

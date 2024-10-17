@@ -37,6 +37,10 @@
 <style scoped lang="scss">
   .section {
     padding-top: 40px;
+
+    @include xl {
+      padding-top: 64px;
+    }
   }
 
   .name {
