@@ -14,8 +14,6 @@
 
 <style scoped lang="scss">
   .item {
-    width: calc(100% - 6px);
-    margin: 6px;
     @apply tw-rounded-1.5xl tw-p-24 tw-bg-neutral;
   }
 

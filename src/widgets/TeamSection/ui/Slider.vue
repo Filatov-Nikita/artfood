@@ -1,5 +1,17 @@
 <template>
-  <Swiper :spaceBetween="8" :slidesPerView="1.08">
+  <Swiper
+    :spaceBetween="8"
+    :slidesPerView="1.08"
+    :breakpoints="useSwiperPoints({
+      lg: {
+        spaceBetween: 20,
+        slidesPerView: 2.12,
+      },
+      xl: {
+        slidesPerView: 3.1,
+      }
+    })"
+  >
     <SwiperSlide
       v-for="item in items"
     >
@@ -11,6 +23,8 @@
 </template>
 
 <script setup lang="ts">
+  import { useSwiperPoints } from '@/shared/lib';
+
   type Item = {
     img: string,
   }
