@@ -45,10 +45,22 @@
 
     &__header-wrap {
       padding: 8px 0;
+
+       @include lg {
+        padding-top: 16px  ;
+       }
     }
 
     &__footer-wrap {
       padding: 16px 0;
+
+      @include lg {
+        padding-bottom: 24px;
+      }
+
+      @include xl {
+        padding-bottom: 40px;
+      }
     }
   }
 </style>

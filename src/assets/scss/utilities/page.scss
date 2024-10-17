@@ -2,4 +2,12 @@
   &--pt {
     @apply tw-pt-16;
   }
+
+  &--py {
+    @apply tw-pt-16 tw-py-32;
+
+    @include lg {
+      @apply tw-pt-20 tw-pb-64;
+    }
+  }
 }

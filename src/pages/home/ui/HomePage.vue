@@ -1,6 +1,6 @@
 <template>
   <PrimaryLayout>
-    <main>
+    <main class="page--py">
       <div class="wrapper">
         <MenuSections />
         <HomeSectionList
