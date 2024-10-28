@@ -5,5 +5,6 @@ export default {
   },
   tg: {
     path: '#',
-  }
+  },
+  phone: '+7 (347) 285-00-07',
 }
