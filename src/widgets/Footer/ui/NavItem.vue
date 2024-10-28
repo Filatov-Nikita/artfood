@@ -19,6 +19,12 @@
   .nav-item {
     &__link {
       @apply tw-text-body-m-bold tw-text-white;
+
+      @include lg {
+        &:hover {
+          @apply tw-text-primary-hover;
+        }
+      }
     }
   }
 </style>

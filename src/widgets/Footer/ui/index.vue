@@ -35,7 +35,7 @@
               {{ contacts.worktime }}
             </div>
             <div class="footer__contact-row">
-              <a :href="`mailto:${contacts.email}`">{{ contacts.email }}</a>
+              <a class="footer__email" :href="`mailto:${contacts.email}`">{{ contacts.email }}</a>
             </div>
           </div>
         </div>
@@ -80,6 +80,10 @@
     padding: 0 24px 32px;
     @apply tw-bg-neutral-primary tw-rounded-1.5xl;
 
+    @include lg {
+      padding: 0 32px 32px;
+    }
+
     &__decor-wrap {
       transform: translateY(-8px);
       margin-bottom: -8px;
@@ -87,6 +91,10 @@
 
     &__decor {
       margin-bottom: 30px;
+
+      @include lg {
+        margin-bottom: 40px;
+      }
     }
 
     &__wrap {
@@ -105,24 +113,71 @@
       width: 107px;
     }
 
+    &__col-wrap {
+      @include lg {
+        max-width: 640px;
+      }
+
+      @include xl {
+        width: 100%;
+      }
+    }
+
+    &__row1 {
+      @include lg {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+    }
+
+    &__row2 {
+      @include lg {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+    }
+
     &__row3 {
       padding-top: 16px;
       border-top: 1px solid theme('colors.text01');
+
+      @include xl {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        column-gap: 80px;
+      }
     }
 
     &__info {
       margin-bottom: 24px;
       @apply tw-text-text02 tw-text-body-s-regular;
+
+      @include xl {
+        flex-grow: 1;
+        margin-bottom: 0px;
+      }
     }
 
     &__nav {
       display: flex;
       flex-direction: column;
       gap: 20px;
+
+      @include lg {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
     }
 
     &__contacts-wrap {
       margin-bottom: 24px;
+
+      @include lg {
+        margin-bottom: 0px;
+      }
     }
 
     &__contact-row {
@@ -139,6 +194,20 @@
 
     &__phone {
       @apply tw-text-body-m-bold tw-text-white;
+
+      @include lg {
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+
+    &__email {
+      @include lg {
+        &:hover {
+          opacity: 0.7;
+        }
+      }
     }
 
     &__logo-yes {
@@ -150,10 +219,24 @@
       flex-direction: column;
       gap: 20px;
       margin-bottom: 24px;
+
+      @include lg {
+        flex-direction: row;
+      }
+
+      @include xl {
+        margin-bottom: 0px;
+      }
     }
 
     &__doc-link {
       @apply tw-text-body-s-bold tw-text-text02;
+
+      @include lg {
+        &:hover {
+          opacity: 0.7;
+        }
+      }
     }
   }
 </style>
