@@ -21,7 +21,7 @@
         <router-link class="header__logo-link" :to="{ name: 'home' }">
           <AppLogo class="header__logo" />
         </router-link>
-        <div class="header__nav-wrap">
+        <div v-show="!showedMenu" class="header__nav-wrap">
           <nav class="header__nav">
             <router-link
               class="header__nav-link"

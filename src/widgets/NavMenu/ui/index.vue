@@ -113,21 +113,43 @@
         width: 228px;
         height: 348px;
         background-image: url('./assets/bg-small.png');
+        background-repeat: no-repeat;
         background-size: contain;
         position: absolute;
         z-index: 0;
         right: -26px;
         bottom: -20px;
+
+        @include lg {
+          top: 0px;
+          left: -50px;
+          right: auto;
+          bottom: auto;
+          width: 380px;
+          height: 100%;
+        }
       }
     }
 
     &__nav-wrap {
+      position: relative;
+      z-index: 1;
       height: 100%;
       max-height: 100%;
       overflow: scroll;
       display: flex;
       flex-direction: column;
       gap: 16px;
+
+      @include lg {
+        max-width: 440px;
+        margin-left: auto;
+        justify-content: center;
+      }
+
+      @include xl {
+        max-width: 640px;
+      }
     }
 
     &__nav-primary {
@@ -141,6 +163,10 @@
     &__phone-wrap {
       margin-top: auto;
       padding: 16px 0;
+
+      @include lg {
+        display: none;
+      }
     }
 
     &__phone {
