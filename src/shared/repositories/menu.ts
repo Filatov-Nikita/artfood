@@ -13,7 +13,7 @@ export default function(http: AxiosInstance) {
         params
       });
     },
-    elementOne(id: number | string) {
+    show(id: number | string) {
       return http<MenuElementDetailed>('menu_element.php', {
         params: {
           id,
