@@ -1,8 +1,8 @@
 import { createApp } from 'vue';
 import App from '@/App.vue';
-import registerComponents from '../boot/registerComponents';
-import registerValidationRules from '../boot/registerValidationRules';
-import createRouter from '../router';
+import registerComponents from './boot/registerComponents';
+import registerValidationRules from './boot/registerValidationRules';
+import createRouter from './router';
 import { createPinia } from 'pinia';
 import { init as initHttp, exposedSymbol as httpKey } from '@/shared/api/useHttp';
 import prettyAmount from '@/shared/plugins/prettyAmount';
