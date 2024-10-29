@@ -1,11 +1,11 @@
 import { computed, type Ref } from 'vue';
-import { baseURL } from '@/shared/api/useHttp';
+import { useAppConfig } from '@/shared/config/app';
 
 export default function(img: Ref<string>) {
-  const base = baseURL.replace('/api', '');
+  const config = useAppConfig();
 
   const url = computed(() => {
-    return base + img.value;
+    return config.imgBase + img.value;
   });
 
   return {

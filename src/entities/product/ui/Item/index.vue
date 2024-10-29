@@ -22,7 +22,7 @@
   import { computed } from 'vue';
   import Image from '../Image/index.vue';
   import Badge from '@/shared/ui/Badge/index.vue';
-  import { baseURL } from '@/shared/api/useHttp';
+  import { useAppConfig } from '@/shared/config/app';
   import { ButtonMinMax } from '@/entities/basket';
   import { useBasketStore } from '@/shared/store/basket';
 
@@ -47,11 +47,11 @@
     (event: 'show:product', id: string): void,
   }>();
 
-  const origin = baseURL.replace('/api', '');
+  const config = useAppConfig();
 
   const imgUrl = computed(() => {
     if(!props.image) return null;
-    return origin + props.image;
+    return config.imgBase + props.image;
   });
 
   const basketStore = useBasketStore();

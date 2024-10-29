@@ -13,16 +13,16 @@
 
 <script setup lang="ts">
   import { computed } from 'vue';
-  import { baseURL } from '@/shared/api/useHttp';
+  import { useAppConfig } from '@/shared/config/app';
 
   const props = defineProps<{
     images: string[],
   }>();
 
-  const url = new URL(baseURL);
+  const config = useAppConfig();
 
   const urls = computed(() => {
-    return props.images.map(img => url.origin + img);
+    return props.images.map(img => config.imgBase + img);
   });
 </script>
 
