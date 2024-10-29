@@ -6,6 +6,7 @@ import createRouter from '../router';
 import { createPinia } from 'pinia';
 import { init as initHttp, exposedSymbol as httpKey } from '@/shared/api/useHttp';
 import prettyAmount from '@/shared/plugins/prettyAmount';
+import initRepositories, { repositiriesKey } from '@/shared/repositories';
 
 export default function() {
   const app = createApp(App);
@@ -17,10 +18,14 @@ export default function() {
   .use(pinia)
   .use(prettyAmount);
 
-  app.provide(httpKey, initHttp());
+  const api = initHttp();
+  const repositiries = initRepositories(api.http);
 
-  registerComponents(app, router);
-  registerValidationRules(app, router);
+  app.provide(httpKey, api);
+  app.provide(repositiriesKey, repositiries);
+
+  registerComponents(app, router, api.http);
+  registerValidationRules(app, router, api.http);
 
   app.mount('#app');
 
