@@ -1,10 +1,12 @@
 import type { AxiosInstance } from 'axios';
-import createMenuRepo from './menu';
 import { type InjectionKey, inject } from 'vue';
+import createMenuRepo from './menu';
+import createBasketRepo from './basket';
 
 export default function initRepositories(http: AxiosInstance) {
   return {
     menu: createMenuRepo(http),
+    basket: createBasketRepo(http),
   }
 }
 

@@ -1,32 +1,21 @@
 import { defineStore } from 'pinia';
-import useHttp from '../api/useHttp';
 import { ref, computed } from 'vue';
-import { jsonFormData } from '@/shared/lib';
-
-export interface Item {
-  name: string,
-  img: string,
-  good_id: string,
-  price: string,
-  count: string,
-};
+import { useRepositories } from '@/shared/repositories';
+import type { BasketItem } from '@/shared/repositories/basket';
 
 export const useBasketStore = defineStore('basketStore', () => {
-  const { http } = useHttp();
-
+  const api = useRepositories();
   const basketId = ref<number | null>(null);
-  const basket = ref<Item[]>([]);
+  const basket = ref<BasketItem[]>([]);
   const hasItems = computed(() => basket.value.length > 0);
 
   async function create() {
-    const res = await http.get<[ { id: number } ]>('create_basket.php');
+    const res = await api.basket.create();
     return res.data[0];
   }
 
-  async function show(_basketId: number): Promise<Item[]> {
-    const res = await http.get<Item[]>('show_basket.php', {
-      params: { id: _basketId },
-    });
+  async function show(basketId: number) {
+    const res = await api.basket.show(basketId);
     return res.data;
   }
 
@@ -60,40 +49,38 @@ export const useBasketStore = defineStore('basketStore', () => {
 
   async function append(productId: string) {
     if(!basketId.value) return;
-    const { data } = await http.post<Item[]>('add2basket.php', jsonFormData({
+    const { data } = await api.basket.append({
       basket_id: basketId.value,
       good_id: productId,
-    }));
+    });
     basket.value = data;
   }
 
   async function reduce(productId: string) {
     if(!basketId.value) return;
-    const { data } = await http.post<Item[]>('removefrombasket.php', jsonFormData({
+    const { data } = await api.basket.reduce({
       basket_id: basketId.value,
       good_id: productId,
-    }));
+    });
     basket.value = data;
   }
 
   async function remove(productId: string) {
     if(!basketId.value) return;
-    const { data } = await http.post<Item[]>('clear_good_basket.php', jsonFormData({
+    const { data } = await api.basket.remove({
       basket_id: basketId.value,
       good_id: productId,
-    }));
+    });
     basket.value = data;
   }
 
   async function clearAll() {
     if(!basketId.value) return;
-    await http.get<Item[]>('clear_basket.php', {
-      params: { id: basketId.value },
-    });
+    api.basket.clear(basketId.value);
     basket.value = [];
   }
 
-  function getItem(productId: string): Item | undefined {
+  function getItem(productId: string): BasketItem | undefined {
     const item = basket.value.find(item => item.good_id === productId);
     return item;
   }
