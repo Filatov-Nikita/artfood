@@ -5,9 +5,7 @@ export const exposedSymbol: InjectionKey<{
   http: AxiosInstance,
 }> = Symbol();
 
-export const baseURL = 'http://artfood.yes-idea.ru/api';
-
-export function init() {
+export function init(baseURL: string) {
   const http = axios.create({
     baseURL,
   });
