@@ -4,8 +4,7 @@
       <div class="wrapper">
         <MenuSections />
         <HomeSectionList
-          v-if="homeSections"
-          :items="homeSections"
+          :items="sections"
           @change:product="changeProduct"
         />
         <TeamSection />
@@ -21,13 +20,22 @@
   import MenuSections from './MenuSections/index.vue';
   import { TeamSection } from '@/widgets/TeamSection';
   import HomeSectionList from './HomeSectionList/index.vue';
-  import useHomeMenu from '../model/useHomeMenu';
   import { FaqSection } from '@/widgets/FaqSection';
-  import { useCardModal, CardDetailed } from '@/entities/product';
+  import useRequest from '@/shared/lib/useRequest';
+  import { useRepositories } from '@/shared/repositories';
+  import useDataOrFail from '@/shared/lib/useDataOrFail';
+  import { CardDetailed } from '@/entities/product';
+  import { ref } from 'vue';
 
-  const { homeSections, load: getHomeMenu } = useHomeMenu();
+  const api = useRepositories();
+  const res = await useRequest(api.menu.sectionsMainAll);
+  const sections = useDataOrFail(res);
 
-  const { productDetailed, showedDetailed, changeProduct } = useCardModal();
+  const activeProduct = ref<string | null>(null);
+  const showedProduct = ref(false);
 
-  await getHomeMenu();
+  function changeProduct(productId: string) {
+    activeProduct.value = productId;
+    showedProduct.value = true;
+  }
 </script>

@@ -5,21 +5,20 @@
       :key="item.id"
       :name="item.name"
       :products="item.goods"
-      @change:product="$emit('change:product', $event)"
+      @change:product="$emit('change:product', $event.id)"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-  import type { HomeSection } from '../../model/useHomeMenu';
+  import type { MenuSectionMain } from '@/shared/repositories/menu';
   import { SectionListItem } from '@/entities/product';
-  import type { MenuElement } from '@/shared/api/models/MenuElement';
 
   defineProps<{
-    items: HomeSection[],
+    items: MenuSectionMain[],
   }>();
 
   defineEmits<{
-    (event: 'change:product', product: MenuElement): void,
+    (event: 'change:product', productId: string): void,
   }>();
 </script>

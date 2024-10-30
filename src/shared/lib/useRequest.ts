@@ -8,9 +8,9 @@ export type Params = {
 }
 
 export default async function<T, E>(fetchFn: (...args: any[]) => Promise<AxiosResponse<T>>, params: Partial<Params> = {}) {
-  params = Object.assign({}, params, {
+  params = Object.assign({}, {
     immediate: true,
-  });
+  }, params);
 
   const loading = ref(false);
   const data = ref<T | null>(null);
