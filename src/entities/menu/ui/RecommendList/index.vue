@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
   import ProductItem from '../Item/index.vue';
-  import type { MenuElement } from '@/shared/api/models/MenuElement';
+  import type { MenuElement } from '@/shared/repositories/menu';
 
   defineProps<{
     title: string,

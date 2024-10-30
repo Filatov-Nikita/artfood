@@ -8,7 +8,7 @@
             :key="section.id"
           >
             <AppButton
-              :design="curSectionCode === section.code ? 'primary' : 'secondary-neutral'"
+              :design="activeSection === section.code ? 'primary' : 'secondary-neutral'"
               :to="{ name: 'menu.section.index', params: { section: section.code } }"
             >
               {{ section.name }}
@@ -20,18 +20,17 @@
 </template>
 
 <script setup lang="ts">
-  import useHttp from '@/shared/api/useHttp';
-  import { MenuSection } from '@/shared/api/models/MenuSection';
-  import { computed } from 'vue';
-  import { useRoute } from 'vue-router';
+  import { useRepositories } from '@/shared/repositories';
+  import useRequest from '@/shared/lib/useRequest';
+  import useDataOrFail from '@/shared/lib/useDataOrFail';
 
-  const route = useRoute();
+  defineProps<{
+    activeSection: string,
+  }>();
 
-  const { http } = useHttp();
-
-  const curSectionCode = computed(() => route.params.section as string);
-
-  const { data: sections } = await http.get<MenuSection[]>('menu_sections.php');
+  const api = useRepositories();
+  const sectionsRes = await useRequest(api.menu.sectionsAll);
+  const sections = useDataOrFail(sectionsRes);
 </script>
 
 <style scoped lang="scss">

@@ -1,4 +1,5 @@
 import type { AxiosInstance } from 'axios';
+import type { WithPrefix } from '@/shared/api/types/backend';
 
 export default function(http: AxiosInstance) {
   return {
@@ -9,7 +10,7 @@ export default function(http: AxiosInstance) {
       return http<MenuSectionMain[]>('menu_sections_main.php');
     },
     elementsAll(params: ElementsAllParams) {
-      return http<MenuElement[]>('menu_elements', {
+      return http<MenuElementWithSection[]>('menu_elements.php', {
         params
       });
     },
@@ -44,6 +45,8 @@ export interface MenuElement {
   price: string,
   img: string | null
 };
+
+export type MenuElementWithSection = WithPrefix<'section_', MenuSection> & MenuElement;
 
 export type MenuSectionMain = MenuSection & { goods: MenuElement[] };
 

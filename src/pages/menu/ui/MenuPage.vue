@@ -2,30 +2,40 @@
   <main class="page--pt">
     <div class="wrapper">
       <h1 class="h1 h-mb-16">Меню доставки</h1>
-      <MenuNav />
+      <MenuNav :activeSection="activeSection" />
       <SectionListItem
-        v-if="items && items.length > 0"
-        :name="items[0].section_name"
-        :products="items"
+        v-if="products.length > 0"
+        :name="products[0].section_name"
+        :products="products"
         @change:product="changeProduct"
       />
-      <CardDetailed v-if="productDetailed" v-model="showedDetailed" :product="productDetailed" />
+      <CardDetailed v-if="activeProduct" v-model="showedProduct" :productId="activeProduct" />
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
   import MenuNav from './MenuNav/index.vue';
-  import useMenuElements from '../model/useMenuElements';
-  import { SectionListItem, CardDetailed, useCardModal } from '@/entities/menu';
+  import { SectionListItem, CardDetailed } from '@/entities/menu';
   import { useRoute } from 'vue-router';
-  import { computed } from 'vue';
+  import { useRepositories } from '@/shared/repositories';
+  import useRequest from '@/shared/lib/useRequest';
+  import useDataOrFail from '@/shared/lib/useDataOrFail';
+  import { ref } from 'vue';
 
   const route = useRoute();
+  const activeSection = route.params.section as string;
+  const api = useRepositories();
+  const productsRes = await useRequest(() => api.menu.elementsAll({
+    code: activeSection,
+  }));
+  const products = useDataOrFail(productsRes);
 
-  const { items, load } = useMenuElements(computed(() => route.params.section as string));
+  const activeProduct = ref<string | null>(null);
+  const showedProduct = ref<boolean>(false);
 
-  const { productDetailed, showedDetailed, changeProduct } = useCardModal();
-
-  await load();
+  function changeProduct(productId: string) {
+    activeProduct.value = productId;
+    showedProduct.value = true;
+  }
 </script>

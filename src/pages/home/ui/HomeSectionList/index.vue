@@ -5,7 +5,7 @@
       :key="item.id"
       :name="item.name"
       :products="item.goods"
-      @change:product="$emit('change:product', $event.id)"
+      @change:product="$emit('change:product', $event)"
     />
   </div>
 </template>

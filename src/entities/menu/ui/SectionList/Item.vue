@@ -14,7 +14,7 @@
         :personsCount="product.presons_count"
         :text="product.podpis"
         :price="product.price"
-        @show:product="$emit('change:product', product)"
+        @show:product="$emit('change:product', product.id)"
       />
     </div>
   </section>
@@ -22,7 +22,7 @@
 
 <script setup lang="ts">
   import ProductItem from '../Item/index.vue';
-  import type { MenuElement } from '@/shared/api/models/MenuElement';
+  import type { MenuElement } from '@/shared/repositories/menu';
 
   defineProps<{
     name: string,
@@ -30,7 +30,7 @@
   }>();
 
   const emit = defineEmits<{
-    (event: 'change:product', product: MenuElement): void,
+    (event: 'change:product', product: string): void,
   }>();
 </script>
 
