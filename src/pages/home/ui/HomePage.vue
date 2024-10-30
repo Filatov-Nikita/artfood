@@ -9,7 +9,7 @@
         />
         <TeamSection />
         <FaqSection />
-        <CardDetailed v-if="productDetailed" v-model="showedDetailed" :product="productDetailed" />
+        <CardDetailed v-if="activeProduct" v-model="showedProduct" :productId="activeProduct" />
       </div>
     </main>
   </PrimaryLayout>
