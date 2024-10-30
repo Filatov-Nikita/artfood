@@ -10,11 +10,11 @@
 </template>
 
 <script setup lang="ts">
-  import type { Case } from '../model/useData';
+  import type { PortfolioElement } from '@/shared/repositories/portfolio';
   import { Badge } from '@/shared/ui';
 
   defineProps<{
-    item: Case,
+    item: PortfolioElement,
   }>();
 </script>
 

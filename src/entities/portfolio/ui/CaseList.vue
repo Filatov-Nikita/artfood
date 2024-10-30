@@ -1,9 +1,9 @@
 <template>
   <div>
-    <p class="active-year">{{ activeYear.name }}</p>
+    <p class="active-year">{{ activeSection.name }}</p>
     <div>
       <CaseListItem
-        v-for="item in cases"
+        v-for="item in elements"
         :item="item"
       />
     </div>
@@ -11,12 +11,12 @@
 </template>
 
 <script setup lang="ts">
-  import type { OneYear, Case } from '../model/useData';
+  import type { PortfolioSection, PortfolioElement } from '@/shared/repositories/portfolio';
   import CaseListItem from './CaseListItem.vue'
 
   defineProps<{
-    activeYear: OneYear,
-    cases: Case[],
+    activeSection: PortfolioSection,
+    elements: PortfolioElement[],
   }>();
 </script>
 

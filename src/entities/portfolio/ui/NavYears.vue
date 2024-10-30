@@ -2,8 +2,8 @@
   <nav class="nav scroll-x">
     <button
       class="item"
-      :class="{ 'item--active': activeYear?.id === year.id }"
-      v-for="year in years" @click="onClick(year)"
+      :class="{ 'item--active': activeSection?.id === year.id }"
+      v-for="year in sections" @click="onClick(year)"
     >
       {{ year.name }}
     </button>
@@ -11,19 +11,19 @@
 </template>
 
 <script setup lang="ts">
-  import type { OneYear } from '../model/useData';
+  import type { PortfolioSection } from '@/shared/repositories/portfolio';
 
   defineProps<{
-    years: OneYear[],
-    activeYear: OneYear | null,
+    sections: PortfolioSection[],
+    activeSection: PortfolioSection | null,
   }>();
 
   const emit = defineEmits<{
-    (event: 'update:activeYear', year: OneYear): void,
+    (event: 'update:activeSection', year: PortfolioSection): void,
   }>();
 
-  function onClick(year: OneYear) {
-    emit('update:activeYear', year);
+  function onClick(year: PortfolioSection) {
+    emit('update:activeSection', year);
   }
 </script>
 
