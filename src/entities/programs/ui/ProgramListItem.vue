@@ -8,10 +8,10 @@
 </template>
 
 <script setup lang="ts">
-  import type { Program } from '@/entities/programs/model/useList';
+  import type { ProgramsElement } from '@/shared/repositories/programs';
   import { Item } from '@/entities/menu';
 
   defineProps<{
-    item: Program,
+    item: ProgramsElement,
   }>();
 </script>

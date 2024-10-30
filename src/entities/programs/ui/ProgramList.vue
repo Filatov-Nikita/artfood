@@ -12,14 +12,14 @@
 
 <script setup lang="ts">
   import ProgramListItem from './ProgramListItem.vue';
-  import type { Program } from '@/entities/programs/model/useList';
+  import type { ProgramsElement } from '@/shared/repositories/programs';
 
   defineProps<{
-    items: Program[],
+    items: ProgramsElement[],
   }>();
 
   const emit = defineEmits<{
-    (event: 'change:program', program: Program): void,
+    (event: 'change:program', program: ProgramsElement): void,
   }>();
 </script>
 

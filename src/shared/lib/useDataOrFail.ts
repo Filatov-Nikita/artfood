@@ -1,5 +1,5 @@
 import useRequest from './useRequest';
-import { watch } from 'vue';
+import { watch, type Ref } from 'vue';
 
 export default function<T>(res: Awaited<ReturnType<typeof useRequest<T, any>>>) {
   const { data, error } = res;
@@ -10,7 +10,7 @@ export default function<T>(res: Awaited<ReturnType<typeof useRequest<T, any>>>) 
 
   watch(error, checkError);
 
-  return data.value as T;
+  return data as Ref<T>;
 }
 
 function checkError(e: unknown) {

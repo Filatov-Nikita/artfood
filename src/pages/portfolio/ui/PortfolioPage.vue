@@ -24,7 +24,7 @@
 
   const sectionsRes = await useRequest(api.portfolio.sectionsAll);
   const sections = useDataOrFail(sectionsRes);
-  const activeSection = ref<PortfolioSection | null>(sections[0] ?? null);
+  const activeSection = ref<PortfolioSection | null>(sections.value[0] ?? null);
   const elementsRes = await useRequest(() => api.portfolio.elementsAll(activeSection.value!.id), {
     immediate: false,
     watch: [ activeSection ],
