@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-  import type { Hall } from '../model/useData';
+  import type { Hall } from '@/shared/repositories/halls';
   import { Badge } from '@/shared/ui';
 
   defineProps<{

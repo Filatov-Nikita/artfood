@@ -7,10 +7,11 @@
 </template>
 
 <script setup lang="ts">
-  import { useData } from '@/entities/hall';
   import { HallList } from '@/entities/hall';
+  import { useRepositories } from '@/shared/repositories';
+  import useRequest from '@/shared/lib/useRequest';
+  import useDataOrFail from '@/shared/lib/useDataOrFail';
 
-  const { halls, getHalls } = useData();
-
-  await getHalls();
+  const api = useRepositories();
+  const halls = useDataOrFail(await useRequest(api.halls.all));
 </script>
