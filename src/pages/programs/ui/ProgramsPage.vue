@@ -1,18 +1,15 @@
 <template>
-  <PrimaryLayout>
-    <main class="page--pt">
-      <div class="wrapper">
-        <InnerSection />
-        <AppTabs class="prog-tabs" v-model:activeIndex="activeTab" :items="tabs" />
-        <ProgramList v-if="programs" :items="programs" @change:program="changeProgram" />
-        <CardDetailed v-if="activeProgram" v-model="showedDetailed" />
-      </div>
-    </main>
-  </PrimaryLayout>
+  <main class="page--pt">
+    <div class="wrapper">
+      <InnerSection />
+      <AppTabs class="prog-tabs" v-model:activeIndex="activeTab" :items="tabs" />
+      <ProgramList v-if="programs" :items="programs" @change:program="changeProgram" />
+      <CardDetailed v-if="activeProgram" v-model="showedDetailed" />
+    </div>
+  </main>
 </template>
 
 <script setup lang="ts">
-  import { PrimaryLayout } from '@/layouts/Primary';
   import InnerSection from './InnerSection/index.vue';
   import { ProgramList } from '@/entities/programs';
   import { useList, CardDetailed, useCardModal } from '@/entities/programs';

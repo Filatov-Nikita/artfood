@@ -1,22 +1,19 @@
 <template>
-  <PrimaryLayout>
-    <main class="page--py">
-      <div class="wrapper">
-        <MenuSections />
-        <HomeSectionList
-          :items="sections"
-          @change:product="changeProduct"
-        />
-        <TeamSection />
-        <FaqSection />
-        <CardDetailed v-if="activeProduct" v-model="showedProduct" :productId="activeProduct" />
-      </div>
-    </main>
-  </PrimaryLayout>
+  <main class="page--py">
+    <div class="wrapper">
+      <MenuSections />
+      <HomeSectionList
+        :items="sections"
+        @change:product="changeProduct"
+      />
+      <TeamSection />
+      <FaqSection />
+      <CardDetailed v-if="activeProduct" v-model="showedProduct" :productId="activeProduct" />
+    </div>
+  </main>
 </template>
 
 <script setup lang="ts">
-  import { PrimaryLayout } from '@/layouts/Primary';
   import MenuSections from './MenuSections/index.vue';
   import { TeamSection } from '@/widgets/TeamSection';
   import HomeSectionList from './HomeSectionList/index.vue';

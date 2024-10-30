@@ -25,6 +25,9 @@
   import { NavMenu } from '@/widgets/NavMenu';
   import { ref, watch } from 'vue';
   import { ModalDetailed } from '@/entities/basket';
+  import { useRoute } from 'vue-router';
+
+  const route = useRoute();
 
   const showedMenu = ref(false);
   const showedBasket = ref(false);
@@ -33,6 +36,10 @@
     if(val) {
       window.scrollTo(0, 0);
     }
+  });
+
+  watch(() => route.fullPath, () => {
+    showedMenu.value = false;
   });
 </script>
 

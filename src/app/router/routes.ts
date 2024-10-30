@@ -1,5 +1,7 @@
+import type { RouteRecordRaw } from 'vue-router';
+
 export default function createRoutes() {
-  const routes = [
+  const routes: RouteRecordRaw[] = [
     {
       path: '/',
       component: () => import('@/pages/home/ui/HomePage.vue'),
