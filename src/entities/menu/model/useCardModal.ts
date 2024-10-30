@@ -1,6 +1,6 @@
 import { ref, watch } from 'vue';
 import type { MenuElement } from '@/shared/api/models/MenuElement';
-import { useDetailed } from '@/entities/product';
+import { useDetailed } from '@/entities/menu';
 
 export default function() {
   const curProduct = ref<MenuElement | null>(null);

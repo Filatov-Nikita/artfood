@@ -20,7 +20,7 @@
   import { PrimaryLayout } from '@/layouts/Primary';
   import MenuNav from './MenuNav/index.vue';
   import useMenuElements from '../model/useMenuElements';
-  import { SectionListItem, CardDetailed, useCardModal } from '@/entities/product';
+  import { SectionListItem, CardDetailed, useCardModal } from '@/entities/menu';
   import { useRoute } from 'vue-router';
   import { computed } from 'vue';
 

@@ -1,5 +1,5 @@
 import { ref, watch } from 'vue';
-import { useDetailed } from '@/entities/product';
+import { useDetailed } from '@/entities/menu';
 import type { Program } from './useList';
 
 export default function() {

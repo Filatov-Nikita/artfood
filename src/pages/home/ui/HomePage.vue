@@ -24,7 +24,7 @@
   import useRequest from '@/shared/lib/useRequest';
   import { useRepositories } from '@/shared/repositories';
   import useDataOrFail from '@/shared/lib/useDataOrFail';
-  import { CardDetailed } from '@/entities/product';
+  import { CardDetailed } from '@/entities/menu';
   import { ref } from 'vue';
 
   const api = useRepositories();

@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
   import type { Program } from '@/entities/programs/model/useList';
-  import { Item } from '@/entities/product';
+  import { Item } from '@/entities/menu';
 
   defineProps<{
     item: Program,

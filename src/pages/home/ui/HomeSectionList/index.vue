@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
   import type { MenuSectionMain } from '@/shared/repositories/menu';
-  import { SectionListItem } from '@/entities/product';
+  import { SectionListItem } from '@/entities/menu';
 
   defineProps<{
     items: MenuSectionMain[],
