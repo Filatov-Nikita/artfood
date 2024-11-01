@@ -1,0 +1,37 @@
+<template>
+  <AppButton class="tw-w-full" size="48" :design="count > 0 ? 'primary' : 'secondary-neutral'" @click="toggle">
+    <template #right>
+      <span class="icon">
+        <AppIcon name="plus" fit />
+      </span>
+    </template>
+    {{ $amount(price) }}
+  </AppButton>
+</template>
+
+<script setup lang="ts">
+  import { useBasketStore } from '@/shared/store/basket';
+
+  const props = defineProps<{
+    productId: string,
+    price: string,
+    count: number,
+  }>();
+
+  const basketStore = useBasketStore();
+
+  function toggle() {
+    if(props.count > 0) {
+      basketStore.reduce(props.productId);
+    } else {
+      basketStore.append(props.productId);
+    }
+  }
+</script>
+
+<style scoped lang="scss">
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+</style>
