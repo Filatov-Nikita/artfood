@@ -19,12 +19,11 @@
 </template>
 
 <script setup lang="ts">
-  import { computed } from 'vue';
+  import { computed, toRef } from 'vue';
   import Image from '../Image/index.vue';
   import Badge from '@/shared/ui/Badge/index.vue';
   import { useAppConfig } from '@/shared/config/app';
-  import { ButtonMinMax } from '@/entities/basket';
-  import { useBasketStore } from '@/shared/store/basket';
+  import { ButtonMinMax, useBasketItem } from '@/entities/basket';
 
   const props = withDefaults(
     defineProps<{
@@ -54,15 +53,7 @@
     return config.imgBase + props.image;
   });
 
-  const basketStore = useBasketStore();
-
-  const basketItem = computed(() => {
-    return basketStore.getItem(props.id);
-  });
-
-  const count = computed(() => {
-    return parseInt(basketItem.value?.count ?? '0');
-  });
+  const { count } = useBasketItem(toRef(props, 'id'));
 </script>
 
 <style scoped lang="scss">
