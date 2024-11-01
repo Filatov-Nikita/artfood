@@ -19,6 +19,7 @@
     "vee-validate": "^4.13.1",
     "vue": "^3.4.29",
     "vue-router": "^4.4.0",
+    "vue-screen": "^2.4.0",
     "vue-slide-up-down": "^3.0.0",
     "yup": "^1.4.0",
     "yup-locales": "^1.2.28"
