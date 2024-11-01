@@ -1,28 +1,31 @@
 <template>
   <Teleport to="body">
-    <Transition
-      appear
-      :name="animation"
+    <div
+      v-if="!isLeaved"
+      class="modal"
+      :class="[
+        `x-${xPos}`,
+        `y-${yPos}`
+      ]"
     >
-      <div
-        v-if="value"
-        class="modal"
-        :class="[
-          `x-${xPos}`,
-          `y-${yPos}`
-        ]"
+      <Transition
+        appear
+        :name="animation"
+        @after-leave="isLeaved = true"
       >
-        <div class="wrap">
+        <div v-if="value" class="wrap">
           <slot v-bind="{ hide }"></slot>
         </div>
-        <div class="overlay" @click="hide"></div>
-      </div>
-    </Transition>
+      </Transition>
+      <div class="overlay" @click="hide"></div>
+    </div>
   </Teleport>
 </template>
 
 <script setup lang="ts">
   import { useScrollToggle } from '@/shared/lib';
+  import { computed, ref, watch } from 'vue';
+  import { useAppScreen } from '@/shared/lib/useScreen';
 
   interface Props {
     xPos?: 'left' | 'center' | 'right',
@@ -30,7 +33,7 @@
     animation?: 'zoom' | 'slide-right',
   }
 
-  const props = withDefaults(
+  withDefaults(
     defineProps<Props>(),
     {
       xPos: 'center',
@@ -39,9 +42,17 @@
     },
   );
 
+  const screen = useAppScreen();
+  const screenHeight = computed(() => screen.height + 'px');
 
   const value = defineModel<boolean>({
     default: false,
+  });
+
+  const isLeaved = ref(!value.value);
+
+  watch(value, (v) => {
+    if(v) isLeaved.value = false;
   });
 
   useScrollToggle(value);
@@ -56,6 +67,7 @@
     position: fixed;
     width: 100vw;
     height: 100vh;
+    height: v-bind(screenHeight);
     z-index: 9000;
     left: 0;
     top: 0;
@@ -106,38 +118,31 @@
     align-items: end;
   }
 
-  .zoom-enter-active, .slide-right-enter-active {
-    animation-duration: var(--delay, 300ms);
-  }
-
-  .zoom-leave-active, .slide-right-leave-active {
-    animation-duration: var(--delay, 300ms);
-  }
-
-  :slotted(.zoom-enter-active .wrap > div) {
+  .zoom-enter-active {
     animation: zoomIn;
-    animation-duration: var(--duration, 320ms);
+    animation-duration: var(--duration, 400ms);
   }
 
-  :slotted(.zoom-leave-active .wrap > div) {
+  .zoom-leave-active {
     animation: zoomOut;
-    animation-duration: var(--duration, 320ms);
+    animation-duration: var(--duration, 400ms);
   }
 
-  :slotted(.slide-right-enter-active .wrap > div) {
+  .slide-right-enter-active {
     animation: slideInRight;
-    animation-duration: var(--duration, 320ms);
+    animation-duration: var(--duration, 400ms);
   }
 
-  :slotted(.slide-right-leave-active .wrap > div) {
+  .slide-right-leave-active {
     animation: slideOutRight;
-    animation-duration: var(--duration, 320ms);
+    animation-duration: var(--duration, 400ms);
   }
 
   :slotted(.wrap > div) {
     pointer-events: all;
     will-change: scroll-position;
     overflow: auto;
-    max-height: calc(100vh - var(--p));
+    max-height: calc(100vh - var(--p, 16px));
+    max-height: calc(v-bind(screenHeight) - var(--p, 16px));
   }
 </style>
