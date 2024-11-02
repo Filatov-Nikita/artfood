@@ -14,6 +14,7 @@ import {
   Textarea,
   Spinner,
   ButtonClose,
+  AppImg,
 } from '@/shared/ui';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Field, Form } from 'vee-validate';
@@ -40,4 +41,5 @@ export default boot((app) => {
   app.component('AppTextarea', Textarea);
   app.component('AppSpinner', Spinner);
   app.component('ButtonClose', ButtonClose);
+  app.component('AppImg', AppImg);
 });
