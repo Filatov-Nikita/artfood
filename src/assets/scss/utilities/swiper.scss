@@ -1,0 +1,21 @@
+.swiper-pagination-bullet {
+  border-radius: 6px;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.4);
+  flex-grow: 1;
+
+  &-active {
+    @apply tw-bg-white;
+  }
+}
+
+.swiper-pagination {
+  position: absolute;
+  z-index: 900;
+  width: 100%;
+  left: 0px;
+  padding: 0px 16px;
+  bottom: 16px;
+  display: flex;
+  gap: 12px;
+}
