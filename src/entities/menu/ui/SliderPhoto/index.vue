@@ -1,6 +1,13 @@
 <template>
   <Swiper
     class="slider"
+    :modules="[ Navigation, Pagination ]"
+    :navigation="{
+      prevEl: '.nav-btn-swiper--prev',
+      nextEl: '.nav-btn-swiper--next',
+      disabledClass: 'nav-btn-swiper--disabled',
+    }"
+    pagination
     :spaceBetween="16"
   >
     <SwiperSlide
@@ -8,12 +15,17 @@
     >
       <img class="photo" :src="url" />
     </SwiperSlide>
+    <template #container-end>
+      <ButtonNav ref="prev" type="prev" swiper />
+      <ButtonNav ref="next" type="next" swiper />
+    </template>
   </Swiper>
 </template>
 
 <script setup lang="ts">
   import { computed } from 'vue';
   import { useAppConfig } from '@/shared/config/app';
+  import { Navigation, Pagination } from 'swiper/modules';
 
   const props = defineProps<{
     images: string[],
