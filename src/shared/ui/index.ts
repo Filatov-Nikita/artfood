@@ -14,3 +14,4 @@ export { default as PhoneInput } from './PhoneInput/index.vue';
 export { default as ToggleInput } from './ToggleInput/index.vue';
 export { default as Textarea } from './Textarea/index.vue';
 export { default as Spinner } from './Spinner/index.vue';
+export { default as ButtonClose } from './Button/Close.vue';

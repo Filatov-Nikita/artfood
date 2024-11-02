@@ -13,6 +13,7 @@ import {
   ToggleInput,
   Textarea,
   Spinner,
+  ButtonClose,
 } from '@/shared/ui';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Field, Form } from 'vee-validate';
@@ -38,4 +39,5 @@ export default boot((app) => {
   app.component('ToggleInput', ToggleInput);
   app.component('AppTextarea', Textarea);
   app.component('AppSpinner', Spinner);
+  app.component('ButtonClose', ButtonClose);
 });

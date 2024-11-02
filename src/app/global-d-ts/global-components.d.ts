@@ -12,6 +12,7 @@ import {
   ToggleInput,
   Textarea,
   Spinner,
+  ButtonClose,
 } from '@/shared/ui';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Field, Form } from 'vee-validate';
@@ -37,5 +38,6 @@ declare module 'vue' {
     ToggleInput: typeof ToggleInput,
     AppTextarea: typeof Textarea,
     AppSpinner: typeof Spinner,
+    ButtonClose: typeof ButtonClose,
   }
 }
