@@ -1,0 +1,60 @@
+<template>
+  <button class="nav-btn" :class="[ `nav-btn-swiper--${type}`, { 'nav-btn-swiper': swiper } ]">
+    <AppIcon fit :name="type === 'prev' ? 'caret-left-regular' : 'caret-right-regular'" />
+  </button>
+</template>
+
+<script setup lang="ts">
+  withDefaults(
+    defineProps<{
+      type: 'prev' | 'next',
+      size?: string,
+      swiper?: boolean
+    }>(),
+    {
+      size: '40px',
+      swiper: false,
+    },
+  );
+</script>
+
+<style scoped lang="scss">
+  .nav-btn {
+    font-size: v-bind(size);
+    width: 1em;
+    height: 1em;
+    padding: 0.2em;
+    border-radius: 50%;
+    @apply tw-bg-neutral;
+
+    &:disabled, &--disabled {
+      background-color: theme('colors.primary-bg-disabled') !important;
+      color: theme('colors.disabled-text') !important;
+    }
+
+    @include lg {
+      &:hover {
+        @apply tw-bg-neutral-hover;
+      }
+
+      &:active  {
+        @apply tw-bg-neutral-press;
+      }
+    }
+  }
+
+  .nav-btn-swiper {
+    position: absolute;
+    z-index: 9000;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &--prev {
+      left: 16px;
+    }
+
+    &--next {
+      right: 16px;
+    }
+  }
+</style>

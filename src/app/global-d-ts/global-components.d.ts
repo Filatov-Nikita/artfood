@@ -14,6 +14,7 @@ import {
   Spinner,
   ButtonClose,
   AppImg,
+  ButtonNav,
 } from '@/shared/ui';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Field, Form } from 'vee-validate';
@@ -41,5 +42,6 @@ declare module 'vue' {
     AppSpinner: typeof Spinner,
     ButtonClose: typeof ButtonClose,
     AppImg: typeof AppImg,
+    ButtonNav: typeof ButtonNav,
   }
 }
