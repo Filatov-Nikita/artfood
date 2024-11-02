@@ -8,4 +8,8 @@ h1, .h1 {
 
 .h-mb-16 {
   @apply tw-mb-16;
+
+  @include lg {
+    @apply tw-mb-32;
+  }
 }

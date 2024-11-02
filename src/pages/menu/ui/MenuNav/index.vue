@@ -8,8 +8,10 @@
             :key="section.id"
           >
             <AppButton
+              class="nav-btn"
               :design="activeSection === section.code ? 'primary' : 'secondary-neutral'"
               :to="{ name: 'menu.section.index', params: { section: section.code } }"
+              size="48"
             >
               {{ section.name }}
             </AppButton>
@@ -42,5 +44,22 @@
     display: flex;
     align-items: center;
     gap: 8px;
+
+    @include lg {
+      flex-wrap: wrap;
+    }
+  }
+
+  .item {
+    @include lg {
+      width: 100%;
+    }
+  }
+
+  .nav-btn {
+    @include lg {
+      width: 100%;
+      justify-content: left;
+    }
   }
 </style>
