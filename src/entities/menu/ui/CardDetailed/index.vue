@@ -172,6 +172,7 @@
 
     @include lg {
       grid-area: a;
+      @apply tw-mb-0;
     }
   }
 

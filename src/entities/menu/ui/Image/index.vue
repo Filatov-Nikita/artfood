@@ -1,6 +1,6 @@
 <template>
   <div class="pr-image">
-    <img v-if="path" class="pr-image__img" :src="path" loading="lazy" />
+    <AppImg v-if="src" class="pr-image__img" :src="src" loading="lazy" />
     <span class="icon-wrap">
       <AppIcon name="pizza-regular" fit />
     </span>
@@ -15,7 +15,7 @@
 <script setup lang="ts">
   withDefaults(
     defineProps<{
-      path: string | null,
+      src: string | null,
       showCount?: boolean,
       count?: number,
       tag?: string,

@@ -2,27 +2,30 @@
   <section class="section">
     <p class="name">{{ name }}</p>
     <div class="items">
-      <ProductItem
+      <CardItem
         class="item"
         v-for="product in products"
         :key="product.id"
-        :id="product.id"
-        :name="product.name"
-        :image="product.img"
-        :gram="product.ves"
-        :badge="product.tag"
-        :personsCount="product.presons_count"
-        :text="product.podpis"
-        :price="product.price"
+        :item="product"
         @show:product="$emit('change:product', product.id)"
-      />
+      >
+        <template #action="{ count }">
+          <ButtonMinMax
+            class="tw-w-full"
+            :price="product.price"
+            :productId="product.id"
+            :count="count"
+          />
+        </template>
+      </CardItem>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-  import ProductItem from '../Item/index.vue';
+  import { CardItem } from '@/entities/menu';
   import type { MenuElement } from '@/shared/repositories/menu';
+  import { ButtonMinMax } from '@/entities/basket';
 
   defineProps<{
     name: string,

@@ -2,25 +2,28 @@
   <div class="items-list">
     <p class="title">{{ title }}</p>
     <div class="items">
-      <ProductItem
+      <CardItem
         class="item"
         v-for="product in products"
-        :id="product.id"
-        :name="product.name"
-        :image="product.img"
-        :gram="product.ves"
-        :badge="product.tag"
-        :personsCount="product.presons_count"
-        :text="product.podpis"
-        :price="product.price"
-      />
+        :key="product.id"
+        :item="product"
+      >
+        <template #action="{ count }">
+          <ButtonToggle
+            :price="product.price"
+            :count="count"
+            :productId="product.id"
+          />
+        </template>
+      </CardItem>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-  import ProductItem from '../Item/index.vue';
+  import CardItem from '../CardItem/index.vue';
   import type { MenuElement } from '@/shared/repositories/menu';
+  import { ButtonToggle } from '@/entities/basket';
 
   defineProps<{
     title: string,
