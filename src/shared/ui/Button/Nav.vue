@@ -48,6 +48,11 @@
     z-index: 9000;
     top: 50%;
     transform: translateY(-50%);
+    display: none;
+
+    @include lg {
+      display: block;
+    }
 
     &--prev {
       left: 16px;

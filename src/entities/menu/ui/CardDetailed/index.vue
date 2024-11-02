@@ -4,7 +4,7 @@
       <ButtonClose v-if="grid.lg" class="card-close-xl" size="40px" padding="0.2em" @click="value = false" />
       <div class="card" v-if="product">
         <div class="photos">
-          <SliderPhoto :images="product.additional_imgs" />
+          <SliderPhoto :images="product.additional_imgs" :tag="product.tag" />
         </div>
         <div class="card-text">
           <p class="title" v-html="product.name"></p>

@@ -16,6 +16,7 @@
       <img class="photo" :src="url" />
     </SwiperSlide>
     <template #container-end>
+      <Badge class="tag" design="primary" color="green">{{ tag }}</Badge>
       <ButtonNav ref="prev" type="prev" swiper />
       <ButtonNav ref="next" type="next" swiper />
     </template>
@@ -26,9 +27,11 @@
   import { computed } from 'vue';
   import { useAppConfig } from '@/shared/config/app';
   import { Navigation, Pagination } from 'swiper/modules';
+  import { Badge } from '@/shared/ui';
 
   const props = defineProps<{
     images: string[],
+    tag: string,
   }>();
 
   const config = useAppConfig();
@@ -53,5 +56,12 @@
 
   .photo {
     @apply tw-w-full tw-h-full tw-rounded-1.5xl tw-object-cover;
+  }
+
+  .tag {
+    position: absolute;
+    z-index: 900;
+    top: 16px;
+    left: 16px;
   }
 </style>
