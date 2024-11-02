@@ -8,7 +8,7 @@
       @slideChange="onSliderChange"
     >
       <SwiperSlide>
-        <div v-html="description"></div>
+        <div class="description" v-html="description"></div>
       </SwiperSlide>
       <SwiperSlide>
         <BlockEnergy :energy="energy" />
@@ -35,5 +35,9 @@
 <style scoped lang="scss">
   .tab-items {
     @apply tw-mb-24;
+  }
+
+  .description {
+    @apply tw-text-body-s-regular;
   }
 </style>

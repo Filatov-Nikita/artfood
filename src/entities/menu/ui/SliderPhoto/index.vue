@@ -29,6 +29,14 @@
 <style scoped lang="scss">
   .slider {
     height: 220px;
+
+    @include lg {
+      height: 395px;
+    }
+
+    @include xl {
+      height: 555px;
+    }
   }
 
   .photo {

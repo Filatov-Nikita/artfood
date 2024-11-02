@@ -30,17 +30,30 @@
 
 <style scoped lang="scss">
   .title {
-    @apply tw-text-body-l-bold -tw-tracking-2 tw-mb-24;
+    @apply tw-text-body-m-bold -tw-tracking-2 tw-mb-20;
+
+    @include xl {
+      @apply tw-text-body-l-bold tw-mb-20;
+    }
   }
 
   .items {
     display: flex;
     flex-wrap: wrap;
-    margin: -16px -20px;
+    margin: -8px;
+
+    @include lg {
+      margin: -10px;
+    }
   }
 
   .item {
-    margin: 16px 20px;
-    width:  calc(100% - 32px);
+    margin: 8px;
+    width:  calc(100% - 16px);
+
+    @include lg {
+      margin: 10px;
+      width:  calc(50% - 20px);
+    }
   }
 </style>

@@ -102,7 +102,7 @@
 <style scoped lang="scss">
   @mixin size_56($paddings: true) {
     @if $paddings {
-      @apply tw-py-12 tw-px-20;
+      @apply tw-py-16 tw-px-20;
     }
 
     @apply tw-text-body-m-bold;
