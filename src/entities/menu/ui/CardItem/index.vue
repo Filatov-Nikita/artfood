@@ -1,7 +1,14 @@
 <template>
   <article class="pr-item" :class="{ 'pr-item--disabled': disabled }">
     <Badge v-if="item.tag" class="pr-item__badge" color="yellow" design="primary">{{ item.tag }}</Badge>
-    <Image class="pr-item__img" :src="item.img" :showCount="count > 0" :count="count" @click="$emit('show:product', item.id)" />
+    <Image
+      class="pr-item__img"
+      :class="{ 'pr-item__img--clickable': clickable }"
+      :src="item.img"
+      :showCount="count > 0"
+      :count="count"
+      @click="onClick"
+    />
     <div class="name-wrap">
       <div class="name" v-html="item.name"></div>
       <div class="notice">на {{ item.presons_count }} персон</div>
@@ -23,17 +30,24 @@
     defineProps<{
       item: MenuElement,
       disabled? : boolean,
+      clickable?: boolean
     }>(),
     {
       disabled: false,
+      clickable: true,
     }
   );
 
-  defineEmits<{
+  const emit = defineEmits<{
     (event: 'show:product', id: string): void,
   }>();
 
   const { count } = useBasketItem(computed(() => props.item.id));
+
+  function onClick() {
+    if(!props.clickable) return;
+    emit('show:product', props.item.id);
+  }
 </script>
 
 <style scoped lang="scss">
@@ -54,7 +68,9 @@
 
     &__img {
       z-index: 1;
-      cursor: pointer;
+      &--clickable {
+        cursor: pointer;
+      }
     }
   }
 

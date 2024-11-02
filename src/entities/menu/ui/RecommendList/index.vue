@@ -7,6 +7,7 @@
         v-for="product in products"
         :key="product.id"
         :item="product"
+        :clickable="false"
       >
         <template #action="{ count }">
           <ButtonToggle
