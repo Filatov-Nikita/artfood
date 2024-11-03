@@ -55,6 +55,10 @@
     justify-content: center;
     align-items: center;
     padding: 16px;
+
+    @include lg {
+      padding: 24px;
+    }
   }
 
   .overlay {
@@ -69,10 +73,17 @@
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.08), -2px 9px 10px 0 rgba(0, 0, 0, 0.07), -4px 21px 13px 0 rgba(0, 0, 0, 0.03), -7px 37px 15px 0 rgba(0, 0, 0, 0.01), -12px 58px 17px 0 rgba(0, 0, 0, 0);
     @apply tw-rounded-xl tw-p-16 tw-bg-white;
 
+    @include lg {
+      @apply tw-p-24;
+    }
   }
 
   .title {
     @apply tw-mb-8 tw-text-body-m-bold -tw-tracking-2;
+
+    @include lg {
+     @apply tw-text-body-l-bold;
+    }
   }
 
   .body {

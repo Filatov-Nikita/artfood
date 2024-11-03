@@ -4,15 +4,18 @@
       <div class="card">
         <div class="title-wrap">
           <p class="title">Корзина</p>
-          <AppButton
-            class="clear-btn"
-            design="ghost-neutral"
-            size="56"
-            @click="clearAllDialog = true"
-            :disabled="basket.length === 0"
-          >
-            Очистить
-          </AppButton>
+          <div class="card-top-actions">
+            <AppButton
+              class="clear-btn"
+              design="ghost-neutral"
+              size="56"
+              @click="clearAllDialog = true"
+              :disabled="basket.length === 0"
+            >
+              Очистить
+            </AppButton>
+            <ButtonClose v-if="grid.lg" class="tw-shrink-0" size="40px" padding="0.2em" @click="value = false" />
+          </div>
           <InnerDialog
             v-model="clearAllDialog"
             title="Очистить корзину?"
@@ -28,10 +31,10 @@
         <div class="card-bottom">
           <BlockTotal v-if="basket.length > 0" :basket="basket" />
           <div class="card-actions">
-            <AppButton class="order" design="primary" size="48" :disabled="basket.length <= 0" @click="$router.push({ name: 'order' })">
+            <AppButton class="order" design="primary" size="48" lg-size="56" :disabled="basket.length <= 0" @click="$router.push({ name: 'order' })">
               Оформить заказ
             </AppButton>
-            <ButtonClose class="tw-shrink-0" size="48px" padding="0.25em" @click="value = false" />
+            <ButtonClose v-if="!grid.lg" class="tw-shrink-0" size="48px" padding="0.25em" @click="value = false" />
           </div>
         </div>
       </div>
@@ -45,6 +48,9 @@
   import ProductsList from '../ProductsList/index.vue';
   import BlockTotal from './BlockTotal.vue';
   import { ref } from 'vue';
+  import { useAppGrid } from '@/shared/lib/useScreen';
+
+  const grid = useAppGrid();
 
   const value = defineModel({ default: false });
 
@@ -64,6 +70,10 @@
   .card-wrap {
     position: relative;
     @apply tw-w-full tw-h-full tw-rounded-1.5xl;
+
+    @include lg {
+      max-width: 464px;
+    }
   }
 
   .card {
@@ -71,6 +81,10 @@
     flex-direction: column;
     overflow: auto;
     @apply tw-rounded-1.5xl tw-bg-white tw-p-16 tw-pt-28 tw-w-full tw-h-full;
+
+    @include lg {
+      @apply tw-p-24;
+    }
   }
 
   .title {
@@ -108,5 +122,13 @@
     display: flex;
     gap: 8px;
     @apply tw-mt-16;
+  }
+
+  .card-top-actions {
+    @include lg {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
   }
 </style>

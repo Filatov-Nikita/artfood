@@ -76,6 +76,11 @@
     flex-shrink: 0;
     border-radius: 8px;
     overflow: hidden;
+
+    @include lg {
+      width: 64px;
+      height: 64px;
+    }
   }
 
   .img {
@@ -102,10 +107,18 @@
     flex-wrap: wrap;
     gap: 8px;
     @apply tw-text-body-m-bold -tw-tracking-2;
+
+    @include lg {
+      @apply tw-text-body-l-bold;
+    }
   }
 
   .forone {
     @apply tw-text-body-xs-medium tw-text-text01 tw-py-4;
+
+    @include lg {
+      @apply tw-text-body-s-medium;
+    }
   }
 
   .body {

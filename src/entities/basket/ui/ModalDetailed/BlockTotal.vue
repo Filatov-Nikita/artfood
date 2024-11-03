@@ -34,6 +34,10 @@
 <style scoped lang="scss">
   .total {
     @apply tw-text-body-m-bold -tw-tracking-2;
+
+    @include lg {
+      @apply tw-text-heading-3-bold;
+    }
   }
 
   .row {
@@ -51,6 +55,10 @@
   .count {
     @apply tw-mb-4 tw-text-body-s-medium tw-text-text01;
 
+    @include lg {
+      @apply tw-text-body-m-regular tw-mb-8;
+    }
+
     & > span {
       &:first-child {
         flex-grow: 1;
@@ -60,5 +68,9 @@
 
   .block {
     @apply tw-pt-16;
+
+    @include lg {
+      @apply tw-pt-24;
+    }
   }
 </style>
