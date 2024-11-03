@@ -13,11 +13,11 @@
 </template>
 
 <script setup lang="ts">
-  import type { Item as TItem } from '@/shared/store/basket';
+  import type { BasketItem } from '@/shared/repositories/basket';
   import Item from './Item.vue';
 
   defineProps<{
-    basket: TItem[],
+    basket: BasketItem[],
   }>();
 
   defineEmits<{

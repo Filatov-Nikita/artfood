@@ -14,11 +14,11 @@
 </template>
 
 <script setup lang="ts">
-  import type { Item as TItem } from '@/shared/store/basket';
+  import type { BasketItem } from '@/shared/repositories/basket';
   import { computed } from 'vue';
 
   const props = defineProps<{
-    basket: TItem[],
+    basket: BasketItem[],
   }>();
 
   const sum = computed(() => {
@@ -28,12 +28,12 @@
     }, 0);
   });
 
-  const cases = [ 'товар', 'товара', 'товаров' ];
+  const cases: [ string, string, string ] = [ 'товар', 'товара', 'товаров' ];
 </script>
 
 <style scoped lang="scss">
   .total {
-    @apply tw-text-heading-3-bold -tw-tracking-2;
+    @apply tw-text-body-m-bold -tw-tracking-2;
   }
 
   .row {
@@ -49,7 +49,7 @@
   }
 
   .count {
-    @apply tw-mb-8 tw-text-body-m-regular tw-text-text01;
+    @apply tw-mb-4 tw-text-body-s-medium tw-text-text01;
 
     & > span {
       &:first-child {
@@ -59,6 +59,6 @@
   }
 
   .block {
-    @apply tw-pt-24;
+    @apply tw-pt-16;
   }
 </style>

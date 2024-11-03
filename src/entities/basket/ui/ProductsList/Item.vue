@@ -5,7 +5,7 @@
     </div>
     <div class="body">
       <div class="name-wrap">
-        <p class="name">{{ item.name }}</p>
+        <p class="name" v-html="item.name"></p>
         <AppButton
           design="ghost-neutral"
           size="56"
@@ -29,13 +29,13 @@
 </template>
 
 <script setup lang="ts">
-  import type { Item as TItem } from '@/shared/store/basket';
+  import type { BasketItem } from '@/shared/repositories/basket';
   import useImg from '@/shared/lib/useImg';
   import ButtonMinMaxMini from '../ButtonMinMaxMini/index.vue';
   import { computed } from 'vue';
 
   const props = defineProps<{
-    item: TItem,
+    item: BasketItem,
   }>();
 
   defineEmits<{
@@ -63,7 +63,11 @@
   .item {
     display: flex;
     gap: 8px;
-    @apply tw-py-16 tw-border-b tw-border-solid tw-border-border01;
+    @apply tw-py-16;
+
+    & + & {
+      @apply tw-border-t tw-border-solid tw-border-border01;
+    }
   }
 
   .img-wrap {

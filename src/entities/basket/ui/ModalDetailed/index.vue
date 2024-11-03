@@ -25,9 +25,14 @@
           </InnerDialog>
         </div>
         <ProductsList class="list" :basket="basket" @remove="basketStore.remove" />
-        <div class="card-bottom" v-if="basket.length > 0">
-          <BlockTotal :basket="basket" />
-          <AppButton class="order" design="primary" size="56" :to="{ name: 'order' }">Оформить заказ</AppButton>
+        <div class="card-bottom">
+          <BlockTotal v-if="basket.length > 0" :basket="basket" />
+          <div class="card-actions">
+            <AppButton class="order" design="primary" size="48" :disabled="basket.length <= 0" @click="$router.push({ name: 'order' })">
+              Оформить заказ
+            </AppButton>
+            <ButtonClose class="tw-shrink-0" size="48px" padding="0.25em" @click="value = false" />
+          </div>
         </div>
       </div>
     </div>
@@ -78,16 +83,16 @@
     align-items: center;
     justify-content: space-between;
     gap: 24px;
-    @apply tw-mb-24;
+    @apply tw-mb-8;
   }
 
-  .clear-btn {
+  .card-wrap .clear-btn {
     font-weight: 500 !important;
     color: theme('colors.text01');
   }
 
   .order {
-    @apply tw-w-full tw-mt-24;
+    @apply tw-w-full;
   }
 
   .list {
@@ -96,5 +101,12 @@
 
   .card-bottom {
     margin-top: auto;
+    @apply tw-border-t tw-border-solid tw-border-border01;
+  }
+
+  .card-actions {
+    display: flex;
+    gap: 8px;
+    @apply tw-mt-16;
   }
 </style>
