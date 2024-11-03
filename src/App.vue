@@ -3,7 +3,7 @@
   <ProgressIndicator :loading="pending" />
   <router-view v-slot="{ Component, route }">
     <template v-if="Component">
-      <PrimaryLayout>
+      <component :is="layouts[appStore.layout]">
         <Suspense @pending="pending = true" @resolve="pending = false">
             <template #default>
               <component :is="Component" :key="route.path"></component>
@@ -14,7 +14,7 @@
               </div>
             </template>
           </Suspense>
-        </PrimaryLayout>
+        </component>
       </template>
     </router-view>
 </template>
@@ -24,7 +24,21 @@
   import Alerts from '@/shared/ui/Alerts/index.vue';
   import { PrimaryLayout } from '@/layouts/Primary'
   import { ref } from 'vue';
+  import { useAppStore } from '@/shared/store/app';
   import ProgressIndicator from '@/app/ui/ProgressIndicator.vue';
+  import { useRouter } from 'vue-router';
+
+  const layouts = {
+    'default': PrimaryLayout,
+    'order': OrderLayout,
+  };
+
+  const router = useRouter();
+  router.beforeResolve((to) => {
+    appStore.setLayout(to.meta.layout as any);
+  });
+
+  const appStore = useAppStore();
 
   const pending = ref(false);
 

@@ -21,6 +21,7 @@ export default function createRoutes() {
       path: '/order',
       component: () => import('@/pages/order/ui/OrderPage.vue'),
       name: 'order',
+      meta: { layout: 'order' }
     },
     {
       path: '/portfolio',
