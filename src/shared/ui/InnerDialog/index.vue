@@ -1,7 +1,7 @@
 <template>
-  <Transition name="bounce">
-    <div v-if="value" class="inner-dialog">
-      <div class="dialog">
+  <div v-if="!isLeaved" class="inner-dialog">
+    <Transition name="bounce" appear @after-leave="isLeaved = true">
+      <div class="dialog" v-if="value">
         <p class="title">{{ title }}</p>
         <div class="body">
           <slot />
@@ -15,12 +15,14 @@
           </AppButton>
         </div>
       </div>
-      <div class="overlay"></div>
-    </div>
-  </Transition>
+    </Transition>
+    <div class="overlay"></div>
+  </div>
 </template>
 
 <script setup lang="ts">
+  import { ref, watch } from 'vue';
+
   defineProps<{
     title: string,
     rejectLabel: string,
@@ -33,6 +35,11 @@
   }>();
 
   const value = defineModel({ default: false });
+  const isLeaved = ref(!value.value);
+
+  watch(value, (v) => {
+    if(v) isLeaved.value = false;
+  });
 </script>
 
 <style scoped lang="scss">
@@ -47,6 +54,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 16px;
   }
 
   .overlay {
@@ -59,7 +67,7 @@
 
   .dialog {
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.08), -2px 9px 10px 0 rgba(0, 0, 0, 0.07), -4px 21px 13px 0 rgba(0, 0, 0, 0.03), -7px 37px 15px 0 rgba(0, 0, 0, 0.01), -12px 58px 17px 0 rgba(0, 0, 0, 0);
-    @apply tw-rounded-xl tw-p-16;
+    @apply tw-rounded-xl tw-p-16 tw-bg-white;
 
   }
 
@@ -79,19 +87,11 @@
   }
 
   .bounce-enter-active {
-    animation-duration: 400ms;
-  }
-
-  .bounce-enter-active .dialog {
     animation: bounceIn;
     animation-duration: 400ms;
   }
 
   .bounce-leave-active {
-    animation-duration: 380ms;
-  }
-
-  .bounce-leave-active .dialog {
     animation: zoomOut;
     animation-duration: 400ms;
   }
