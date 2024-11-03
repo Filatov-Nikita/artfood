@@ -9,7 +9,7 @@
     defineProps<{
       type: 'prev' | 'next',
       size?: string,
-      swiper?: boolean
+      swiper?: boolean,
     }>(),
     {
       size: '40px',
@@ -25,7 +25,7 @@
     height: 1em;
     padding: 0.2em;
     border-radius: 50%;
-    @apply tw-bg-neutral;
+    @apply tw-bg-white;
 
     &:disabled, &--disabled {
       background-color: theme('colors.primary-bg-disabled') !important;
@@ -49,6 +49,7 @@
     top: 50%;
     transform: translateY(-50%);
     display: none;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.08), -2px 9px 10px 0 rgba(0, 0, 0, 0.07), -4px 21px 13px 0 rgba(0, 0, 0, 0.03), -7px 37px 15px 0 rgba(0, 0, 0, 0.01), -12px 58px 17px 0 rgba(0, 0, 0, 0);
 
     @include lg {
       display: block;

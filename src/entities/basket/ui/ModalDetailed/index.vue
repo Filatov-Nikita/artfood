@@ -31,7 +31,7 @@
         <div class="card-bottom">
           <BlockTotal v-if="basket.length > 0" :basket="basket" />
           <div class="card-actions">
-            <AppButton class="order" design="primary" size="48" lg-size="56" :disabled="basket.length <= 0" @click="$router.push({ name: 'order' })">
+            <AppButton class="order" design="primary" size="48" lg-size="56" :disabled="basket.length <= 0" @click="showOrder">
               Оформить заказ
             </AppButton>
             <ButtonClose v-if="!grid.lg" class="tw-shrink-0" size="48px" padding="0.25em" @click="value = false" />
@@ -49,8 +49,11 @@
   import BlockTotal from './BlockTotal.vue';
   import { ref } from 'vue';
   import { useAppGrid } from '@/shared/lib/useScreen';
+  import { useRouter } from 'vue-router';
 
   const grid = useAppGrid();
+
+  const router = useRouter();
 
   const value = defineModel({ default: false });
 
@@ -63,6 +66,11 @@
   function clearAll() {
     basketStore.clearAll();
     clearAllDialog.value = false;
+  }
+
+  function showOrder() {
+    router.push({ name: 'order' });
+    value.value = false;
   }
 </script>
 

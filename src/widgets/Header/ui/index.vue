@@ -68,6 +68,10 @@
 
     &__wrap {
       padding: 8px 16px;
+
+      @include lg {
+        padding: 12px 32px;
+      }
     }
 
     &__head-wrap {

@@ -22,7 +22,8 @@
 <script setup lang="ts">
   import { useBasketStore } from './shared/store/basket';
   import Alerts from '@/shared/ui/Alerts/index.vue';
-  import { PrimaryLayout } from '@/layouts/Primary'
+  import { PrimaryLayout } from '@/layouts/Primary';
+  import { OrderLayout } from '@/layouts/Order';
   import { ref } from 'vue';
   import { useAppStore } from '@/shared/store/app';
   import ProgressIndicator from '@/app/ui/ProgressIndicator.vue';
