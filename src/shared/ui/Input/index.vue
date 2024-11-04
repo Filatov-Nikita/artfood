@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-  import { computed, ref, toRefs, type Ref } from 'vue';
+  import { computed, ref, toRefs } from 'vue';
   import { useField, type RuleExpression } from 'vee-validate';
   import { vMaska } from 'maska/vue';
 
@@ -60,16 +60,11 @@
     },
   );
 
-  const emit = defineEmits<{
-    (event: 'update:modelValue', value: string): void,
-  }>();
-
   const { name, rules } = toRefs(props);
 
-  const model = defineModel<string>();
+  defineModel<string>();
 
   const { value, handleChange, errorMessage } = useField<string>(name, rules, {
-    initialValue: model as Ref<string>,
     syncVModel: true,
   });
 

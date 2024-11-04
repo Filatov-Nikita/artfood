@@ -21,6 +21,11 @@
     label: string,
     icon: string,
     checkedValue: string,
+    modelValue?: string,
+  }>();
+
+  defineEmits<{
+    (event: 'update:modelValue', value: string): void,
   }>();
 
   const { name, checkedValue } = toRefs(props);
@@ -28,6 +33,7 @@
   const { checked, handleChange } = useField(name, undefined, {
     type: 'radio',
     checkedValue,
+    syncVModel: true,
   });
 </script>
 

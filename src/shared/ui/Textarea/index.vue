@@ -25,7 +25,11 @@
 
   const { name, rules } = toRefs(props);
 
-  const { value, handleChange, errorMessage } = useField(name, rules);
+  defineModel<string>();
+
+  const { value, handleChange, errorMessage } = useField(name, rules, {
+    syncVModel: true,
+  });
 </script>
 
 <style scoped lang="scss">

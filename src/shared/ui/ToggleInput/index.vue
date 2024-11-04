@@ -34,6 +34,10 @@
     uncheckedValue: false,
   });
 
+  defineEmits<{
+    (event: 'update:modelValue', value: any): void,
+  }>();
+
   const { checked, handleChange, errorMessage } = useField(props.name, props.rules, {
     type: 'checkbox',
     syncVModel: true,
