@@ -3,23 +3,24 @@
     <AppTabs
       class="type"
       :items="[ 'Доставка', 'Самовывоз' ]"
-      :activeIndex="value === '1' ? 0 : 1"
-      @update:activeIndex="onUpdateType"
+      :activeIndex="form.type_delivery === '1' ? 0 : 1"
+      @update:activeIndex="form.type_delivery = ($event + 1).toString()"
     />
-    <PickupLocation v-if="value === '2'" />
+    <PickupLocation v-if="form.type_delivery === '2'" />
     <template v-else>
-      <AppInput name="address" label="Адрес" :rules="schema.address" />
+      <AppInput name="address" label="Адрес" :rules="schema.address" v-model="form.address" />
       <ToggleInput
         class="tw-mt-12"
         name="private_home"
         label="Частный дом"
         checkedValue="Да"
         uncheckedValue="Нет"
+        v-model="form.private_home"
       />
       <div class="house-inps">
-        <AppInput class="house-inp" name="flat" :rules="schema.flat" label="Квартира" />
-        <AppInput class="house-inp" name="entrance" label="Подъезд" :rules="schema.entrance" />
-        <AppInput class="house-inp" name="floor" label="Этаж" :rules="schema.floor" />
+        <AppInput class="house-inp" name="flat" :rules="schema.flat" label="Квартира" v-model="form.flat" />
+        <AppInput class="house-inp" name="entrance" label="Подъезд" :rules="schema.entrance" v-model="form.entrance" />
+        <AppInput class="house-inp" name="floor" label="Этаж" :rules="schema.floor" v-model="form.floor" />
       </div>
     </template>
   </div>
@@ -27,7 +28,7 @@
 
 <script setup lang="ts">
   import PickupLocation from '../PickupLocation/index.vue';
-  import { useField, type RuleExpression } from 'vee-validate';
+  import { type RuleExpression } from 'vee-validate';
 
   interface Schema {
     address: RuleExpression<string>,
@@ -36,13 +37,16 @@
     floor: RuleExpression<string>,
   }
 
-  defineProps<{ schema: Schema }>();
-
-  const { value, handleChange } = useField('type_delivery');
-
-  function onUpdateType(index: number) {
-    handleChange(`${index + 1}`);
+  interface Form {
+    address: string,
+    flat: string,
+    entrance: string,
+    floor: string,
+    private_home: string,
+    type_delivery: string,
   }
+
+  defineProps<{ schema: Schema, form: Form }>();
 </script>
 
 

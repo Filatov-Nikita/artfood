@@ -1,21 +1,22 @@
 <template>
-  <Form :initialValues="form" @submit="onSubmit" v-slot="{ isSubmitting }">
+  <Form ref="formRef">
     <fieldset class="fieldset">
       <legend class="legend">Личные данные</legend>
-      <AppInput class="inp-el" name="name" label="Имя" :rules="schema.name" />
-      <PhoneInput class="inp-el" :rules="schema.phone" />
+      <AppInput class="inp-el" name="name" label="Имя" :rules="schema.name" v-model="form.name" />
+      <PhoneInput class="inp-el" :rules="schema.phone" v-model="form.phone" />
       <ToggleInput
         class="tw-mt-12"
         label="Нужен звонок для подтверждения заказа"
         name="need_call"
         checkedValue="Да"
         uncheckedValue="Нет"
+        v-model="form.need_call"
       />
-      <DeliveryMethods class="tw-mt-32" :schema="schema" />
+      <DeliveryMethods class="tw-mt-32" :schema="schema" :form="form" />
     </fieldset>
     <fieldset class="fieldset">
       <legend class="legend">Способ оплаты</legend>
-      <PaymentMethods :schema="schema" />
+      <PaymentMethods :schema="schema" :form="form" />
     </fieldset>
     <AppTextarea
       class="area tw-mt-32"
@@ -23,33 +24,32 @@
       label="Комментарий"
       placeholder="Пожелание к заказу, например: оставить заказ у двери, бесконтактная оплата"
       :rules="schema.comment"
+      v-model="form.comment"
     />
-    <AppButton class="tw-mt-24 tw-w-full" type="submit" design="primary" size="56" :disabled="isSubmitting">
-      Оформить заказ
-    </AppButton>
   </Form>
 </template>
 
 <script setup lang="ts">
-  import useCreateForm, { type OrderForm } from '../../model/useCreateForm';
   import { DeliveryMethods } from '@/entities/delivery';
   import { PaymentMethods } from '@/entities/payment';
-  import { useAlertsStore } from '@/shared/store/alerts';
-  import { useRouter } from 'vue-router';
+  import { useCreateForm } from '@/features/create-order';
+  import { onMounted, ref } from 'vue';
+  import { Form } from 'vee-validate';
 
-  const router = useRouter();
+  defineProps<{
+    form: ReturnType<typeof useCreateForm>['form'],
+    schema: ReturnType<typeof useCreateForm>['schema'],
+  }>();
 
-  const { form, schema, createOrder } = useCreateForm();
+  const emit = defineEmits<{
+    (event: 'init', formRef: InstanceType<typeof Form> | null): void,
+  }>();
 
-  async function onSubmit(form: unknown) {
-    createOrder(form as OrderForm, () => {
-      router.push({ name: 'home' });
-      useAlertsStore().create({
-        title: 'Заказ успешно оформлен',
-        icon: 'check-regular',
-      });
-    });
-  }
+  const formRef = ref<InstanceType<typeof Form> | null>(null);
+
+  onMounted(() => {
+    emit('init', formRef.value);
+  });
 </script>
 
 
