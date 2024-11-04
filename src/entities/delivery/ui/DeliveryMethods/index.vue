@@ -1,16 +1,16 @@
 <template>
   <div>
     <AppTabs
-      class="type"
+      class="tw-mb-16"
       :items="[ 'Доставка', 'Самовывоз' ]"
       :activeIndex="form.type_delivery === '1' ? 0 : 1"
       @update:activeIndex="form.type_delivery = ($event + 1).toString()"
     />
     <PickupLocation v-if="form.type_delivery === '2'" />
     <template v-else>
-      <AppInput name="address" label="Адрес" :rules="schema.address" v-model="form.address" />
+      <AppInput class="tw-mb-12" name="address" label="Адрес" :rules="schema.address" v-model="form.address" />
       <ToggleInput
-        class="tw-mt-12"
+        class="tw-mb-16"
         name="private_home"
         label="Частный дом"
         checkedValue="Да"
@@ -18,9 +18,9 @@
         v-model="form.private_home"
       />
       <div class="house-inps">
-        <AppInput class="house-inp" name="flat" :rules="schema.flat" label="Квартира" v-model="form.flat" />
-        <AppInput class="house-inp" name="entrance" label="Подъезд" :rules="schema.entrance" v-model="form.entrance" />
-        <AppInput class="house-inp" name="floor" label="Этаж" :rules="schema.floor" v-model="form.floor" />
+        <AppInput class="tw-grow" name="flat" :rules="schema.flat" label="Квартира" v-model="form.flat" />
+        <AppInput class="tw-grow" name="entrance" label="Подъезд" :rules="schema.entrance" v-model="form.entrance" />
+        <AppInput class="tw-grow" name="floor" label="Этаж" :rules="schema.floor" v-model="form.floor" />
       </div>
     </template>
   </div>
@@ -51,17 +51,12 @@
 
 
 <style scoped lang="scss">
-  .type {
-    @apply tw-mb-16;
-  }
-
   .house-inps {
-    margin-top: 16px;
     display: flex;
     gap: 8px;
-  }
 
-  .house-inp {
-    flex-grow: 1;
+    @include lg {
+      gap: 20px;
+    }
   }
 </style>

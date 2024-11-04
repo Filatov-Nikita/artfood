@@ -1,25 +1,27 @@
 <template>
   <Form ref="formRef">
-    <fieldset class="fieldset">
+    <fieldset class="tw-mb-32">
       <legend class="legend">Личные данные</legend>
-      <AppInput class="inp-el" name="name" label="Имя" :rules="schema.name" v-model="form.name" />
-      <PhoneInput class="inp-el" :rules="schema.phone" v-model="form.phone" />
+      <div class="name-wrap">
+        <AppInput class="tw-w-full" name="name" label="Имя" :rules="schema.name" v-model="form.name" />
+        <PhoneInput class="tw-w-full" :rules="schema.phone" v-model="form.phone" />
+      </div>
       <ToggleInput
-        class="tw-mt-12"
+        class="tw-mb-32"
         label="Нужен звонок для подтверждения заказа"
         name="need_call"
         checkedValue="Да"
         uncheckedValue="Нет"
         v-model="form.need_call"
       />
-      <DeliveryMethods class="tw-mt-32" :schema="schema" :form="form" />
+      <DeliveryMethods :schema="schema" :form="form" />
     </fieldset>
-    <fieldset class="fieldset">
+    <fieldset class="tw-mb-32">
       <legend class="legend">Способ оплаты</legend>
       <PaymentMethods :schema="schema" :form="form" />
     </fieldset>
     <AppTextarea
-      class="area tw-mt-32"
+      class="area"
       name="comment"
       label="Комментарий"
       placeholder="Пожелание к заказу, например: оставить заказ у двери, бесконтактная оплата"
@@ -54,19 +56,19 @@
 
 
 <style scoped lang="scss">
-  .fieldset {
-    & + & {
-      @apply tw-mt-32;
-    }
-  }
-
   .legend, .area :deep(.label) {
     @apply tw-text-body-l-bold -tw-tracking-2 tw-mb-16;
   }
 
-  .inp-el {
-    & + & {
-      @apply tw-mt-8;
+  .name-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    @apply tw-mb-12;
+
+    @include lg {
+      flex-wrap: nowrap;
+      gap: 20px;
     }
   }
 </style>

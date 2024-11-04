@@ -1,6 +1,6 @@
 <template>
   <div class="items">
-    <RadioItem class="item" name="type_of_payment" checkedValue="5" label="Картой при получении" icon="credit-card-regular" v-model="form.type_of_payment" />
+    <RadioItem class="item tw-mb-8" name="type_of_payment" checkedValue="5" label="Картой при получении" icon="credit-card-regular" v-model="form.type_of_payment" />
     <RadioItem class="item" name="type_of_payment" checkedValue="6" label="Наличными" icon="coins-regular" v-model="form.type_of_payment" />
     <template v-if="form.type_of_payment === '6'">
       <ToggleInput class="tw-mt-12" name="meta.need_sdacha" label="Нужна сдача" v-model="form.meta.need_sdacha" />
@@ -39,10 +39,6 @@
   .item {
     width: 100%;
     border-radius: 16px;
-
-    & + & {
-      margin-top: 8px;
-    }
 
     &.size-56 {
       padding-top: 16px;

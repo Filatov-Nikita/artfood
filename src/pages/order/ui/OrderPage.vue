@@ -73,6 +73,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
+    z-index: 9000;
     @apply tw-bg-white tw-p-16 tw-pt-0;
   }
 
@@ -90,10 +91,6 @@
       flex-wrap: wrap;
       align-items: flex-start;
       column-gap: 100px;
-    }
-
-    @include xl {
-      column-gap: 135px;
     }
   }
 
