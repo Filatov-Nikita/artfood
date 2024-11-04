@@ -1,40 +1,12 @@
-import type { YesNo } from '@/shared/api/models/Http';
-import useHttp from '@/shared/api/useHttp';
-import { useBasketStore } from '@/shared/store/basket';
 import { string } from 'yup';
-import jsonFormData from '@/shared/lib/jsonFormData';
+import type { OrderBody } from '@/shared/repositories/orders';
+import { reactive } from 'vue';
 
-export type TypeOfPayment = '5' | '6';
-export type Location = '3' | '4';
-export type TypeOfDelivery = '1' | '2';
-
-export type SuccessRes = {
-  order_id: number,
+export type FormCreate = Omit<OrderBody, 'basket_id'> & {
+  meta: { need_sdacha: string },
 };
 
-export interface OrderForm {
-  name: string,
-  phone: string,
-  need_call: YesNo,
-  type_delivery: TypeOfDelivery,
-  timeline: string,
-  location: Location,
-  address: string,
-  private_home: YesNo,
-  flat: string,
-  entrance: string,
-  floor: string,
-  type_of_payment: TypeOfPayment,
-  comment: string,
-  sdacha: string,
-  meta: {
-    need_sdacha: string,
-  },
-}
-
 export default function() {
-  const basketStore = useBasketStore();
-
   const schema = {
     name: string().required().label('Имя'),
     phone: string().required().label('Номер телефона'),
@@ -43,10 +15,10 @@ export default function() {
     entrance: string().required().label('Подъезд'),
     floor: string().required().label('Этаж'),
     comment: string().label('Комментарий'),
-    sdacha: string().label('Сдача')
+    sdacha: string().required().label('Сдача')
   };
 
-  const form: OrderForm = {
+  const form: FormCreate = reactive({
     name: '',
     phone: '',
     need_call: 'Нет',
@@ -62,24 +34,10 @@ export default function() {
     comment: '',
     sdacha: '',
     meta: { need_sdacha: '' }
-  };
-
-  const { http } = useHttp();
-
-  async function createOrder(form: OrderForm, res: () => void) {
-    const body = {
-      basket_id: basketStore.basketId,
-      ...form,
-      timeline: '10:00 - 10:30',
-    } as Record<string, unknown>;
-    delete body['meta'];
-    await http.post<SuccessRes>('create_order.php', jsonFormData(body));
-    res();
-  }
+  });
 
   return {
     form,
     schema,
-    createOrder,
   }
 }
