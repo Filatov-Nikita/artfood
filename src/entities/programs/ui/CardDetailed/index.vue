@@ -15,7 +15,7 @@
             <p class="price tw-mb-4">{{ program.price }}</p>
             <p class="days"><AppPlural :cases="daysCases" :total="+program.days" /></p>
           </div>
-          <AppButton class="tw-w-full" size="56">Получить консультацию</AppButton>
+          <AppButton class="tw-w-full" size="56" @click="showConsult">Получить консультацию</AppButton>
         </div>
         <div class="card-actions" v-if="program && !grid.lg">
           <div class="price-wrap">
@@ -23,7 +23,7 @@
             <p class="days"><AppPlural :cases="daysCases" :total="+program.days" /></p>
           </div>
           <div class="actions">
-            <AppButton class="tw-w-full" size="48">Получить консультацию</AppButton>
+            <AppButton class="tw-w-full" size="48" @click="showConsult">Получить консультацию</AppButton>
             <ButtonClose class="tw-shrink-0" size="48px" padding="0.25em" @click="value = false" />
           </div>
         </div>
@@ -42,6 +42,7 @@
   import { computed, watch } from 'vue';
   import { useAppGrid } from '@/shared/lib/useScreen';
   import ContentSlider from './ContentSlider.vue';
+  import { useCallbackStore } from '@/shared/store/callback';
 
   const props = defineProps<{
     programId: string,
@@ -50,6 +51,8 @@
   const value = defineModel({
     default: false,
   });
+
+  const callbackStore = useCallbackStore();
 
   const grid = useAppGrid();
 
@@ -73,6 +76,13 @@
 
   const calCases: [ string, string, string ] = [ 'калория', 'калории', 'калорий' ];
   const daysCases: [ string, string, string ] = [ 'день', 'дня', 'дней' ];
+
+  function showConsult() {
+    callbackStore.show({
+      title: `Получить консультацию по программе питания "${program.value!.name}"`,
+      isInner: true,
+    });
+  }
 </script>
 
 <style scoped lang="scss">
