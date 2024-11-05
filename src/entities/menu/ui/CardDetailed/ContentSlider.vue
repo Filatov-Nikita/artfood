@@ -20,7 +20,7 @@
 <script setup lang="ts">
   import { ref } from 'vue';
   import { useSwiperNav } from '@/shared/lib';
-  import BlockEnergy, { type Energy as IEnergy } from './BlockEnergy.vue';
+  import BlockEnergy, { type Energy as IEnergy } from '@/shared/ui/Food/BlockEnergy.vue';
 
   defineProps<{
     description: string,

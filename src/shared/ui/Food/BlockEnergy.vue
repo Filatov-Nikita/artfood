@@ -5,11 +5,11 @@
       <p class="label">Белки</p>
     </div>
     <div class="item">
-      <p class="value">{{ energy.giri }}</p>
+      <p class="value">{{ energy.giri }} г</p>
       <p class="label">Жиры</p>
     </div>
     <div class="item">
-      <p class="value">{{ energy.uglevodi }}</p>
+      <p class="value">{{ energy.uglevodi }} г</p>
       <p class="label">Углеводы</p>
     </div>
   </div>
@@ -32,6 +32,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    @apply tw-border tw-border-solid tw-border-border01 tw-rounded-xl tw-p-16;
   }
 
   .label {
