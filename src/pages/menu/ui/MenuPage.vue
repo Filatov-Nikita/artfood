@@ -55,6 +55,7 @@
   .content-wrap {
     @include lg {
       display: flex;
+      align-items: flex-start;
       gap: 20px;
     }
 

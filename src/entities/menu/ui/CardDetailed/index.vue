@@ -40,7 +40,7 @@
         />
         <ButtonClose class="tw-shrink-0" size="48px" padding="0.25em" @click="value = false" />
       </div>
-      <div v-if="loading"class="loader">
+      <div v-if="loading" class="loader">
         <AppSpinner />
       </div>
     </div>

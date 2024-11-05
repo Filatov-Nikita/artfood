@@ -13,7 +13,7 @@ export default function(http: AxiosInstance) {
       });
     },
     show(id: number | string) {
-      return http<ProgramDetailed>('programs_detail.php', {
+      return http<[ ProgramDetailed ]>('programs_detail.php', {
         params: {
           id,
         }

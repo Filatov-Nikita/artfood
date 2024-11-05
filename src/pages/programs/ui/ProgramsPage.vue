@@ -1,18 +1,18 @@
 <template>
-  <main class="page--pt">
+  <main class="page--py">
     <ProgressIndicator :loading="loading" />
     <div class="wrapper">
-      <InnerSection />
-      <AppTabs class="prog-tabs" v-model:activeIndex="activeTab" :items="tabs" />
-      <ProgramList v-if="elements" :items="elements" @change:program="1" />
-      <!-- <CardDetailed v-if="activeProgram" v-model="showedDetailed" /> -->
+      <!-- <InnerSection /> -->
+      <AppTabs class="tw-mb-24" v-model:activeIndex="activeTab" :items="tabs" />
+      <ProgramList v-if="elements" :items="elements" @change:program="changeProgram" />
+      <CardDetailed v-if="activeProgram" v-model="showedProgram" :programId="activeProgram" />
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
   import InnerSection from './InnerSection/index.vue';
-  import { ProgramList } from '@/entities/programs';
+  import { ProgramList, CardDetailed } from '@/entities/programs';
   import { computed, ref } from 'vue';
   import { useRepositories } from '@/shared/repositories';
   import useRequest from '@/shared/lib/useRequest';
@@ -37,10 +37,12 @@
   if(activeSection.value) {
     await elementsRes.send();
   }
-</script>
 
-<style scoped lang="scss">
-  .prog-tabs {
-    @apply tw-mb-24;
+  const activeProgram = ref<string | null>(null);
+  const showedProgram = ref<boolean>(false);
+
+  function changeProgram(programId: string) {
+    activeProgram.value = programId;
+    showedProgram.value = true;
   }
-</style>
+</script>
