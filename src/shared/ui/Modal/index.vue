@@ -7,6 +7,7 @@
         `x-${xPos}`,
         `y-${yPos}`
       ]"
+      v-bind="$attrs"
     >
       <Transition
         appear
@@ -24,23 +25,29 @@
 
 <script setup lang="ts">
   import { useScrollToggle } from '@/shared/lib';
-  import { computed, ref, watch } from 'vue';
+  import { computed, ref, toRef, watch } from 'vue';
   import { useAppScreen } from '@/shared/lib/useScreen';
 
   interface Props {
     xPos?: 'left' | 'center' | 'right',
     yPos?: 'top' | 'center' | 'bottom',
     animation?: 'zoom' | 'slide-right',
+    skipScroll?: boolean,
   }
 
-  withDefaults(
+  const props = withDefaults(
     defineProps<Props>(),
     {
       xPos: 'center',
       yPos: 'center',
       animation: 'zoom',
+      skipScroll: false,
     },
   );
+
+  defineOptions({
+    inheritAttrs: false,
+  });
 
   const screen = useAppScreen();
   const screenHeight = computed(() => screen.height + 'px');
@@ -55,7 +62,7 @@
     if(v) isLeaved.value = false;
   });
 
-  useScrollToggle(value);
+  useScrollToggle(value, toRef(props, 'skipScroll'));
 
   function hide() {
     value.value = false;
