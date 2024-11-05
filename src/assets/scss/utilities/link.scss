@@ -1,0 +1,11 @@
+.app-link {
+  @apply tw-text-primary;
+
+  &:hover {
+    @apply tw-text-primary-hover;
+  }
+
+  &:active {
+    @apply tw-text-primary-press;
+  }
+}

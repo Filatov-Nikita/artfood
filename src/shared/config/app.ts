@@ -4,6 +4,8 @@ export default function initConfig() {
   return {
     apiBase: import.meta.env.VITE_API_BASE as string ?? '',
     imgBase: import.meta.env.VITE_IMG_BASE as string ?? '',
+    percHref: '#',
+    polzSoglHref: '#',
   }
 }
 
