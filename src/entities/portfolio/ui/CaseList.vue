@@ -4,6 +4,7 @@
     <div>
       <CaseListItem
         v-for="item in elements"
+        :key="item.id"
         :item="item"
       />
     </div>

@@ -2,6 +2,7 @@
   <div>
     <HallListItem
       v-for="hall in halls"
+      :key="hall.id"
       :hall="hall"
     />
   </div>
