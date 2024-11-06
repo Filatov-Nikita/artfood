@@ -23,5 +23,9 @@
 <style scoped lang="scss">
   .active-year {
     @apply tw-text-heading-3-bold;
+
+    @include lg {
+      @apply tw-text-heading-2-bold;
+    }
   }
 </style>

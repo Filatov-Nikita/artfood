@@ -1,10 +1,14 @@
 <template>
-  <main class="page--pt">
+  <main class="page--py">
     <ProgressIndicator :loading="loading"/>
     <div class="wrapper">
-      <InnerSection />
-      <NavYears class="nav-y" :sections="sections" v-model:activeSection="activeSection" />
-      <CaseList v-if="activeSection && elements" :activeSection="activeSection" :elements="elements" />
+      <!-- <InnerSection /> -->
+      <div class="content">
+        <div class="nav-col">
+          <NavYears class="nav-y" :sections="sections" v-model:activeSection="activeSection" />
+        </div>
+        <CaseList class="list" v-if="activeSection && elements" :activeSection="activeSection" :elements="elements" />
+      </div>
     </div>
   </main>
 </template>
@@ -36,7 +40,23 @@
 </script>
 
 <style scoped lang="scss">
-  .nav-y {
-    @apply tw-mb-24 tw-mt-40;
+  .nav-col {
+    @apply tw-mb-24;
+
+    @include lg {
+      @apply tw-mb-0;
+    }
+  }
+
+  .content {
+    @include lg {
+      display: grid;
+      grid-template-columns: min-content minmax(0, 1fr);
+      column-gap: 80px;
+    }
+
+    @include xl {
+      column-gap: 200px;
+    }
   }
 </style>

@@ -32,13 +32,28 @@
     display: flex;
     gap: 8px;
     @apply tw-bg-neutral tw-p-8 tw-rounded-xl;
+
+    @include lg {
+      flex-direction: column;
+    }
   }
 
   .item {
     @apply tw-text-body-m-bold tw-rounded-full tw-py-12 tw-px-16;
 
+    @include lg {
+      &:hover {
+        @apply tw-bg-neutral-hover;
+      }
+
+      &:active {
+        @apply tw-bg-neutral-press;
+      }
+    }
+
     &--active {
-      @apply tw-bg-primary tw-text-white;
+      background-color: theme('colors.primary') !important;
+      color: theme('colors.white') !important;
     }
   }
 </style>
