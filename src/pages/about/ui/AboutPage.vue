@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="page--py">
     <div class="wrapper">
       <InnerSection />
       <TeamSection />
