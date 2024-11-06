@@ -18,6 +18,7 @@
           <slot v-bind="{ hide }"></slot>
         </div>
       </Transition>
+      <slot name="after"></slot>
       <div class="overlay" @click="hide"></div>
     </div>
   </Teleport>
