@@ -1,47 +1,69 @@
 <template>
-  <InnerSectionBase
-    class="about-sec"
-    :img="{ width: 100, height: 100, path: '/images/product.jpg' }"
-  >
-    <template #first>
-      <h1 class="h1">Комплексные программы питания</h1>
-    </template>
-    <template #last>
-      <p class="subtitle">
-        Наш диетолог Мария Егорова разработала специальные программы питания для мужчин и женщин, учитывая образ жизни и физическую активность. С нами вы убедитесь, что полезное питание может быть вкусным!
-      </p>
-    </template>
-  </InnerSectionBase>
+  <div class="inner-section inner-section--mb programs">
+    <div class="title-wrap">
+      <Badge class="badge" color="yellow" design="primary">от 1 200 ₽ / день</Badge>
+      <h1 class="h1">Комплексные<br/>программы питания</h1>
+      <p v-if="grid.breakpoint === 'lg'" class="text tw-mt-16">{{ text }}</p>
+    </div>
+    <div class="img-wrap">
+      <img width="780" height="456" src="./image.png" />
+    </div>
+    <div class="text-wrap" v-if="grid.breakpoint !== 'lg'">
+       <p class="text">{{ text }}</p>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-  import { InnerSectionBase } from '@/shared/ui';
-  import { useCurrentDate } from '@/shared/lib';
+  import { useAppGrid } from '@/shared/lib/useScreen';
+  import { Badge } from '@/shared/ui';
 
-  const { year } = useCurrentDate();
+  const grid = useAppGrid();
+
+  const text = 'Наш диетолог Мария Егорова разработала специальные программы питания для мужчин и женщин, учитывая образ жизни и физическую активность. С нами вы убедитесь, что полезное питание может быть вкусным!';
 </script>
 
 <style scoped lang="scss">
-  .title {
-    letter-spacing: -0.02em;
-    @apply tw-text-body-l-bold tw-mb-12;
+  .programs {
+    @include lg {
+      display: grid;
+      grid-template-columns: 408px 400px;
+      column-gap: 32px;
+      align-items: center;
+    }
+
+    @include xl {
+      grid-template-columns: 360px 390px 1fr;
+    }
   }
 
-  .subtitle {
+  .title-wrap {
+    position: relative;
+    @apply tw-mb-16;
+  }
+
+  .img-wrap {
+    max-width: 320px;
+    @apply tw-mb-16;
+
+    @include lg {
+      max-width: 100%;
+      @apply tw-mb-0;
+    }
+  }
+
+  .text {
     @apply tw-text-body-m-medium;
   }
 
-  .about-sec {
-    :deep(.first) {
-      @apply tw-pb-16;
-    }
+  .badge {
+    position: absolute;
+    top: 0;
+    left: 168px;
+    transform: rotate(-2deg);
 
-    :deep(.last) {
-      @apply tw-pt-10;
-    }
-
-    :deep(.decor-img) {
-      @apply tw-w-full;
+    @include lg {
+      left: 225px;
     }
   }
 </style>
