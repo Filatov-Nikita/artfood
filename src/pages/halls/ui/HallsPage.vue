@@ -1,5 +1,5 @@
 <template>
-  <main class="page--pt">
+  <main class="page--py">
     <div class="wrapper">
       <HallList :halls="halls" />
     </div>
