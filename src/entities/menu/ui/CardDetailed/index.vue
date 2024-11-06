@@ -4,7 +4,7 @@
       <ButtonClose v-if="grid.lg" class="card-close-xl" size="40px" padding="0.2em" @click="value = false" />
       <div class="card" v-if="product">
         <div class="photos">
-          <SliderPhoto :images="product.additional_imgs" :tag="product.tag" />
+          <PhotoGallery class="gallery" :images="product.additional_imgs" :tag="product.tag" />
         </div>
         <div class="card-text">
           <p class="title" v-html="product.name"></p>
@@ -49,7 +49,7 @@
 
 <script setup lang="ts">
   import ContentSlider from './ContentSlider.vue';
-  import SliderPhoto from '../SliderPhoto/index.vue';
+  import { PhotoGallery } from '@/shared/ui';
   import RecommendList from '../RecommendList/index.vue';
   import { useRepositories } from '@/shared/repositories';
   import useRequest from '@/shared/lib/useRequest';
@@ -209,5 +209,17 @@
     left: 0;
     z-index: 9000;
     background: rgba(255, 255, 255, 0.7);
+  }
+
+  .gallery {
+    height: 220px;
+
+    @include lg {
+      height: 395px;
+    }
+
+    @include xl {
+      height: 555px;
+    }
   }
 </style>
