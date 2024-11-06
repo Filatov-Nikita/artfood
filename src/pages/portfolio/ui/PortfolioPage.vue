@@ -2,7 +2,7 @@
   <main class="page--py">
     <ProgressIndicator :loading="loading"/>
     <div class="wrapper">
-      <!-- <InnerSection /> -->
+      <InnerSection :sections="sections" />
       <div class="content">
         <div class="nav-col">
           <NavYears class="nav-y" :sections="sections" v-model:activeSection="activeSection" />

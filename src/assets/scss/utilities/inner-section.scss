@@ -1,0 +1,15 @@
+.inner-section {
+  @apply tw-bg-neutral tw-rounded-1.5xl tw-p-24;
+
+  @include lg {
+    @apply tw-px-32 tw-py-16;
+  }
+
+  &--mb {
+    @apply tw-mb-40;
+
+    @include lg {
+      @apply tw-mb-64;
+    }
+  }
+}
