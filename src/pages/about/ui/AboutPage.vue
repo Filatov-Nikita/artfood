@@ -2,7 +2,7 @@
   <main class="page--py">
     <div class="wrapper">
       <InnerSection />
-      <TeamSection />
+      <PartnersLogo class="section--mb" />
     </div>
   </main>
 </template>

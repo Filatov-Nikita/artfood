@@ -1,0 +1,13 @@
+.section {
+  &--mb {
+    @apply tw-mb-32;
+
+    @include lg {
+      @apply tw-mb-48;
+    }
+
+    @include xl {
+      @apply tw-mb-64;
+    }
+  }
+}
