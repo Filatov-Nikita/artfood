@@ -40,6 +40,10 @@
   .title-wrap {
     position: relative;
     @apply tw-mb-16;
+
+    @include lg {
+      @apply tw-mb-0;
+    }
   }
 
   .img-wrap {
