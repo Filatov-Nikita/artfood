@@ -5,6 +5,13 @@ export default function() {
   const router = createRouter({
     history: createWebHistory(),
     routes: createRoutes(),
+    scrollBehavior(to, from, savedPosition) {
+      if (savedPosition) {
+        return savedPosition
+      } else {
+        return { top: 0 }
+      }
+    },
   });
 
   return router;
