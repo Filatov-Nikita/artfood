@@ -6,6 +6,14 @@ h1, .h1 {
   }
 }
 
+h2, .h2 {
+  @apply tw-text-body-l-bold;
+
+  @include lg {
+    @apply tw-text-heading-2-bold;
+  }
+}
+
 .h-mb-16 {
   @apply tw-mb-16;
 
