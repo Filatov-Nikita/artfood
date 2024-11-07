@@ -5,6 +5,7 @@
       <TeamSection class="section--mb" />
       <PartnersLogo class="section--mb" />
       <StaffSection class="section--mb" />
+      <SetySection />
     </div>
   </main>
 </template>
@@ -13,4 +14,5 @@
   import InnerSection from './InnerSection/index.vue';
   import { TeamSection } from '@/widgets/TeamSection';
   import { PartnersLogo, StaffSection } from '@/entities/company';
+  import SetySection from './SetySection.vue';
 </script>
