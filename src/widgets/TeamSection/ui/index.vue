@@ -10,26 +10,17 @@
         </div>
       </div>
       <div v-if="!hidePromoText" class="promo-text">
-        <p>{{ promoText }}</p>
+        <p>{{ text }}</p>
       </div>
     </div>
-    <div class="items">
-      <Item
-        class="team-item"
-        v-for="item in items"
-        v-bind="item"
-      />
-    </div>
-    <Slider class="photos" :items="photoItems" />
+    <Items />
+    <Slider class="photos" />
   </section>
 </template>
 
 <script setup lang="ts">
-  import Item from './Item.vue';
   import Slider from './Slider.vue';
-  import promoText from '../model/promoText';
-  import items from '../model/items';
-  import photoItems from '../model/photoItems';
+  import Items from './Items.vue';
 
   interface Props {
     hidePromoText?: boolean,
@@ -41,6 +32,8 @@
       hidePromoText: false,
     },
   );
+
+  const text = 'Если вы уже хотите провести мероприятие, не забудьте заранее забронировать зал. После этого наши специалисты обсудят с вами тематику, оформление и меню. Затем вам останется лишь прийти на свой праздник и насладиться им со своими близкими людьми';
 </script>
 
 <style scoped lang="scss">
@@ -103,30 +96,6 @@
 
     @include xl {
       padding-right: 100px;
-    }
-  }
-
-  .items {
-    display: flex;
-    flex-wrap: wrap;
-    margin: -6px;
-
-    @include lg {
-      margin: -10px;
-    }
-  }
-
-  .team-item {
-    margin: 6px;
-    width: calc(100% - 12px);
-
-    @include lg {
-      margin: 10px;
-      width: calc(50% - 20px);
-    }
-
-    @include xl {
-      width: calc(25% - 20px);
     }
   }
 

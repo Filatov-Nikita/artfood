@@ -1,9 +1,9 @@
 export type YesNo = 'Да' | 'Нет';
 
 export interface Image {
-  height: string;
-  width:  string;
-  src:    string;
+  HEIGHT: string;
+  WIDTH:  string;
+  SRC:    string;
 }
 
 export type WithPrefix<P, O extends Record<string, any>> = {

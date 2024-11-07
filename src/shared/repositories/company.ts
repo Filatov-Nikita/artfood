@@ -5,7 +5,7 @@ import type { Image } from '@/shared/api/types/backend';
 export default function(http: AxiosInstance) {
   return {
     counter() {
-      return http<CompanyCounter>('company_counter.php');
+      return http<[ CompanyCounter ]>('company_counter.php');
     },
     gallery() {
       return http<CompanyGalleryItem[]>('company_gallery.php');
@@ -23,7 +23,7 @@ export default function(http: AxiosInstance) {
 };
 
 export interface CompanyCounter {
-  'let': string;
+  let: string;
   meropr: string;
   dostavok: string;
   person: string;
