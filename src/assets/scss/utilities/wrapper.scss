@@ -1,12 +1,12 @@
 .wrapper {
   width: 100%;
-  padding-left: 16px;
-  padding-right: 16px;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 16px;
 
   @include lg {
     max-width: 976px;
     padding: 0 24px;
-    margin: 0 auto;
   }
 
   @include xl {
