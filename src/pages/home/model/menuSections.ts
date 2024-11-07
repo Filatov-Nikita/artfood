@@ -29,7 +29,7 @@ const items: MenuItem[] = [
     name: 'Кейтеринг',
     priceFrom: 'от 2 000 ₽ / персона',
     color: 'orange',
-    to: { name: 'home' },
+    to: { name: 'catering' },
     image: '/images/menu-sections/keit.png',
   },
 ];

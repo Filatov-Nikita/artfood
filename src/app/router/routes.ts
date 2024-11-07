@@ -39,6 +39,11 @@ export default function createRoutes() {
       name: 'programs',
     },
     {
+      path: '/catering',
+      component: () => import('@/pages/catering/ui/CateringPage.vue'),
+      name: 'catering',
+    },
+    {
       path: '/debug',
       children: [
         {

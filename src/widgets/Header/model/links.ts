@@ -9,7 +9,7 @@ export default [
   },
   {
     label: 'Кейтеринг',
-    to: '#',
+    to: { name: 'catering' },
   },
   {
     label: 'Залы для мероприятий',
