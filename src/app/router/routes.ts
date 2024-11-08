@@ -44,6 +44,11 @@ export default function createRoutes() {
       name: 'catering',
     },
     {
+      path: '/payment',
+      component: () => import('@/pages/payment/ui/PaymentPage.vue'),
+      name: 'payment',
+    },
+    {
       path: '/debug',
       children: [
         {

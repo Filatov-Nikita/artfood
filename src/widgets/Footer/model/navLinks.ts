@@ -25,7 +25,7 @@ export default [
   },
   {
     label: 'Оплата и доставка',
-    to: '#',
+    to: { name: 'payment' },
   },
   {
     label: 'О компании',
