@@ -1,6 +1,8 @@
 <template>
   <main class="page--py">
     <div class="wrapper">
+      <InnerSection />
+      <OrderSection class="section--mb" />
     </div>
   </main>
 </template>
