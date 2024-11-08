@@ -65,7 +65,7 @@
     }
 
     &__td {
-      @apply tw-text-body-m-medium tw-py-12;
+      @apply tw-text-body-m-medium tw-py-24;
 
       @include lg {
         @apply tw-text-body-l-medium;
