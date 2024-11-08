@@ -1,36 +1,38 @@
 <template>
   <section class="payment-section">
-    <div class="time-wrap">
-      <p class="title">Прием заказов:</p>
-      <div class="time-range">
-        <p class="time-range__days">Понедельник — Воскресенье</p>
-        <p class="time-range__time">10:00 — 20:00</p>
-      </div>
-      <div class="present-block">
-        <span class="present-block__icon">
-          <AppIcon name="confetti-fill" colorClass="tw-fill-primary" fit />
-        </span>
-        <p>В праздничные дни время работы может меняться</p>
-      </div>
-    </div>
-    <div class="payment-wrap">
-      <p class="title">Оплата заказа:</p>
-      <div class="payment-methods">
-        <div class="payment-item">
-          <span class="payment-item__icon">
-            <AppIcon name="wallet-fill" colorClass="tw-fill-primary" fit />
-          </span>
-          <p class="payment-item__text">
-            банковской картой через терминал у курьера при доставке заказа.
-          </p>
+    <div class="wrap">
+      <div class="time-wrap">
+        <p class="title">Прием заказов:</p>
+        <div class="time-range">
+          <p class="time-range__days">Понедельник — Воскресенье</p>
+          <p class="time-range__time">10:00 — 20:00</p>
         </div>
-        <div class="payment-item">
-          <span class="payment-item__icon">
-            <AppIcon name="credit-card-fill" colorClass="tw-fill-primary" fit />
+        <div class="present-block">
+          <span class="present-block__icon">
+            <AppIcon name="confetti-fill" colorClass="tw-fill-primary" fit />
           </span>
-          <p class="payment-item__text">
-            наличными курьеру при доставке заказа;
-          </p>
+          <p>В праздничные дни время работы может меняться</p>
+        </div>
+      </div>
+      <div class="payment-wrap">
+        <p class="title">Оплата заказа:</p>
+        <div class="payment-methods">
+          <div class="payment-item">
+            <span class="payment-item__icon">
+              <AppIcon name="wallet-fill" colorClass="tw-fill-primary" fit />
+            </span>
+            <p class="payment-item__text">
+              банковской картой через терминал у курьера при доставке заказа.
+            </p>
+          </div>
+          <div class="payment-item">
+            <span class="payment-item__icon">
+              <AppIcon name="credit-card-fill" colorClass="tw-fill-primary" fit />
+            </span>
+            <p class="payment-item__text">
+              наличными курьеру при доставке заказа;
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -50,7 +52,7 @@
     }
   }
 
-  .payment-section {
+  .wrap {
     @include lg {
       display: flex;
       flex-wrap: wrap;
