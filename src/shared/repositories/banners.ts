@@ -1,5 +1,4 @@
 import type { AxiosInstance } from 'axios';
-import type { Image } from '@/shared/api/types/backend';
 
 export default function(http: AxiosInstance) {
   return {
@@ -7,6 +6,12 @@ export default function(http: AxiosInstance) {
       return http<Banner[]>('banners.php');
     }
   }
+}
+
+export interface Image {
+  width: string,
+  height: string,
+  src: string,
 }
 
 export interface Banner {

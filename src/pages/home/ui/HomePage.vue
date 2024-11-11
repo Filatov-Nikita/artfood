@@ -1,6 +1,7 @@
 <template>
   <main class="page--py">
     <div class="wrapper">
+      <BannersSlider class="section--mb" />
       <MenuSections />
       <HomeSectionList
         :items="sections"
@@ -15,6 +16,7 @@
 
 <script setup lang="ts">
   import MenuSections from './MenuSections/index.vue';
+  import BannersSlider from './BannersSlider/index.vue';
   import { TeamSection } from '@/widgets/TeamSection';
   import HomeSectionList from './HomeSectionList/index.vue';
   import { FaqSection } from '@/widgets/FaqSection';
