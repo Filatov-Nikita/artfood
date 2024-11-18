@@ -7,6 +7,7 @@ import {
   Input,
   Modal,
   Tabs,
+  TabItem,
   Plural,
   InnerDialog,
   PhoneInput,
@@ -35,6 +36,7 @@ export default boot((app) => {
   app.component('SlideUpDown', SlideUpDown);
   app.component('AppModal', Modal);
   app.component('AppTabs', Tabs);
+  app.component('TabItem', TabItem);
   app.component('AppPlural', Plural);
   app.component('InnerDialog', InnerDialog);
   app.component('PhoneInput', PhoneInput);

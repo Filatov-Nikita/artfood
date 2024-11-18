@@ -6,6 +6,7 @@ import {
   Input,
   Modal,
   Tabs,
+  TabItem,
   Plural,
   InnerDialog,
   PhoneInput,
@@ -43,5 +44,6 @@ declare module 'vue' {
     ButtonClose: typeof ButtonClose,
     AppImg: typeof AppImg,
     ButtonNav: typeof ButtonNav,
+    TabItem: typeof TabItem,
   }
 }

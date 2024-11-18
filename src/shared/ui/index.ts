@@ -7,6 +7,7 @@ export { default as Badge } from './Badge/index.vue';
 export { default as SlideItem } from './SlideItem/index.vue';
 export { default as Modal } from './Modal/index.vue';
 export { default as Tabs } from './Tabs/index.vue';
+export { default as TabItem } from './Tabs/Item.vue';
 export { default as Plural } from './Plural/index.vue';
 export { default as InnerDialog } from './InnerDialog/index.vue';
 export { default as PhoneInput } from './PhoneInput/index.vue';
