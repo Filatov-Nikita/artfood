@@ -7,7 +7,7 @@
       <TabItem
         :class="{ 'tab-selected': index < activeIndex || index === 0 }"
         :icon="getIcon(section.code, section.id === activeSection.id)"
-        design="flat"
+        design="bordered"
         :active="section.id === activeSection.id"
         @click="$emit('change:section', section)"
       >

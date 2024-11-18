@@ -15,7 +15,7 @@
       icon?: string,
     }>(),
     {
-      design: 'bordered',
+      design: 'flat',
       active: false,
     },
   );
@@ -28,7 +28,7 @@
     gap: 8px;
   }
 
-  .item-bordered {
+  .item-flat {
     border-bottom: 1px solid theme('colors.neutral');
     @apply tw-text-body-m-bold -tw-tracking-2 tw-text-text01 tw-select-none;
 
@@ -53,7 +53,7 @@
     }
   }
 
-  .item-flat {
+  .item-bordered {
     @apply tw-border tw-border-solid tw-border-neutral tw-rounded-xl tw-text-text01 tw-text-body-m-bold -tw-tracking-2;
 
     &:hover {
