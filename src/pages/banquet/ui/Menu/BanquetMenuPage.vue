@@ -1,8 +1,12 @@
 <template>
   <div>
-    menu
-    <pre>{{ sections }}</pre>
-    <hr>
+    <SectionsTabs
+      v-if="activeSection"
+      class="sections-tabs"
+      :activeSection="activeSection"
+      :sections="sections"
+      @change:section="activeSection = $event"
+    />
     <SectionItem v-if="activeSection" :activeSection="activeSection" />
   </div>
 </template>
@@ -13,7 +17,7 @@
   import { useRepositories } from '@/shared/repositories';
   import type { Section } from '@/shared/repositories/banquet';
   import { ref } from 'vue';
-  import { SectionItem } from '@/entities/banquet';
+  import { SectionItem, SectionsTabs } from '@/entities/banquet';
 
   const api = useRepositories();
 
@@ -23,3 +27,9 @@
 
   const activeSection = ref<Section | null>(sections.value[0] ?? null);
 </script>
+
+<style scoped lang="scss">
+  .sections-tabs {
+    @apply tw-mb-16;
+  }
+</style>
