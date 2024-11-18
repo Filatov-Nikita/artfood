@@ -25,6 +25,7 @@
   import Alerts from '@/shared/ui/Alerts/index.vue';
   import { PrimaryLayout } from '@/layouts/Primary';
   import { OrderLayout } from '@/layouts/Order';
+  import { BanquetLayout } from '@/layouts/Banquet';
   import { ref } from 'vue';
   import { useAppStore } from '@/shared/store/app';
   import ProgressIndicator from '@/app/ui/ProgressIndicator.vue';
@@ -34,6 +35,7 @@
   const layouts = {
     'default': PrimaryLayout,
     'order': OrderLayout,
+    'banquet': BanquetLayout,
   };
 
   const router = useRouter();
