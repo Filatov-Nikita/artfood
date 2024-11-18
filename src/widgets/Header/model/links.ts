@@ -4,8 +4,8 @@ export default [
     to: { name: 'menu.section.index', params: { section: 'sety' } },
   },
   {
-    label: 'Сеты',
-    to: { name: 'menu.section.index', params: { section: 'sety' } },
+    label: 'Банкетное меню',
+    to: { name: 'banquet.menu' },
   },
   {
     label: 'Кейтеринг',

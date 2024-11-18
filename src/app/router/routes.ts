@@ -13,6 +13,28 @@ export default function createRoutes() {
       name: 'menu.section.index',
     },
     {
+      path: '/banquet',
+      component: () => import('@/pages/banquet/ui/BanquetPage.vue'),
+      meta: { layout: 'banquet' },
+      children: [
+        {
+          path: '',
+          component: () => import('@/pages/banquet/ui/Menu/BanquetMenuPage.vue'),
+          name: 'banquet.menu',
+        },
+        {
+          path: 'check',
+          component: () => import('@/pages/banquet/ui/Check/BanquetCheckPage.vue'),
+          name: 'banquet.check',
+        },
+        {
+          path: 'order',
+          component: () => import('@/pages/banquet/ui/Order/BanquetOrderPage.vue'),
+          name: 'banquet.order',
+        },
+      ],
+    },
+    {
       path: '/about',
       component: () => import('@/pages/about/ui/AboutPage.vue'),
       name: 'about',

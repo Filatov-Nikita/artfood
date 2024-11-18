@@ -1,12 +1,12 @@
 export default {
   primary: [
     {
-      label: 'Сеты',
+      label: 'Меню',
       to: { name: 'menu.section.index', params: { section: 'sety' } },
     },
     {
-      label: 'Меню',
-      to: { name: 'menu.section.index', params: { section: 'sety' } },
+      label: 'Банкетное меню',
+      to: { name: 'banquet.menu' },
     },
     {
       label: 'Кейтеринг',
