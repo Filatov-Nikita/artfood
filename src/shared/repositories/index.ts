@@ -8,6 +8,7 @@ import createHallsRepo from './halls';
 import createBannersRepo from './banners';
 import createProgramsRepo from './programs';
 import createOrdersRepo from './orders';
+import createBanquetRepo from './banquet';
 
 export default function initRepositories(http: AxiosInstance) {
   return {
@@ -19,6 +20,7 @@ export default function initRepositories(http: AxiosInstance) {
     banners: createBannersRepo(http),
     programs: createProgramsRepo(http),
     orders: createOrdersRepo(http),
+    banquet: createBanquetRepo(http),
   }
 }
 
