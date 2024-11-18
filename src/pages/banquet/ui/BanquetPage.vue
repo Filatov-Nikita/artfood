@@ -1,7 +1,6 @@
 <template>
   <main class="page--py">
     <div class="wrapper">
-      banquet
       <RouterView v-slot="{ Component }">
         {{ cacheComponent(Component) }}
         <component v-if="CachedComponent" :is="CachedComponent" />

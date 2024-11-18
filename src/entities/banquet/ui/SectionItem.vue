@@ -1,9 +1,24 @@
 <template>
   <div>
-    <pre>
-      {{ showedSection }}
-    </pre>
-    <hr>
+    <h1 class="h1 title">{{ activeSection.name }}</h1>
+    <div class="scroll-x tabs">
+      <TabItem
+        v-if="showedSection[0].dirs.length > 0"
+        key="all"
+        :active="activeSubsection === null"
+        @click="activeSubsection = null"
+      >
+        Все
+      </TabItem>
+      <TabItem
+        v-for="dir in showedSection[0].dirs"
+        :key="dir.id"
+        :active="activeSubsection ? activeSubsection.id === dir.id : false"
+        @click="activeSubsection = dir"
+      >
+        {{ dir.name }}
+      </TabItem>
+    </div>
     <pre>{{ elements }}</pre>
   </div>
 </template>
@@ -40,10 +55,30 @@
   );
   const { send } = useDataOrAlert(elRes);
 
+  watch(showedSection, (section) => {
+    elements.value = section[0].elements;
+    activeSubsection.value = null;
+  });
+
   watch(activeSubsection, async (subsection) => {
     if(subsection) {
       const res = await send();
       if(res) elements.value = res.data[0].elements;
+    } else {
+      elements.value = showedSection.value[0].elements;
     }
   });
 </script>
+
+
+<style scoped lang="scss">
+  .title {
+    @apply tw-mb-16;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 8px;
+    @apply tw-mb-16;
+  }
+</style>
