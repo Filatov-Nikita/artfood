@@ -6,7 +6,7 @@ export default function() {
     history: createWebHistory(),
     routes: createRoutes(),
     scrollBehavior(to, from, savedPosition) {
-      if (savedPosition) {
+      if (savedPosition && from.matched.length > 0) {
         return savedPosition
       } else {
         return { top: 0 }
