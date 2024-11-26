@@ -19,11 +19,14 @@
         {{ dir.name }}
       </TabItem>
     </div>
-    <pre>{{ elements }}</pre>
+    <MenuList
+      :elements="elements"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
+  import MenuList from './MenuList.vue';
   import useDataOrAlert from '@/shared/lib/useDataOrAlert';
   import useDataOrFail from '@/shared/lib/useDataOrFail';
   import useRequest from '@/shared/lib/useRequest';
