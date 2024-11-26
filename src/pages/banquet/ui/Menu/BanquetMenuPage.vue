@@ -8,6 +8,9 @@
       @change:section="activeSection = $event"
     />
     <SectionItem v-if="activeSection" :activeSection="activeSection" />
+    <AppButton class="tw-w-full tw-mt-40" design="secondary-neutral" size="56" :to="{ name: 'banquet.check' }">
+      Проверить заказ
+    </AppButton>
   </div>
 </template>
 
