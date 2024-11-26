@@ -36,6 +36,20 @@ export default function(http: AxiosInstance) {
         }
       });
     },
+    showTotal(basketId: string | number) {
+      return http<Total>('show_basket_b.php', {
+        params: {
+          id: basketId,
+        }
+      });
+    },
+    showBasket(basketId: string | number) {
+      return http<BasketItem[]>('show_basket_b_full.php', {
+        params: {
+          id: basketId,
+        }
+      });
+    },
   }
 }
 
@@ -83,3 +97,18 @@ export interface BasketItem {
   price: string,
   count: string,
 };
+
+export type TotalSection = {
+  id: string,
+  name: string,
+};
+
+export type TotalItem = {
+  id: string,
+  price: number,
+  ves: number,
+  section: string,
+  name: string,
+};
+
+export type Total = ([ TotalSection ] | TotalItem[])[];

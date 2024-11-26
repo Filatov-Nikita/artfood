@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 import { useRepositories } from '@/shared/repositories';
 import type { BasketItem } from '@/shared/repositories/basket';
 
@@ -13,6 +13,11 @@ export const useBanquetStore = defineStore('banquetStore', () => {
     return res.data[0];
   }
 
+  async function showBasket(basketId: number) {
+    const res = await api.banquet.showBasket(basketId);
+    return res.data;
+  }
+
   async function init() {
     const _id = localStorage.getItem('banquetBasketId');
     if(!_id) {
@@ -20,7 +25,7 @@ export const useBanquetStore = defineStore('banquetStore', () => {
       remember(res.id);
     } else {
       basketId.value = parseInt(_id);
-      // basket.value = await show(basketId.value);
+      basket.value = await showBasket(basketId.value);
     }
   }
 
@@ -58,6 +63,11 @@ export const useBanquetStore = defineStore('banquetStore', () => {
     basket.value = [];
   }
 
+  function getItem(productId: string): BasketItem | undefined {
+    const item = basket.value.find(item => item.good_id === productId);
+    return item;
+  }
+
   return {
     basketId,
     basket,
@@ -68,5 +78,6 @@ export const useBanquetStore = defineStore('banquetStore', () => {
     appendElement,
     reduceElement,
     clearBasket,
+    getItem,
   }
 });
