@@ -18,3 +18,4 @@ export { default as ButtonClose } from './Button/Close.vue';
 export { default as AppImg } from './AppImg/index.vue';
 export { default as ButtonNav } from './Button/Nav.vue';
 export { default as PhotoGallery } from './PhotoGallery/index.vue';
+export { default as ButtonMinMax } from './Button/MinMax.vue';

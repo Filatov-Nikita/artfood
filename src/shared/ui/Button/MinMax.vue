@@ -17,7 +17,6 @@
 </template>
 
 <script setup lang="ts">
-  import { useBasketStore } from '@/shared/store/basket';
   import { ref } from 'vue';
 
   const props = defineProps<{
@@ -26,16 +25,19 @@
     count: number,
   }>();
 
-  const basketStore = useBasketStore();
+  const emit = defineEmits<{
+    (event: 'reduce', id: string): void,
+    (event: 'append', id: string): void,
+  }>();
 
   const removeRef = ref<HTMLElement | null>(null);
   const appendRef = ref<HTMLElement | null>(null);
 
   function onClick(e: Event) {
     const target = e.target as HTMLElement;
-    if(target.closest('.action') === removeRef.value) basketStore.reduce(props.productId);
-    else if(target.closest('.action') === appendRef.value) basketStore.append(props.productId);
-    else if(props.count === 0) basketStore.append(props.productId);
+    if(target.closest('.action') === removeRef.value) emit('reduce', props.productId);
+    else if(target.closest('.action') === appendRef.value) emit('append', props.productId);
+    else if(props.count === 0) emit('append', props.productId);
   }
 </script>
 

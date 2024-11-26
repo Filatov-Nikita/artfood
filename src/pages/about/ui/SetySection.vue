@@ -14,6 +14,8 @@
             :price="item.price"
             :productId="item.id"
             :count="count"
+            @reduce="basketStore.reduce"
+            @append="basketStore.append"
           />
         </template>
       </CardItem>
@@ -26,8 +28,10 @@
   import useRequest from '@/shared/lib/useRequest';
   import { useRepositories } from '@/shared/repositories';
   import { CardItem } from '@/entities/menu';
-  import { ButtonMinMax } from '@/entities/basket';
+  import { ButtonMinMax } from '@/shared/ui';
+  import { useBasketStore } from '@/shared/store/basket';
 
+  const basketStore = useBasketStore();
   const api = useRepositories();
   const res = await useRequest(api.company.sets);
   const { data } = useDataOrAlert(res);

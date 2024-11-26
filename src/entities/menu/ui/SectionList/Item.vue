@@ -15,6 +15,8 @@
             :price="product.price"
             :productId="product.id"
             :count="count"
+            @reduce="basketStore.reduce"
+            @append="basketStore.append"
           />
         </template>
       </CardItem>
@@ -25,7 +27,8 @@
 <script setup lang="ts">
   import { CardItem } from '@/entities/menu';
   import type { MenuElement } from '@/shared/repositories/menu';
-  import { ButtonMinMax } from '@/entities/basket';
+  import { useBasketStore } from '@/shared/store/basket';
+  import { ButtonMinMax } from '@/shared/ui';
 
   defineProps<{
     name: string,
@@ -35,6 +38,8 @@
   const emit = defineEmits<{
     (event: 'change:product', product: string): void,
   }>();
+
+  const basketStore = useBasketStore();
 </script>
 
 <style scoped lang="scss">
