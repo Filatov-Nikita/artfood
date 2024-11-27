@@ -1,5 +1,5 @@
 <template>
-  <button class="button-round" :class="rootClasses" :style="{ '--size': size }">
+  <button class="button-round" :class="rootClasses" :style="{ '--size': size, '--padding': padding }">
     <span class="button-round__icon-wrap">
       <AppIcon :name="icon" fit />
     </span>
@@ -16,9 +16,11 @@
       icon: string,
       size: string,
       theme?: Theme,
+      padding?: string,
     }>(),
     {
       theme: 'white',
+      padding: '0.2em',
     }
   );
 
@@ -35,7 +37,7 @@
     width: var(--size);
     height: var(--size);
     font-size: var(--size);
-    padding: 0.2em;
+    padding: var(--padding);
     border-radius: 50%;
 
     &--white {
@@ -65,11 +67,5 @@
         }
       }
     }
-
-    &__icon-wrap {
-      width: 0.6em;
-      height: 0.6em;
-    }
-
   }
 </style>
