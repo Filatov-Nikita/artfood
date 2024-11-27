@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-  import { CardItem } from '@/entities/menu';
+  import CardItem from '../CardItem/index.vue';
   import type { MenuElement } from '@/shared/repositories/menu';
   import { useBasketStore } from '@/shared/store/basket';
   import { ButtonMinMax } from '@/shared/ui';

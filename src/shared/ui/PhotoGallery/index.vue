@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
   import { Navigation, Pagination } from 'swiper/modules';
-  import { Badge } from '@/shared/ui';
+  import Badge from '../Badge/index.vue';
 
   defineProps<{
     images: string[],
