@@ -50,6 +50,14 @@ export default function(http: AxiosInstance) {
         }
       });
     },
+    showMiniBasket(basketId: string | number, persons: string | number) {
+      return http<[ MiniBasket ]>('mini_basket_b.php', {
+        params: {
+          id: basketId,
+          persons,
+        },
+      })
+    },
     createOrder(body: OrderBody) {
       const formData = jsonFormData(body);
       return http.post<OrderSuccess>('create_order_b.php', formData);
@@ -127,3 +135,10 @@ export interface OrderBody {
 }
 
 export type OrderSuccess = [ { order_id: number } ];
+
+export interface MiniBasket {
+  itogo: number,
+  na_personu: number,
+  obsh_vihod: number,
+  st_na_personu: number,
+};

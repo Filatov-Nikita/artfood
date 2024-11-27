@@ -1,12 +1,15 @@
 import { defineStore } from 'pinia';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useRepositories } from '@/shared/repositories';
-import type { BasketItem } from '@/shared/repositories/basket';
+import type { BasketItem, MiniBasket } from '@/shared/repositories/banquet';
 
 export const useBanquetStore = defineStore('banquetStore', () => {
   const api = useRepositories();
   const basketId = ref<number | null>(null);
   const basket = ref<BasketItem[]>([]);
+  const miniBasket = ref<MiniBasket | null>(null);
+  const personsCount = ref(1);
+  const hasItems = computed(() => basket.value.length > 0);
 
   async function createBasket() {
     const res = await api.banquet.createBasket();
@@ -15,6 +18,13 @@ export const useBanquetStore = defineStore('banquetStore', () => {
 
   async function showBasket(basketId: number) {
     const res = await api.banquet.showBasket(basketId);
+    basket.value = res.data;
+    return res.data;
+  }
+
+  async function showMiniBasket(basketId: number, personsCount: number) {
+    const res = await api.banquet.showMiniBasket(basketId, personsCount);
+    miniBasket.value = res.data[0];
     return res.data;
   }
 
@@ -22,10 +32,14 @@ export const useBanquetStore = defineStore('banquetStore', () => {
     const _id = localStorage.getItem('banquetBasketId');
     if(!_id) {
       const res = await createBasket();
+      await showMiniBasket(res.id, personsCount.value);
       remember(res.id);
     } else {
       basketId.value = parseInt(_id);
-      basket.value = await showBasket(basketId.value);
+      await Promise.all([
+        showBasket(basketId.value),
+        showMiniBasket(basketId.value, personsCount.value),
+      ]);
     }
   }
 
@@ -61,6 +75,7 @@ export const useBanquetStore = defineStore('banquetStore', () => {
     if(!basketId.value) return;
     api.banquet.clearBasket(basketId.value);
     basket.value = [];
+    setPersonsCount(1);
   }
 
   function getItem(productId: string): BasketItem | undefined {
@@ -68,9 +83,16 @@ export const useBanquetStore = defineStore('banquetStore', () => {
     return item;
   }
 
+  function setPersonsCount(count: number) {
+    personsCount.value = count;
+  }
+
   return {
     basketId,
     basket,
+    personsCount,
+    miniBasket,
+    hasItems,
     init,
     createBasket,
     remember,
@@ -79,5 +101,7 @@ export const useBanquetStore = defineStore('banquetStore', () => {
     reduceElement,
     clearBasket,
     getItem,
+    setPersonsCount,
+    showMiniBasket,
   }
 });
