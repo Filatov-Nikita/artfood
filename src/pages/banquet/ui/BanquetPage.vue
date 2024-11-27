@@ -3,7 +3,11 @@
     <div class="wrapper">
       <RouterView v-slot="{ Component }">
         {{ cacheComponent(Component) }}
-        <component v-if="CachedComponent" :is="CachedComponent" />
+        <template v-if="Component || CachedComponent">
+          <Suspense suspensible>
+            <component :is="Component || CachedComponent" />
+          </Suspense>
+        </template>
       </RouterView>
     </div>
   </main>

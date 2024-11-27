@@ -2,12 +2,12 @@
   <Alerts />
   <ProgressIndicator :loading="pending" />
   <CallbackModal />
-  <router-view v-slot="{ Component, route }">
+  <router-view v-slot="{ Component }">
     <template v-if="Component">
       <component :is="layouts[appStore.layout]">
         <Suspense @pending="pending = true" @resolve="pending = false">
           <template #default>
-            <component :is="Component" :key="route.path"></component>
+            <component :is="Component"></component>
           </template>
           <template #fallback>
             <div class="loader">
@@ -26,10 +26,10 @@
   import { PrimaryLayout } from '@/layouts/Primary';
   import { OrderLayout } from '@/layouts/Order';
   import { BanquetLayout } from '@/layouts/Banquet';
-  import { ref } from 'vue';
+  import { ref, watch } from 'vue';
   import { useAppStore } from '@/shared/store/app';
   import ProgressIndicator from '@/app/ui/ProgressIndicator.vue';
-  import { useRouter } from 'vue-router';
+  import { useRoute } from 'vue-router';
   import { CallbackModal } from '@/widgets/Callback';
 
   const layouts = {
@@ -38,10 +38,7 @@
     'banquet': BanquetLayout,
   };
 
-  const router = useRouter();
-  router.beforeResolve((to) => {
-    appStore.setLayout(to.meta.layout as any);
-  });
+  const route = useRoute();
 
   const appStore = useAppStore();
 
@@ -50,6 +47,10 @@
   const { init } = useBasketStore();
 
   init();
+
+  watch(() => route.meta.layout, (layout) => {
+    appStore.setLayout(layout as any);
+  }, { immediate: true });
 </script>
 
 <style scoped lang="scss">
