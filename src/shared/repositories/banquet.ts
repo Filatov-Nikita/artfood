@@ -50,6 +50,10 @@ export default function(http: AxiosInstance) {
         }
       });
     },
+    createOrder(body: OrderBody) {
+      const formData = jsonFormData(body);
+      return http.post<OrderSuccess>('create_order_b.php', formData);
+    },
   }
 }
 
@@ -112,3 +116,14 @@ export type TotalItem = {
 };
 
 export type Total = ([ TotalSection ] | TotalItem[])[];
+
+export interface OrderBody {
+  basket_id: number | string,
+  name: string,
+  phone: string,
+  date: string,
+  address: string,
+  comment: string,
+}
+
+export type OrderSuccess = [ { order_id: number } ];
