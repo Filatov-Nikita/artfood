@@ -4,18 +4,20 @@
   <CallbackModal />
   <router-view v-slot="{ Component }">
     <template v-if="Component">
-      <component :is="layouts[appStore.layout]">
-        <Suspense @pending="pending = true" @resolve="pending = false">
-          <template #default>
-            <component :is="Component"></component>
-          </template>
-          <template #fallback>
-            <div class="loader">
-              <AppSpinner size="100px" />
-            </div>
-          </template>
-        </Suspense>
-      </component>
+      <Suspense @pending="pending = true" @resolve="pending = false">
+        <component :is="layouts[appStore.layout]">
+          <Suspense suspensible @pending="pending = true" @resolve="pending = false">
+            <template #default>
+              <component :is="Component"></component>
+            </template>
+          </Suspense>
+        </component>
+        <template #fallback>
+          <div class="loader">
+            <AppSpinner size="100px" />
+          </div>
+        </template>
+      </Suspense>
     </template>
   </router-view>
 </template>
@@ -56,7 +58,7 @@
 <style scoped lang="scss">
   .loader {
     width: 100%;
-    height: 70vh;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
