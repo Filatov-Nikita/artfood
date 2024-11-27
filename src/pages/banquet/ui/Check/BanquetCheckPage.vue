@@ -1,6 +1,7 @@
 <template>
   <div>
     <TotalList :total="total" />
+    <AppButton class="tw-mt-40 tw-w-full" size="48" :to="{ name: 'banquet.order' }">Далее</AppButton>
   </div>
 </template>
 
