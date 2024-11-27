@@ -23,9 +23,13 @@
   import useRequest from '@/shared/lib/useRequest';
   import { useRepositories } from '@/shared/repositories';
   import type { Section } from '@/shared/repositories/banquet';
-  import { ref } from 'vue';
+  import { ref, inject } from 'vue';
+  import { setTitleKey } from '@/layouts/Banquet/model/symbols';
   import { useBanquetStore } from '@/shared/store/banquet';
   import { SectionItem, SectionsTabs, MiniBasketFixed } from '@/entities/banquet';
+
+  const setTitle = inject(setTitleKey);
+  setTitle && setTitle('Сборка банкетного меню');
 
   const api = useRepositories();
 

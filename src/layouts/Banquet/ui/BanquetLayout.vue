@@ -23,7 +23,7 @@
   const route = useRoute();
   const showedMenu = ref(false);
 
-  const title = ref('Сборка банкетного меню');
+  const title = ref('');
 
   provide(setTitleKey, (newTitle: string) => title.value = newTitle);
 
