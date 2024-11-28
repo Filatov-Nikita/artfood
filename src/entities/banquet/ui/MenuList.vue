@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <p v-if="elements.length === 0">Нет ни одного блюда</p>
+  <div :class="{ 'menu-list': elements.length > 0 }">
+    <p v-if="elements.length === 0" class="empty">Нет ни одного блюда</p>
     <template v-else>
       <MenuItem
-        class="tw-mb-16"
+        class="item"
         v-for="element in elements"
         :key="element.id"
         :item="element"
@@ -34,3 +34,28 @@
 
   const banquetStore = useBanquetStore();
 </script>
+
+<style scoped lang="scss">
+  .menu-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -20px -10px;
+  }
+
+  .item {
+    margin: 20px 10px;
+    width: 100%;
+
+    @include lg {
+      width: calc(50% - 20px);
+    }
+
+    @include xl {
+      width: calc(33.3% - 20px);
+    }
+  }
+
+  .empty {
+    @apply tw-text-body-m-medium;
+  }
+</style>
