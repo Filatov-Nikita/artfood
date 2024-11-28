@@ -27,11 +27,18 @@
   import { computed, ref } from 'vue';
 
   const route = useRoute();
-  const activeSection = computed(() => route.params.section as string);
+  const cachedSection = ref('');
+  const activeSection = computed(() => {
+    cachedSection.value = route.params.section as string || cachedSection.value;
+    return cachedSection.value
+  });
   const api = useRepositories();
-  const productsRes = await useRequest(() => api.menu.elementsAll({
-    code: activeSection.value,
-  }), { watch: [ activeSection ] });
+  const productsRes = await useRequest(
+    () => api.menu.elementsAll({
+      code: activeSection.value,
+    }),
+    { watch: [ activeSection ] }
+  );
   const products = useDataOrFail(productsRes);
 
   const activeProduct = ref<string | null>(null);
