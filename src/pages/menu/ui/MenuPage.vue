@@ -24,14 +24,14 @@
   import { useRepositories } from '@/shared/repositories';
   import useRequest from '@/shared/lib/useRequest';
   import useDataOrFail from '@/shared/lib/useDataOrFail';
-  import { ref } from 'vue';
+  import { computed, ref } from 'vue';
 
   const route = useRoute();
-  const activeSection = route.params.section as string;
+  const activeSection = computed(() => route.params.section as string);
   const api = useRepositories();
   const productsRes = await useRequest(() => api.menu.elementsAll({
-    code: activeSection,
-  }));
+    code: activeSection.value,
+  }), { watch: [ activeSection ] });
   const products = useDataOrFail(productsRes);
 
   const activeProduct = ref<string | null>(null);
