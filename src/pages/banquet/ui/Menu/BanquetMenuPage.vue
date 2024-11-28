@@ -9,9 +9,13 @@
     />
     <div class="wrap">
       <SectionItem v-if="activeSection" class="items" :activeSection="activeSection" />
-      <div class="total" v-if="grid.lg">
-        1
-      </div>
+      <MiniBasket class="sum" v-if="grid.lg">
+        <template #actions>
+          <AppButton class="tw-w-full tw-mt-16" size="48" :disabled="!banquetStore.hasItems" @click="$router.push({ name: 'banquet.check' })">
+            Проверить заказ
+          </AppButton>
+        </template>
+      </MiniBasket>
     </div>
     <MiniBasketFixed v-if="!grid.lg" @change:height="miniBasketHeight = $event">
       <template #actions>
@@ -31,7 +35,7 @@
   import { ref, inject } from 'vue';
   import { setTitleKey } from '@/layouts/Banquet/model/symbols';
   import { useBanquetStore } from '@/shared/store/banquet';
-  import { SectionItem, SectionsTabs, MiniBasketFixed } from '@/entities/banquet';
+  import { SectionItem, SectionsTabs, MiniBasketFixed, MiniBasket } from '@/entities/banquet';
   import { useAppGrid } from '@/shared/lib/useScreen';
 
   const setTitle = inject(setTitleKey);
@@ -55,6 +59,14 @@
 <style scoped lang="scss">
   .sections-tabs {
     @apply tw-mb-16;
+
+    @include lg {
+      @apply tw-mb-40;
+    }
+
+    @include xl {
+      @apply tw-mb-64;
+    }
   }
 
   .menu--pb {
@@ -65,14 +77,21 @@
     @include lg {
       display: flex;
       flex-wrap: wrap;
+      align-items: flex-start;
+      column-gap: 40px;
     }
   }
 
   .items {
-    flex-grow: 1;
+    @include lg {
+      width: calc(100% - 296px - 40px);
+    }
   }
 
-  .total {
-    flex-basis: 296px;
+  .sum {
+    @include lg {
+      width: 100%;
+      max-width: 296px;
+    }
   }
 </style>
