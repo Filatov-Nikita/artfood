@@ -11,7 +11,7 @@
           <p class="weight">{{ product.ves }} г</p>
           <ContentSlider
             class="card-content"
-            :description="product.podpis"
+            :description="product.text"
             :energy="{
               belki: product.belki,
               giri: product.giri,

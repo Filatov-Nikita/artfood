@@ -57,6 +57,7 @@ export interface MenuElementDetailed {
   presons_count: string,
   ves: string,
   podpis: string,
+  text: string,
   price: string,
   img: string,
   additional_imgs: string[],
