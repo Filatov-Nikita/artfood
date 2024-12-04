@@ -21,6 +21,7 @@
             {{ hall.persons }}
           </Badge>
         </div>
+        <p class="text" v-html="hall.text"></p>
       </div>
     </div>
     <PhotoGallery class="slider" :images="hall.img" @changed:photo="changePhoto($event)" />
@@ -120,6 +121,10 @@
 
   .text {
     @apply tw-text-body-s-regular tw-mt-16;
+
+    @include lg {
+      @apply tw-mt-24;
+    }
   }
 
   .price {

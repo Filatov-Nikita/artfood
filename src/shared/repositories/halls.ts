@@ -17,4 +17,5 @@ export interface Hall {
   kitchen: string;
   persons: string;
   img:     string[];
+  text:    string;
 }
