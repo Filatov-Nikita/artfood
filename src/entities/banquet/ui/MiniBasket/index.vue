@@ -16,6 +16,17 @@
       <span class="label">Стоимость на персону</span>
       <span class="value">{{ $amount(basket.st_na_personu) }}</span>
     </div>
+    <div class="divider"></div>
+    <div class="counter">
+      <div class="counter-label">Количество персон</div>
+      <ButtonMinMaxMini
+        class="tw-w-full"
+        size="xl"
+        :count="banquetStore.personsCount"
+        @reduce="banquetStore.reducePerson"
+        @append="banquetStore.appendPerson"
+      />
+    </div>
     <slot name="actions"></slot>
   </div>
 </template>
@@ -23,6 +34,7 @@
 <script setup lang="ts">
   import { useBanquetStore } from '@/shared/store/banquet';
   import { computed, watch } from 'vue';
+  import { ButtonMinMaxMini } from '@/shared/ui';
 
   const banquetStore = useBanquetStore();
 
@@ -51,7 +63,9 @@
   }
 
   .line {
-    @apply tw-mb-8;
+    & + & {
+      @apply tw-mt-8;
+    }
   }
 
   .total {
@@ -64,5 +78,17 @@
 
   .value {
     @apply tw-text-body-s-medium;
+  }
+
+  .divider {
+    @apply tw-my-16 tw-border-t tw-border-solid tw-border-border01;
+  }
+
+  .counter {
+    @apply tw-rounded-xl tw-bg-white tw-py-8 tw-px-16;
+  }
+
+  .counter-label {
+    @apply tw-text-text01 tw-text-body-s-regular tw-mb-8;
   }
 </style>

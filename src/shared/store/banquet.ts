@@ -87,6 +87,14 @@ export const useBanquetStore = defineStore('banquetStore', () => {
     personsCount.value = count;
   }
 
+  function appendPerson() {
+    setPersonsCount(personsCount.value + 1);
+  }
+
+  function reducePerson() {
+    setPersonsCount(Math.max(1, personsCount.value - 1));
+  }
+
   return {
     basketId,
     basket,
@@ -103,5 +111,7 @@ export const useBanquetStore = defineStore('banquetStore', () => {
     getItem,
     setPersonsCount,
     showMiniBasket,
+    appendPerson,
+    reducePerson,
   }
 });

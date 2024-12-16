@@ -48,6 +48,13 @@
           <span class="total-label">Итого</span>
           <span class="total-value">{{ $amount(basket.itogo) }}</span>
         </div>
+        <ButtonMinMaxMini
+          class="tw-w-full"
+          size="xl"
+          :count="banquetStore.personsCount"
+          @reduce="banquetStore.reducePerson"
+          @append="banquetStore.appendPerson"
+        />
         <AppButton class="tw-w-full tw-mt-16" size="48" @click="showedModal = false">
           Готово
         </AppButton>
@@ -60,6 +67,7 @@
 <script setup lang="ts">
   import { useBanquetStore } from '@/shared/store/banquet';
   import { computed, onMounted, onUpdated, ref, watch } from 'vue';
+  import { ButtonMinMaxMini } from '@/shared/ui';
 
   withDefaults(
     defineProps<{
@@ -131,7 +139,7 @@
   }
 
   .total {
-    @apply tw-text-body-m-bold -tw-tracking-2;
+    @apply tw-text-body-m-bold -tw-tracking-2 tw-mb-16;
   }
 
   .label {
