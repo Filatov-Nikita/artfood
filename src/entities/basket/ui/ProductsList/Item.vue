@@ -14,7 +14,11 @@
         />
       </div>
       <div class="price-wrap">
-        <ButtonMinMaxMini :productId="item.good_id" :count="count" />
+        <ButtonMinMaxMini
+          :count="count"
+          @reduce="basketStore.reduce(item.good_id)"
+          @append="basketStore.append(item.good_id)"
+        />
         <p class="price">
           <span class="forone">
             {{ $amount(price) }} / за шт
@@ -31,8 +35,11 @@
 <script setup lang="ts">
   import type { BasketItem } from '@/shared/repositories/basket';
   import useImg from '@/shared/lib/useImg';
-  import ButtonMinMaxMini from '../ButtonMinMaxMini/index.vue';
+  import { ButtonMinMaxMini } from '@/shared/ui';
   import { computed } from 'vue';
+  import { useBasketStore } from '@/shared/store/basket';
+
+  const basketStore = useBasketStore();
 
   const props = defineProps<{
     item: BasketItem,
