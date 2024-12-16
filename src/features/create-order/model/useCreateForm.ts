@@ -15,7 +15,8 @@ export default function() {
     entrance: string().required().label('Подъезд'),
     floor: string().required().label('Этаж'),
     comment: string().label('Комментарий'),
-    sdacha: string().required().label('Сдача')
+    sdacha: string().required().label('Сдача'),
+    timeline: string().required().label('Время'),
   };
 
   const form: FormCreate = reactive({
