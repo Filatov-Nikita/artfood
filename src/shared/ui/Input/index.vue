@@ -19,6 +19,7 @@
           @input="handleChange"
           @focus="focused = true"
           @blur="focused = false"
+          v-on="inputEvents ?? {}"
         />
         <label class="label" :class="{ 'label--error': errorMessage }" :for="name">
           {{ label }}
@@ -47,6 +48,7 @@
     iconRight?: string,
     rules?: RuleExpression<string>,
     maska?: string,
+    inputEvents?: Record<string, (...args: any) => unknown>
   }
 
   defineOptions({
@@ -104,6 +106,7 @@
     position: relative;
     flex-grow: 1;
     height: 100%;
+    z-index: 0;
   }
 
   .inp {

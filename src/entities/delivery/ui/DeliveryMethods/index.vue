@@ -27,7 +27,7 @@
         uncheckedValue="Нет"
         v-model="form.private_home"
       />
-      <div class="house-inps">
+      <div class="house-inps" v-if="form.private_home === 'Нет'">
         <AppInput class="tw-grow" name="flat" :rules="schema.flat" label="Квартира" v-model="form.flat" />
         <AppInput class="tw-grow" name="entrance" label="Подъезд" :rules="schema.entrance" v-model="form.entrance" />
         <AppInput class="tw-grow" name="floor" label="Этаж" :rules="schema.floor" v-model="form.floor" />

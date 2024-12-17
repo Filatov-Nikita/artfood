@@ -9,7 +9,17 @@
     </fieldset>
     <fieldset class="tw-mb-32">
       <legend class="legend">Дата банкета</legend>
-      <AppInput name="date" label="Выберите дату" :rules="schema.date" v-model="form.date" />
+      <DatePicker
+        color="green"
+        v-model.string="form.date"
+        :popover="{ visibility: 'click' }"
+        :masks="{ input: 'DD.MM.YYYY', modelValue: 'DD.MM.YYYY' }"
+        :disabledDates="[{ start: null, end: today  }]"
+      >
+        <template #default="{ inputValue, inputEvents }">
+          <AppInput name="date" label="Выберите дату" :rules="schema.date" :modelValue="inputValue" :inputEvents="inputEvents" maska="##.##.####"/>
+        </template>
+      </DatePicker>
     </fieldset>
     <fieldset class="tw-mb-32">
       <legend class="legend">Место проведения</legend>
@@ -30,6 +40,8 @@
   import { useCreateForm } from '@/features/create-banquet';
   import { onMounted, ref } from 'vue';
   import { Form } from 'vee-validate';
+  import { DatePicker } from 'v-calendar';
+  import 'v-calendar/style.css';
 
   defineProps<{
     form: ReturnType<typeof useCreateForm>['form'],
@@ -45,6 +57,8 @@
   onMounted(() => {
     emit('init', formRef.value);
   });
+
+  const today = new Date();
 </script>
 
 

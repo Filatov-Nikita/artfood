@@ -8,6 +8,7 @@ import { init as initHttp, exposedSymbol as httpKey } from '@/shared/api/useHttp
 import prettyAmount from '@/shared/plugins/prettyAmount';
 import initRepositories, { repositiriesKey } from '@/shared/repositories';
 import initConfig, { configKey } from '@/shared/config/app';
+import { setupCalendar } from 'v-calendar';
 
 export default function() {
   const app = createApp(App);
@@ -29,6 +30,7 @@ export default function() {
 
   registerComponents(app, router, api.http);
   registerValidationRules(app, router, api.http);
+  app.use(setupCalendar, {});
 
   app.mount('#app');
 
