@@ -53,7 +53,7 @@
     api.orders.create,
     () => {
       const body = {
-        ...form, basket_id: basketStore.basketId!, meta: undefined, timeline: '10:00 - 10:30',
+        ...form, basket_id: basketStore.basketId!, meta: undefined,
       };
       delete body['meta'];
       return body;

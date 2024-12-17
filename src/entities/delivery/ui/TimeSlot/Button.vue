@@ -36,7 +36,7 @@
     rules?: RuleExpression<string>,
   }>();
 
-  const timeslot = defineModel('timeslot', { default: '' });
+  const timeslot = defineModel({ default: '' });
 
   const showed = ref(false);
 
