@@ -6,6 +6,7 @@ export default function initConfig() {
     imgBase: import.meta.env.VITE_IMG_BASE as string ?? '',
     percHref: '#',
     polzSoglHref: '#',
+    minOrderSum: 800,
   }
 }
 

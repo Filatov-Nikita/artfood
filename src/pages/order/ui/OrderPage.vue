@@ -5,7 +5,8 @@
         <FormCreate class="order-form" :form="form" :schema="schema" @init="formRef = $event" />
         <TotalCalcDesktop v-if="grid.lg" class="total">
           <template #actions>
-            <AppButton class="tw-mt-16 tw-w-full" type="submit" design="primary" size="48" :disabled="loading" @click="submit">
+            <p class="required-amount tw-mt-16" v-if="!canCreate">Добавьте ещё на {{ $amount(requiredAmountForOrder) }} для оформления заказа</p>
+            <AppButton class="tw-mt-16 tw-w-full" type="submit" design="primary" size="48" :disabled="loading || !canCreate" @click="submit">
               Оформить заказ
             </AppButton>
           </template>
@@ -13,7 +14,8 @@
       </div>
       <div class="actions-sm" v-if="!grid.lg">
         <BlockTotal v-if="basketStore.basket.length > 0" :basket="basketStore.basket" />
-        <AppButton class="tw-mt-16 tw-w-full" type="submit" design="primary" size="48" :disabled="loading" @click="submit">
+        <p class="required-amount tw-mt-16" v-if="!canCreate">Добавьте ещё на {{ $amount(requiredAmountForOrder) }} для оформления заказа</p>
+        <AppButton class="tw-mt-16 tw-w-full" type="submit" design="primary" size="48" :disabled="loading || !canCreate" @click="submit">
           Оформить заказ
         </AppButton>
       </div>
@@ -33,6 +35,8 @@
   import { useAlertsStore } from '@/shared/store/alerts';
   import { useRouter } from 'vue-router';
   import useSubmit from '@/shared/lib/useSubmit';
+  import { computed } from 'vue';
+  import { useAppConfig } from '@/shared/config/app';
 
   const router = useRouter();
   const alertsStore = useAlertsStore();
@@ -65,6 +69,11 @@
   );
 
   const { formRef, submit } = useSubmit(send);
+
+  const config = useAppConfig();
+
+  const canCreate = computed(() => config.minOrderSum <= basketStore.total);
+  const requiredAmountForOrder = computed(() => config.minOrderSum - basketStore.total);
 </script>
 
 <style scoped lang="scss">
@@ -88,7 +97,6 @@
   .order-form-wrap {
     @include lg {
       display: flex;
-      flex-wrap: wrap;
       align-items: flex-start;
       column-gap: 100px;
     }
@@ -108,5 +116,9 @@
 
   .total {
     flex-grow: 1;
+  }
+
+  .required-amount {
+    @apply tw-text-red tw-text-body-s-bold -tw-tracking-2 tw-text-center;
   }
 </style>
