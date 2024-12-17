@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
     "@vee-validate/i18n": "^4.13.1",
     "@vee-validate/rules": "^4.13.1",
     "animate.css": "^4.1.1",
@@ -16,6 +17,7 @@
     "maska": "^3.0.2",
     "pinia": "^2.1.7",
     "swiper": "^11.1.9",
+    "v-calendar": "^3.1.2",
     "vee-validate": "^4.13.1",
     "vue": "^3.4.29",
     "vue-router": "^4.4.0",
