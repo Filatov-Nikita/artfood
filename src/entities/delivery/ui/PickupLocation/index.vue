@@ -6,14 +6,18 @@
     <div>
       <p class="name">Уфа, Бессонова, 28А</p>
       <p class="time">
-        <span class="tw-text-primary">Открыто</span>, пн-вс 10:00 — 20:00
+        <span :class="isOpened ? 'tw-text-primary' : 'tw-text-red'">
+          {{ isOpened ? 'Открыто' : 'Закрыто' }}
+        </span>, пн-вс 10:00 — 20:00
       </p>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-
+  const current = new Date();
+  const hours = current.getHours();
+  const isOpened = hours >= 10 && hours < 20;
 </script>
 
 <style scoped lang="scss">
