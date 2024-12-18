@@ -9,6 +9,8 @@ import prettyAmount from '@/shared/plugins/prettyAmount';
 import initRepositories, { repositiriesKey } from '@/shared/repositories';
 import initConfig, { configKey } from '@/shared/config/app';
 import { setupCalendar } from 'v-calendar';
+// @ts-ignore
+import vClickOutside from 'click-outside-vue3';
 
 export default function() {
   const app = createApp(App);
@@ -31,6 +33,7 @@ export default function() {
   registerComponents(app, router, api.http);
   registerValidationRules(app, router, api.http);
   app.use(setupCalendar, {});
+  app.use(vClickOutside);
 
   app.mount('#app');
 

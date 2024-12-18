@@ -1,11 +1,14 @@
 <template>
   <div>
-    <AppTabs
-      class="tw-mb-16"
-      :items="[ 'Доставка', 'Самовывоз' ]"
-      :activeIndex="form.type_delivery === '1' ? 0 : 1"
-      @update:activeIndex="form.type_delivery = ($event + 1).toString()"
-    />
+    <div class="tabs-wrap">
+      <AppTabs
+        :items="[ 'Доставка', 'Самовывоз' ]"
+        :activeIndex="form.type_delivery === '1' ? 0 : 1"
+        @update:activeIndex="form.type_delivery = ($event + 1).toString()"
+      />
+      <LocationInput v-model="form.location" />
+    </div>
+
     <template v-if="form.type_delivery === '2'">
       <PickupLocation  />
       <TimeSlotButton
@@ -45,6 +48,7 @@
 </template>
 
 <script setup lang="ts">
+  import LocationInput from '../LocationInput.vue';
   import PickupLocation from '../PickupLocation/index.vue';
   import TimeSlotButton from '../TimeSlot/Button.vue';
   import { type RuleExpression } from 'vee-validate';
@@ -64,7 +68,8 @@
     floor: string,
     private_home: string,
     type_delivery: string,
-    timeline: string
+    timeline: string,
+    location: '3' | '4',
   }
 
   defineProps<{ schema: Schema, form: Form }>();
@@ -79,5 +84,15 @@
     @include lg {
       gap: 20px;
     }
+  }
+
+  .tabs-wrap  {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    column-gap: 30px;
+    row-gap: 16px;
+    @apply tw-mb-16;
   }
 </style>
