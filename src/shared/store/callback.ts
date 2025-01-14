@@ -3,15 +3,22 @@ import { reactive, ref } from 'vue';
 
 export interface Meta {
   title: string,
-  isInner: boolean
+  isInner: boolean,
+  titleBtn: string,
+  link?: string,
+  link_title?:string
 }
 
 export const useCallbackStore = defineStore('callbackStore', () => {
   const showedCallback = ref(false);
+  const showedCallbackOther = ref(false);
 
   const meta: Meta = reactive({
     title: '',
     isInner: false,
+    titleBtn: '',
+    link: '',
+    link_title:''
   });
 
   function setMeta(_meta: Partial<Meta>) {
@@ -25,11 +32,23 @@ export const useCallbackStore = defineStore('callbackStore', () => {
       title: _meta.title ?? 'Связаться с менеджером',
     });
   };
+  function showOther(_meta: Partial<Meta> = {}) {
+    console.log('sss');
+    
+    showedCallbackOther.value = true;
+    setMeta({
+      ..._meta,
+      title: _meta.title ?? 'Связаться с менеджером',
+      titleBtn: _meta.titleBtn ?? 'Отправить',
+    });
+  };
 
   return {
     showedCallback,
+    showedCallbackOther,
     meta,
     setMeta,
     show,
+    showOther
   }
 });

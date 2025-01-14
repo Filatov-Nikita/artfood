@@ -4,7 +4,8 @@
       <p class="text">Соберите банкетное и фуршетное меню самостоятельно или обратитесь за помощью к нашему специалисту</p>
       <div class="actions">
         <AppButton class="action" size="48" leftIcon="bow-flood-regular" :to="{ name: 'menu.section.index', params: { section: 'sety' } }">Банкетное меню</AppButton>
-        <AppButton class="action hall-btn" size="48" :to="{ name: 'menu.section.index', params: { section: 'sety' } }">Фуршетное меню</AppButton>
+        <AppButton class="action hall-btn" size="48" @click="showCallback">Фуршетное меню</AppButton>
+        <!-- <AppButton class="callback" size="48" @click="showCallback">Получить консультацию</AppButton> -->
         <AppButton v-if="!grid.lg" class="action video-btn" size="48" leftIcon="play-circle-fill" @click="showedVideo = true">
           Видео
         </AppButton>
@@ -24,10 +25,21 @@
   import ModalVideo from './ModalVideo.vue';
   import { useAppGrid } from '@/shared/lib/useScreen';
   import { ref } from 'vue';
-
+  import { useCallbackStore } from '@/shared/store/callback';
   const grid = useAppGrid();
 
-  const showedVideo = ref(false);
+const showedVideo = ref(false);
+const callbackStore = useCallbackStore();
+function showCallback() {
+  
+  
+  callbackStore.showOther({
+    link: 'http://artfood.yes-idea.ru/furshet.pdf',
+    link_title:"Скачать фуршетное меню",
+    title: `Получить консультацию`,
+    titleBtn: "Получить консультацию"
+    });
+  }
 </script>
 
 <style scoped lang="scss">

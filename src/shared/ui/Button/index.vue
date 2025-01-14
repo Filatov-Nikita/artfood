@@ -40,6 +40,7 @@
     to?: RouteLocationRaw,
     href?: string,
     type?: BtnType,
+    target?: string
   }
 
   const props = withDefaults(
@@ -78,6 +79,7 @@
         tag: 'a',
         attrs: {
           href: props.href,
+          target: props.target,
         }
       }
     } else if(isRouteLink.value) {

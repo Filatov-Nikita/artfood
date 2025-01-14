@@ -1,1 +1,3 @@
-export { default as CallbackModal } from './ui/CallbackModal.vue';
+import CallbackModal  from "./ui/CallbackModal.vue"
+import CallbackModalOther  from "./ui/CallbackModalOther.vue"
+export { CallbackModal,CallbackModalOther} 

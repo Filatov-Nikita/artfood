@@ -1,7 +1,8 @@
 <template>
   <Alerts />
   <ProgressIndicator :loading="pending" />
-  <CallbackModal />
+  
+  <CallbackModalOther />
   <router-view v-slot="{ Component }">
     <template v-if="Component">
       <Suspense @pending="pending = true" @resolve="pending = false">
@@ -32,7 +33,8 @@
   import { useAppStore } from '@/shared/store/app';
   import ProgressIndicator from '@/app/ui/ProgressIndicator.vue';
   import { useRoute } from 'vue-router';
-  import { CallbackModal } from '@/widgets/Callback';
+  import { CallbackModal, CallbackModalOther } from '@/widgets/Callback';
+  
 
   const layouts = {
     'default': PrimaryLayout,
