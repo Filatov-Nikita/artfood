@@ -16,6 +16,7 @@
               belki: product.belki,
               giri: product.giri,
               uglevodi: product.uglevodi,
+              cal: product.cal
             }"
           />
         </div>

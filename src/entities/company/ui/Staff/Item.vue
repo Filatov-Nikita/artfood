@@ -5,7 +5,7 @@
     </div>
     <div class="text-wrap">
       <p class="name">{{ item.fio }}</p>
-      <p class="text">{{ item.vacancy }}</p>
+      <p class="text" v-html="item.vacancy"></p>
     </div>
   </article>
 </template>

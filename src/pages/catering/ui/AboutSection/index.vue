@@ -3,7 +3,9 @@
     <div class="content">
       <p class="text">Соберите банкетное и фуршетное меню самостоятельно или обратитесь за помощью к нашему специалисту</p>
       <div class="actions">
-        <AppButton class="action" size="48" leftIcon="bow-flood-regular" :to="{ name: 'menu.section.index', params: { section: 'sety' } }">Банкетное меню</AppButton>
+        
+        <AppButton class="action " size="48" leftIcon="bow-flood-regular"  @click="showCallbackBanket">Банкетное меню</AppButton>
+        <!-- <AppButton class="action" size="48" leftIcon="bow-flood-regular" :to="{ name: 'menu.section.index', params: { section: 'sety' } }">Банкетное меню</AppButton> -->
         <AppButton class="action hall-btn" size="48" @click="showCallback">Фуршетное меню</AppButton>
         <!-- <AppButton class="callback" size="48" @click="showCallback">Получить консультацию</AppButton> -->
         <AppButton v-if="!grid.lg" class="action video-btn" size="48" leftIcon="play-circle-fill" @click="showedVideo = true">
@@ -39,7 +41,16 @@ function showCallback() {
     title: `Получить консультацию`,
     titleBtn: "Получить консультацию"
     });
-  }
+}
+
+function showCallbackBanket() {
+  callbackStore.showOther({
+    link: 'http://artfood.yes-idea.ru/banket.pdf',
+    link_title:"Скачать банкетное меню",
+    title: `Получить консультацию`,
+    titleBtn: "Получить консультацию"
+    });
+}
 </script>
 
 <style scoped lang="scss">

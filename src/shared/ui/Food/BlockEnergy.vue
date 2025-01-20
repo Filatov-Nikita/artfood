@@ -12,6 +12,10 @@
       <p class="value">{{ energy.uglevodi }} г</p>
       <p class="label">Углеводы</p>
     </div>
+    <div class="item">
+      <p class="value">{{ energy.cal }} г</p>
+      <p class="label">Калории</p>
+    </div>
   </div>
 </template>
 
@@ -20,6 +24,7 @@
     belki: string,
     giri: string,
     uglevodi: string,
+    cal: string
   }
 
   defineProps<{

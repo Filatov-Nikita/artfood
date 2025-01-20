@@ -23,11 +23,22 @@
         </router-link>
         <div v-show="!showedMenu" class="header__nav-wrap">
           <nav class="header__nav">
-            <router-link
-              class="header__nav-link"
-              v-for="link in links"
-              :to="link.to"
-            >{{ link.label }}</router-link>
+            <template v-for="link in links">
+              <router-link
+                v-if="link.to"
+                class="header__nav-link"
+                :to="link.to"
+              >
+                {{ link.label }}
+              </router-link>
+              
+              <button v-if="link.click"
+                class="header__nav-link"
+                @click="callFunc(link.click)"
+                >
+                {{ link.label }}
+            </button>
+            </template>
           </nav>
         </div>
         <div class="header__actions">
@@ -49,7 +60,8 @@
   import { ButtonState } from '@/entities/basket';
   import { storeToRefs } from 'pinia';
   import links from '../model/links';
-
+import { useCallbackStore } from '@/shared/store/callback';
+  
   defineProps<{
     showedMenu: boolean,
   }>();
@@ -59,7 +71,21 @@
     (event: 'showBasket'): void,
   }>();
 
-  const { hasItems } = storeToRefs(useBasketStore());
+const { hasItems } = storeToRefs(useBasketStore());
+
+const callbackStore = useCallbackStore();
+function showCallback() {
+  callbackStore.showOther({
+    link: 'http://artfood.yes-idea.ru/banket.pdf',
+    link_title:"Скачать банкетное меню",
+    title: `Получить консультацию`,
+    titleBtn: "Получить консультацию"
+    });
+}
+
+function callFunc(name) {
+  console.log(this[name]());
+}
 </script>
 
 <style scoped lang="scss">
