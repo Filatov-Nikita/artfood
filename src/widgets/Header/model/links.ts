@@ -6,7 +6,7 @@ export default [
   {
     label: 'Банкетное меню',
     // to: { name: 'banquet.menu' },
-    click: 'showCallback'
+    click: 'Банкетное меню'
   },
   {
     label: 'Кейтеринг',

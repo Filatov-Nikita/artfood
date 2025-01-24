@@ -83,8 +83,9 @@ function showCallback() {
     });
 }
 
-function callFunc(name) {
-  console.log(this[name]());
+const callFunc = (name:string) =>{
+  if(name === 'Банкетное меню')
+  showCallback()
 }
 </script>
 

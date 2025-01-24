@@ -33,7 +33,7 @@ export const useCallbackStore = defineStore('callbackStore', () => {
     });
   };
   function showOther(_meta: Partial<Meta> = {}) {
-    console.log('sss');
+  
     
     showedCallbackOther.value = true;
     setMeta({
