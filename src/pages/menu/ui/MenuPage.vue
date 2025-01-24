@@ -56,6 +56,7 @@
       padding-top: 0px;
       flex-grow: 1;
       min-width: 0px;
+      width: 100%;
     }
   }
 
