@@ -1,12 +1,12 @@
 <template>
+    <!-- :autoplay="{
+      delay: 3000,
+    }" -->
   <Swiper
     class="slider"
     :slides-per-view="1"
     :space-between="16"
     watch-overflow
-    :autoplay="{
-      delay: 3000,
-    }"
     :navigation="{
       prevEl: '.nav-btn-swiper--prev',
       nextEl: '.nav-btn-swiper--next',

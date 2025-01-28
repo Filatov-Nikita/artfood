@@ -144,8 +144,10 @@
   @mixin design_primary() {
     @apply tw-bg-primary tw-text-white;
 
-    &:hover {
-      @apply tw-bg-primary-hover;
+    @media (hover: hover) {
+      &:hover {
+        @apply tw-bg-primary-hover;
+      }
     }
 
     &:active {
@@ -160,8 +162,10 @@
   @mixin design_secondary() {
     @apply tw-bg-secondary tw-text-primary;
 
-    &:hover {
-      @apply tw-bg-secondary-hover;
+    @media (hover: hover) {
+      &:hover {
+        @apply tw-bg-secondary-hover;
+      }
     }
 
     &:active {
@@ -176,8 +180,10 @@
   @mixin design_secondary_neutral() {
     @apply tw-bg-neutral tw-text-text00;
 
-    &:hover {
-      @apply tw-bg-neutral-hover;
+    @media (hover: hover) {
+      &:hover {
+        @apply tw-bg-neutral-hover;
+      }
     }
 
     &:active {
@@ -196,8 +202,10 @@
   @mixin design_outline() {
     @apply tw-border tw-border-solid tw-border-border01 tw-text-primary;
 
-    &:hover {
-      @apply tw-text-primary-hover tw-border-primary-hover;
+    @media (hover: hover) {
+      &:hover {
+        @apply tw-text-primary-hover tw-border-primary-hover;
+      }
     }
 
     &:active {
@@ -212,11 +220,13 @@
   @mixin design_outline_neutral() {
     @apply tw-border tw-border-solid tw-border-border01 tw-text-text00;
 
-    &:hover {
-      @apply tw-text-primary-hover tw-border-primary-hover;
+    @media (hover: hover) {
+      &:hover {
+        @apply tw-text-primary-hover tw-border-primary-hover;
 
-      .left-icon, .right-icon {
-        @apply tw-text-primary-hover;
+        .left-icon, .right-icon {
+          @apply tw-text-primary-hover;
+        }
       }
     }
 
@@ -244,8 +254,10 @@
   @mixin design_ghost() {
     @apply tw-text-primary;
 
-    &:hover {
-      @apply tw-text-primary-hover;
+    @media (hover: hover) {
+      &:hover {
+        @apply tw-text-primary-hover;
+      }
     }
 
     &:active {
@@ -260,11 +272,13 @@
   @mixin design_ghost_neutral() {
     @apply tw-text-text00;
 
-    &:hover {
-      @apply tw-text-primary-hover;
-
-      .left-icon, .right-icon {
+    @media (hover: hover) {
+      &:hover {
         @apply tw-text-primary-hover;
+
+        .left-icon, .right-icon {
+          @apply tw-text-primary-hover;
+        }
       }
     }
 

@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
   type Color = 'red' | 'orange' | 'yellow' | 'green' | 'white';
-  type Design = 'primary' | 'secondary' | 'outline';
+  type Design = 'primary' | 'secondary' | 'outline' | 'neutral';
 
   interface Props {
     color: Color,
@@ -72,6 +72,10 @@
         border: 1px solid rgba(76, 175, 80, 1);
         color: rgba(76, 175, 80, 1);
       }
+    }
+    &-neutral {
+      @apply tw-bg-neutral;
+      
     }
   }
 

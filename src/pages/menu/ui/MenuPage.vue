@@ -2,8 +2,8 @@
   <main class="page--py">
     <div class="wrapper">
       <h1 class="h1 h-mb-16">Меню доставки</h1>
-      <div class="content-wrap">
-        <MenuNav class="navigations" :activeSection="activeSection" />
+      <div class="content-wrap ">
+        <MenuNav class="navigations " :activeSection="activeSection" />
         <SectionListItem
           class="menu-sections"
           v-if="products.length > 0"

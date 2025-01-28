@@ -61,13 +61,14 @@
 
   function scrollToggle(val: boolean) {
     const body = document.body;
-    const scrollOffClass = 'tw-overflow-hidden';
+    const scrollOffClass = ['tw-overflow-hidden', 'tw-bg-overlay'];
     if(val) {
-      body.classList.add(scrollOffClass);
+      body.classList.add(...scrollOffClass);
     } else {
-      body.classList.remove(scrollOffClass);
+      body.classList.remove(...scrollOffClass);
     }
   }
+  
 
   watch(() => props.showed, (val) => {
     initHeaderHeight();
@@ -110,17 +111,18 @@
       &::after {
         content: '';
         display: block;
-        width: 228px;
-        height: 348px;
+        width: 205px;
+        height: 328px;
         background-image: url('./assets/bg-small.png');
         background-repeat: no-repeat;
         background-size: contain;
         position: absolute;
         z-index: 0;
-        right: -26px;
-        bottom: -20px;
-
+        right: 0px;
+        bottom: 0px;
+        
         @include lg {
+          background-position:center;
           top: 0px;
           left: -50px;
           right: auto;

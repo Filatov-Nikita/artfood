@@ -98,10 +98,10 @@
     display: flex;
     align-items: center;
     gap: 16px;
-    @apply tw-bg-neutral tw-p-16 tw-rounded-xl;
+    @apply tw-bg-neutral tw-p-16 tw-rounded-xl tw-w-fit;
 
     @include lg {
-      @apply tw-mt-auto;
+      @apply tw-mt-auto ;
     }
 
     &__icon {

@@ -27,6 +27,8 @@ export const useCallbackStore = defineStore('callbackStore', () => {
 
   function show(_meta: Partial<Meta> = {}) {
     showedCallback.value = true;
+    console.log(showedCallback.value);
+    
     setMeta({
       ..._meta,
       title: _meta.title ?? 'Связаться с менеджером',

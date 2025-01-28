@@ -31,7 +31,9 @@
           :price="product.price"
           :count="count"
           :productId="product.id"
+          design="primary"
         />
+        
       </div>
       <div class="card-actions" v-if="product && !grid.lg">
         <ButtonToggle

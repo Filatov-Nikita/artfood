@@ -12,9 +12,7 @@
     </div>
     <slot></slot>
     <div class="primary-layout__footer-wrap">
-      <div class="wrapper">
-        <Footer />
-      </div>
+      <Footer />
     </div>
   </div>
 </template>
@@ -51,8 +49,10 @@
     min-height: 100vh;
 
     &__header-wrap {
+      position: sticky;
+      top: 0;
       padding: 8px 0;
-
+      z-index: 3;
        @include lg {
         padding-top: 16px  ;
        }

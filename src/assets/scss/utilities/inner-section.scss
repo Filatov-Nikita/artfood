@@ -6,10 +6,10 @@
   }
 
   &--mb {
-    @apply tw-mb-40;
+    @apply tw-mb-16;
 
     @include lg {
-      @apply tw-mb-64;
+      @apply tw-mb-20;
     }
   }
 }

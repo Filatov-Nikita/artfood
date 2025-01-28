@@ -64,6 +64,10 @@
 
   .logo-title {
     @apply tw-text-heading-3-bold;
+    @include lg { 
+      font-size: 32px;
+      line-height: 25px;
+    }
   }
 
   .logo-img {

@@ -2,6 +2,7 @@
   <Alerts />
   <ProgressIndicator :loading="pending" />
   
+  <CallbackModal />
   <CallbackModalOther />
   <router-view v-slot="{ Component }">
     <template v-if="Component">

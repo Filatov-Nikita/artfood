@@ -5,7 +5,7 @@
     </div>
     <div class="text-col">
       <div class="loc-wrap">
-        <Badge leftIcon="map-pin-bold" design="primary" color="green">{{ item.name }}</Badge>
+        <Badge leftIcon="map-pin-bold" design="neutral" >{{ item.name }}</Badge>
       </div>
       <p class="text">
         {{ item.text }}
@@ -32,6 +32,7 @@
       display: grid;
       column-gap: 80px;
       grid-template-columns: 478px minmax(0, 1fr);
+      align-items: center;
       @apply tw-py-32;
     }
 

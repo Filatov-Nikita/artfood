@@ -10,6 +10,7 @@
   </div>
 </template>
 
+
 <script setup lang="ts">
   import CardItem from './CardItem/index.vue';
   import type { ProgramsElement } from '@/shared/repositories/programs';

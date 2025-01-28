@@ -9,6 +9,7 @@
     }"
     pagination
     :spaceBetween="16"
+    :watchOverflow="true"
   >
     <SwiperSlide
       v-for="img in images"

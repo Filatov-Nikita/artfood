@@ -33,6 +33,7 @@ export default {
       'border00': '#F5F4F2',
       'border01': '#E3E3E3',
       'black-bg-34%': 'rgba(0, 0, 0, 0.34)',
+      "overlay": 'rgba(0, 0, 0, 0.64)'
     },
     fontSize: {
       'body-xs-regular': ['12px', {

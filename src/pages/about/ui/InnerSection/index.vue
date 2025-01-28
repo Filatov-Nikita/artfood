@@ -3,7 +3,7 @@
     <div class="title">
       <h1 class="h1">О компании</h1>
       <div v-if="grid.breakpoint === 'lg'" class="tw-mt-16">
-        <p class="text">Ресторан доставки здоровой еды</p>
+        <p class="text">Ресторан доставки и выездного обслуживания</p>
         <p class="text2" v-html="text"></p>
       </div>
     </div>
@@ -11,7 +11,7 @@
       <img width="960" height="456" src="./image.png" />
      </div>
      <div v-if="grid.breakpoint !== 'lg'" class="content">
-      <p class="text">Ресторан доставки здоровой еды</p>
+      <p class="text">Ресторан доставки и выездного обслуживания</p>
       <p class="text2" v-html="text"></p>
      </div>
   </div>
@@ -22,7 +22,8 @@
 
   const grid = useAppGrid();
 
-  const text = 'Доставка вкусных и&nbsp;здоровых обедов в&nbsp;течение дня в офис и на дом';
+  // const text = 'Доставка вкусных и&nbsp;здоровых обедов в&nbsp;течение дня в офис и на дом';
+  const text = 'Доставка полезных и здоровых завтраков, обедов, ужинов и программ питания на дом и в офис. Выездные мероприятия от кейтеринга до банкета на 1000 и более гостей. ';
 </script>
 
 <style scoped lang="scss">
@@ -66,7 +67,7 @@
     @apply tw-text-body-l-bold -tw-tracking-2;
 
     @include xl {
-      max-width: 234px;
+      max-width: 256px;
     }
   }
 

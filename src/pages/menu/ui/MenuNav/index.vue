@@ -8,12 +8,12 @@
             :key="section.id"
           >
             <AppButton
-              class="nav-btn"
+              class="nav-btn tw-whitespace-nowrap"
               :design="activeSection === section.code ? 'primary' : 'secondary-neutral'"
               :to="{ name: 'menu.section.index', params: { section: section.code } }"
               size="48"
             >
-              {{ section.name }}
+              {{ section.name }} 
             </AppButton>
           </li>
         </ul>
@@ -38,6 +38,12 @@
 <style scoped lang="scss">
   .menu-nav {
     @apply tw-bg-neutral tw-rounded-1.5xl tw-p-8;
+    position: sticky;
+    top: 110px;
+    z-index: 3;
+    @include lg {
+      top: 136px;
+    }
   }
 
   .list {

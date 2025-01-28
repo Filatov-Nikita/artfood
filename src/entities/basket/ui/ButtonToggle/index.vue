@@ -1,5 +1,5 @@
 <template>
-  <AppButton class="tw-w-full" :size="grid.lg ? '56' : '48'" :design="count > 0 ? 'primary' : 'secondary-neutral'" @click="toggle">
+  <AppButton class="tw-w-full" :size="grid.lg ? '56' : '48'" :design=" count > 0 ? 'primary' : design?design:`secondary-neutral`" @click="toggle">
     <template #right>
       <span class="icon">
         <AppIcon name="plus" fit />
@@ -13,13 +13,16 @@
   import { useAppGrid } from '@/shared/lib/useScreen';
   import { useBasketStore } from '@/shared/store/basket';
 
+  type Design = 'primary' | 'secondary' | 'secondary-neutral' | 'outline' | 'outline-neutral' | 'ghost' | 'ghost-neutral';
+
   const grid = useAppGrid();
 
-  const props = defineProps<{
+  const props =withDefaults(defineProps<{
     productId: string,
     price: string,
     count: number,
-  }>();
+    design?: Design
+  }>(),{design:''});
 
   const basketStore = useBasketStore();
 

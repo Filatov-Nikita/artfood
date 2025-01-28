@@ -1,20 +1,22 @@
 <template>
   <article class="pr-item" :class="{ 'pr-item--disabled': disabled }">
-    <Badge v-if="item.tag" class="pr-item__badge" color="yellow" design="primary">{{ item.tag }}</Badge>
-    <Image
-      class="pr-item__img"
-      :class="{ 'pr-item__img--clickable': clickable }"
-      :src="item.img"
-      :showCount="count > 0"
-      :count="count"
-      @click="onClick"
-    />
-    <div class="name-wrap">
-      <div class="name" v-html="item.name"></div>
-      <div class="notice">на {{ item.presons_count }} персон</div>
+    <div class="pr-item__top" @click="onClick">
+      <Badge v-if="item.tag" class="pr-item__badge" color="yellow" design="primary">{{ item.tag }}</Badge>
+      <Image
+        class="pr-item__img"
+        :class="{ 'pr-item__img--clickable': clickable }"
+        :src="item.img"
+        :showCount="count > 0"
+        :count="count"
+        
+      />
+      <div class="name-wrap">
+        <div class="name" v-html="item.name"></div>
+        <div class="notice">на {{ item.presons_count }} персон</div>
+      </div>
+      <div class="gram">{{ item.ves }} г</div>
+      <div class="text">{{ item.podpis }}</div>
     </div>
-    <div class="gram">{{ item.ves }} г</div>
-    <div class="text">{{ item.podpis }}</div>
     <slot name="action" :count="count"></slot>
   </article>
 </template>
@@ -53,11 +55,15 @@
 <style scoped lang="scss">
   .pr-item {
     position: relative;
-
+    display: grid;
+    align-content: space-between;
+    &__top {
+      cursor: pointer;
+    }
     &--disabled {
       opacity: 0.5;
       pointer-events: none;
-    }
+    } 
 
     &__badge {
       position: absolute;

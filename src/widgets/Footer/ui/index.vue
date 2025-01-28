@@ -1,62 +1,67 @@
 <template>
-  <footer class="footer">
-    <div class="footer__decor-wrap">
-      <picture>
-        <source width="654" height="148" media="(max-width: 799px)" srcset="./assets/decor-sm.png" />
-        <source width="2040" height="459" media="(min-width: 800px)" srcset="./assets/decor-xl.png" />
-        <img width="2040" height="459" class="footer__decor" src="./assets/decor-xl.png" alt="декор" loading="lazy" />
-      </picture>
-    </div>
-    <div class="footer__wrap">
-      <div class="footer__row1">
-        <router-link class="footer__home" :to="{ name: 'home' }">
-          <AppLogo class="footer__logo" color="white" />
-        </router-link>
-        <div class="footer__col-wrap">
-          <nav class="footer__nav">
-            <NavItem
-              class="footer__link"
-              v-for="link in navLinks"
-              v-bind="link"
-            />
-          </nav>
-        </div>
+  <footer class="footer ">
+    <div class="wrapper">
+      <div class="footer__decor-wrap">
+        <picture>
+          <source width="654" height="148" media="(max-width: 799px)" srcset="./assets/decor-sm.png" />
+          <source width="2040" height="459" media="(min-width: 800px)" srcset="./assets/decor-xl.png" />
+          <img width="2040" height="459" class="footer__decor" src="./assets/decor-xl.png" alt="декор" loading="lazy" />
+        </picture>
       </div>
-      <div class="footer__row2">
-        <div class="footer__contacts-wrap">
-          <div class="footer__phone-wrap">
-            <a class="footer__phone" :href="`tel:${contacts.phone}`">{{ contacts.phone }}</a>
-          </div>
-          <div class="footer__contacts">
-            <div class="footer__contact-row">
-              {{ contacts.address }}
-            </div>
-            <div class="footer__contact-row">
-              {{ contacts.worktime }}
-            </div>
-            <div class="footer__contact-row">
-              <a class="footer__email" :href="`mailto:${contacts.email}`">{{ contacts.email }}</a>
-            </div>
+      <div class="footer__wrap">
+        <div class="footer__row1">
+          <router-link class="footer__home" :to="{ name: 'home' }">
+            <AppLogo class="footer__logo" color="white" />
+          </router-link>
+          <div class="footer__col-wrap">
+            <nav class="footer__nav">
+              <NavItem
+                class="footer__link"
+                v-for="link in navLinks"
+                v-bind="link"
+              />
+            </nav>
           </div>
         </div>
-        <div class="footer__col-wrap">
-          <AppButton theme="primary" leftIcon="whatsapp-logo-regular" size="48" :model="{ is: 'link-native', href: contacts.wa }" target="_blank">
-            Написать нам
-          </AppButton>
-        </div>
-      </div>
-      <div class="footer__row3">
-        <div class="footer__info">{{ infoLabel }}</div>
-        <div class="footer__docs">
-          <div class="footer__doc-link-wrap">
-            <a class="footer__doc-link" :href="docs.conf.path">Политика конфиденциальности</a>
+        <div class="footer__row2">
+          <div class="footer__contacts-wrap">
+            <div class="footer__phone-wrap">
+              <a class="footer__phone" :href="`tel:${contacts.phone}`">{{ contacts.phone }}</a>
+            </div>
+            <div class="footer__contacts">
+              <div class="footer__contact-row">
+                {{ contacts.address }}
+              </div>
+              <div class="footer__contact-row">
+                {{ contacts.worktime }}
+              </div>
+              <div class="footer__contact-row">
+                <a class="footer__email" :href="`mailto:${contacts.email}`">{{ contacts.email }}</a>
+              </div>
+            </div>
           </div>
-          <div class="footer__doc-link-wrap">
-            <a class="footer__doc-link" :href="docs.sogl.path">Пользовательское соглашение</a>
+          <div class="footer__col-wrap">
+            <AppButton theme="primary" leftIcon="whatsapp-logo-regular" size="48" :model="{ is: 'link-native', href: contacts.wa }" target="_blank" class=" tw-w-full">
+              Написать нам
+            </AppButton>
           </div>
         </div>
-        <div class="footer__logo-yes-wrap">
-          <img class="footer__logo-yes" width="104" height="44" src="./assets/logo-yes.svg" alt="logo yes">
+        <div class="footer__row3">
+          <div class="footer__info">{{ infoLabel }}</div>
+          <div class="footer__docs">
+            <div class="footer__doc-link-wrap">
+              <a class="footer__doc-link" :href="docs.conf.path">Политика конфиденциальности</a>
+            </div>
+            <div class="footer__doc-link-wrap">
+              <a class="footer__doc-link" :href="docs.sogl.path">Пользовательское соглашение</a>
+            </div>
+          </div>
+          <div class="footer__logo-yes-wrap">
+            <a href="#" target="_blank" class="footer__logo-yes">
+  
+              <img class="" width="104" height="44" src="./assets/logo-yes.svg" alt="logo yes">
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -78,15 +83,17 @@
 <style scoped lang="scss">
   .footer {
     padding: 0 24px 32px;
-    @apply tw-bg-neutral-primary tw-rounded-1.5xl;
+    @apply tw-bg-neutral-primary tw-rounded-xl lg:tw-rounded-1.5xl;
 
     @include lg {
       padding: 0 32px 32px;
     }
 
     &__decor-wrap {
-      transform: translateY(-8px);
-      margin-bottom: -8px;
+      padding-top: 12px;
+      @include lg {
+        padding-top: 16px;
+      }
     }
 
     &__decor {
@@ -111,6 +118,9 @@
 
     &__logo {
       width: 107px;
+      &:hover {
+        color: #52B738 !important;
+      }
     }
 
     &__col-wrap {
@@ -197,7 +207,7 @@
 
       @include lg {
         &:hover {
-          opacity: 0.7;
+          color: #52B738
         }
       }
     }
@@ -212,6 +222,9 @@
 
     &__logo-yes {
       width: 104px;
+      &:hover {
+        opacity: 0.7;
+      }
     }
 
     &__docs {

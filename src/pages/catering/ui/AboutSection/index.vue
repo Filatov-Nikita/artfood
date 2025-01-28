@@ -13,7 +13,7 @@
         </AppButton>
       </div>
     </div>
-    <div>
+    <div class="about__img">
       <img width="941" height="498" src="./image.png" loading="lazy">
     </div>
     <button class="play-btn" v-if="grid.lg" @click="showedVideo = true">
@@ -59,10 +59,27 @@ function showCallbackBanket() {
 
     @include lg {
       display: grid;
-      grid-template-columns: 500px 1fr;
+      
+      grid-template-columns: 1fr 400px;
       column-gap: 32px;
-      align-items: center;
+      // align-items: center;
       @apply tw-p-32;
+    }
+    @include xl { 
+      grid-template-columns: 500px 1fr;
+    }
+    &__img {
+      @include lg {
+        position: relative;
+      }
+      img {
+       @include lg {
+          position: absolute;
+          top: 0;
+          height: 100%;
+          object-fit: contain;
+        } 
+      }
     }
   }
 
@@ -75,7 +92,7 @@ function showCallbackBanket() {
   }
 
   .content {
-    @apply tw-rounded-1.5xl tw-bg-border01 tw-p-24 tw-mb-16;
+    @apply tw-rounded-1.5xl tw-bg-border01 tw-p-24 tw-mb-16 lg:tw-mb-0;
   }
 
   .video-btn {

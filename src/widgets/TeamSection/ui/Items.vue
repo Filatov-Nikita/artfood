@@ -2,22 +2,22 @@
   <div v-if="items && items[0]" class="items">
     <Item
       class="team-item"
-      :title="`${items[0].let} лет`"
+      :title="`${items[0].let} <br class=' tw-hidden lg:tw-block'/> лет`"
       text="на рынке"
     />
     <Item
       class="team-item"
-      :title="`${items[0].meropr} мероприятий`"
+      :title="`${items[0].meropr} <br class=' tw-hidden lg:tw-block'/> мероприятий`"
       text="провели"
     />
     <Item
       class="team-item"
-      :title="`${items[0].dostavok} доставок`"
+      :title="`${items[0].dostavok} <br class=' tw-hidden lg:tw-block'/> доставок`"
       text="фуршетов"
     />
     <Item
       class="team-item"
-      :title="`${items[0].person} персон`"
+      :title="`${items[0].person} <br class=' tw-hidden lg:tw-block'/> персон`"
       text="обслужили одновременно"
     />
   </div>

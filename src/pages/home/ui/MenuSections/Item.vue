@@ -21,7 +21,9 @@
     height: 180px;
     overflow: hidden;
     @apply tw-rounded-1.5xl tw-p-24;
-
+    @include lg {
+      padding: 32px;
+    } 
     &--red {
       @apply tw-bg-red;
     }

@@ -77,11 +77,12 @@
   const calCases: [ string, string, string ] = [ 'калория', 'калории', 'калорий' ];
   const daysCases: [ string, string, string ] = [ 'день', 'дня', 'дней' ];
 
-  function showConsult() {
+function showConsult() {
     callbackStore.show({
       title: `Получить консультацию по программе питания "${program.value!.name}"`,
       isInner: true,
     });
+    value.value = false
   }
 </script>
 
@@ -149,6 +150,7 @@
       display: flex;
       align-items: flex-start;
       gap: 24px;
+      padding: 24px ;
     }
   }
 

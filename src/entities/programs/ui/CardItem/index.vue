@@ -1,20 +1,29 @@
 <template>
-  <article>
-    <div class="img-wrap">
-      <AppImg class="img" :src="item.img" />
+  <article :class="$attrs?.class">
+    <div v-bind="$attrs">
+      <div class="img-wrap" >
+        <AppImg class="img" :src="item.img" />
+      </div>
+      <p class="name">{{ item.name }}</p>
+      <p class="text" v-html="item.text"></p>
     </div>
-    <p class="name">{{ item.name }}</p>
-    <p class="text">{{ item.text }}</p>
     <div class="price-wrap">
       <p class="price">{{ item.price }}</p>
       <p class="days"><AppPlural :cases="cases" :total="+item.days" /></p>
     </div>
   </article>
 </template>
-
+<script lang="ts">
+// use normal <script> to declare options
+export default {
+  inheritAttrs: false
+}
+</script>
 <script setup lang="ts">
   import type { ProgramsElement } from '@/shared/repositories/programs';
+  import { useAttrs } from 'vue'
 
+  const attrs = useAttrs()
   defineProps<{
     item: ProgramsElement,
   }>();
