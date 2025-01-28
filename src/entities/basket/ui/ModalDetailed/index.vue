@@ -123,7 +123,10 @@
 
   .card-bottom {
     margin-top: auto;
-    @apply tw-border-t tw-border-solid tw-border-border01;
+    @apply tw-border-t tw-border-solid tw-border-border01 tw-bg-white tw-sticky tw-bottom-0 tw-transform tw-translate-y-16 tw-pb-16;
+    @include lg {
+      @apply tw-translate-y-24 tw-pb-24;
+    }
   }
 
   .card-actions {

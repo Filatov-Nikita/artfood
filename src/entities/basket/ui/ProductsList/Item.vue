@@ -71,6 +71,15 @@
     display: flex;
     gap: 8px;
     @apply tw-py-16;
+    @include lg {
+      @apply  tw-py-24;
+      &:first-child {
+        padding-top: 16px;
+      }
+      &:last-child {
+        padding-bottom: 0;
+      }
+    }
 
     & + & {
       @apply tw-border-t tw-border-solid tw-border-border01;
