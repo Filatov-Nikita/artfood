@@ -23,7 +23,7 @@
         </router-link>
         <div v-show="!showedMenu" class="header__nav-wrap">
           <nav class="header__nav">
-            <template v-for="link in links">
+            <template v-for="link in links" :key="link.label">
               <router-link
                 v-if="link.to"
                 class="header__nav-link"
@@ -31,13 +31,14 @@
               >
                 {{ link.label }}
               </router-link>
-              
-              <button v-if="link.click"
+              <router-link
+                v-else-if="link.action"
                 class="header__nav-link"
-                @click="callFunc(link.click)"
-                >
+                to="#"
+                @click.prevent="link.action"
+              >
                 {{ link.label }}
-            </button>
+              </router-link>
             </template>
           </nav>
         </div>
@@ -59,34 +60,46 @@
   import contacts from '../model/contacts';
   import { ButtonState } from '@/entities/basket';
   import { storeToRefs } from 'pinia';
-  import links from '../model/links';
-import { useCallbackStore } from '@/shared/store/callback';
-  
+  import { RouteLocationRaw } from 'vue-router';
+
   defineProps<{
     showedMenu: boolean,
   }>();
 
-  defineEmits<{
+  const emit = defineEmits<{
     (event: 'update:showedMenu', value: boolean): void,
     (event: 'showBasket'): void,
+    (event: 'showBanquet'): void,
   }>();
 
-const { hasItems } = storeToRefs(useBasketStore());
+  const { hasItems } = storeToRefs(useBasketStore());
 
-const callbackStore = useCallbackStore();
-function showCallback() {
-  callbackStore.showOther({
-    link: 'http://artfood.yes-idea.ru/banket.pdf',
-    link_title:"Скачать банкетное меню",
-    title: `Получить консультацию`,
-    titleBtn: "Получить консультацию"
-    });
-}
+  type LinkItem = {
+    label: string,
+    to?: RouteLocationRaw,
+    action?: () => void,
+  };
 
-const callFunc = (name:string) =>{
-  if(name === 'Банкетное меню')
-  showCallback()
-}
+  const links: LinkItem[] = [
+    {
+      label: 'Меню',
+      to: { name: 'menu.section.index', params: { section: 'sety' } },
+    },
+    {
+      label: 'Банкетное меню',
+      action() {
+        emit('showBanquet');
+      }
+    },
+    {
+      label: 'Кейтеринг',
+      to: { name: 'catering' },
+    },
+    {
+      label: 'Залы для мероприятий',
+      to: { name: 'halls' },
+    }
+  ];
 </script>
 
 <style scoped lang="scss">

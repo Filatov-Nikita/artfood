@@ -11,14 +11,14 @@
           <div class="nav-menu__nav-wrap">
             <div class="nav-menu__nav-primary">
               <Item
-                v-for="link in primaryLinks"
+                v-for="link in links.primary"
                 type="primary"
                 v-bind="link"
               />
             </div>
             <div class="nav-menu__nav-secondary">
               <Item
-                v-for="link in secondaryLinks"
+                v-for="link in links.secondary"
                 type="secondary"
                 v-bind="link"
               />
@@ -36,15 +36,16 @@
 <script setup lang="ts">
   import { watch, onMounted, ref } from 'vue';
   import Item from './Item.vue';
-  import navLinks from '../model/links';
   import contacts from '../model/contacts';
-
-  const primaryLinks = navLinks.primary;
-  const secondaryLinks = navLinks.secondary;
+  import { RouteLocationRaw } from 'vue-router';
 
   const props = defineProps<{
     showed: boolean,
     headerSelector: string,
+  }>();
+
+  const emit = defineEmits<{
+    (event: 'showBanquet'): void,
   }>();
 
   const headerHeight = ref(0);
@@ -68,12 +69,63 @@
       body.classList.remove(...scrollOffClass);
     }
   }
-  
 
   watch(() => props.showed, (val) => {
     initHeaderHeight();
     scrollToggle(val);
   });
+
+  type NavLink = {
+    label: string,
+    to?: RouteLocationRaw,
+    action?: () => void,
+  };
+
+  type Links = {
+    primary: NavLink[],
+    secondary: NavLink[],
+  }
+
+  const links: Links = {
+    primary: [
+      {
+        label: 'Меню',
+        to: { name: 'menu.section.index', params: { section: 'sety' } },
+      },
+      {
+        label: 'Банкетное меню',
+        action() {
+          emit('showBanquet');
+        }
+      },
+      {
+        label: 'Кейтеринг',
+        to: { name: 'catering' },
+      },
+      {
+        label: 'Залы для мероприятий',
+        to: { name: 'halls' },
+      },
+    ],
+    secondary: [
+      {
+        label: 'Программы питания',
+        to: { name: 'programs' },
+      },
+      {
+        label: 'Портфолио',
+        to: { name: 'portfolio' },
+      },
+      {
+        label: 'Оплата и доставка',
+        to: { name: 'payment' },
+      },
+      {
+        label: 'О компании',
+        to: { name: 'about' },
+      },
+    ],
+  };
 </script>
 
 <style scoped lang="scss">
@@ -120,7 +172,7 @@
         z-index: 0;
         right: 0px;
         bottom: 0px;
-        
+
         @include lg {
           background-position:center;
           top: 0px;

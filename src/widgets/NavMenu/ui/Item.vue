@@ -6,7 +6,10 @@
       'nav-item--secondary': type === 'secondary',
     }"
   >
-    <router-link class="nav-item__link" active-class="nav-item__link--active" :to="to">
+    <router-link v-if="to" class="nav-item__link" active-class="nav-item__link--active" :to="to">
+      {{ label }}
+    </router-link>
+    <router-link v-else="action" class="nav-item__link" active-class="nav-item__link--active" to="#" @click.prevent="action">
       {{ label }}
     </router-link>
   </div>
@@ -18,8 +21,9 @@
 
   defineProps<{
     type: ItemType,
-    to: RouteLocationRaw,
     label: string,
+    to?: RouteLocationRaw,
+    action?: () => void,
   }>();
 </script>
 

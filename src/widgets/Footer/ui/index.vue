@@ -17,7 +17,7 @@
             <nav class="footer__nav">
               <NavItem
                 class="footer__link"
-                v-for="link in navLinks"
+                v-for="link in links"
                 v-bind="link"
               />
             </nav>
@@ -58,7 +58,7 @@
           </div>
           <div class="footer__logo-yes-wrap">
             <a href="#" target="_blank" class="footer__logo-yes">
-  
+
               <img class="" width="104" height="44" src="./assets/logo-yes.svg" alt="logo yes">
             </a>
           </div>
@@ -71,13 +71,60 @@
 <script setup lang="ts">
   import NavItem from './NavItem.vue';
   import { useCurrentDate } from '@/shared/lib';
-  import navLinks from '../model/navLinks';
   import contacts from '../model/contacts';
   import docs from '../model/docs';
+  import { RouteLocationRaw } from 'vue-router';
+
+  const emit = defineEmits<{
+    (event: 'showBanquet'): void,
+  }>();
 
   const { year } = useCurrentDate();
 
   const infoLabel = `© ${ year } Art Food — ресторан доставки здоровой еды`;
+
+  type NavLink = {
+    label: string,
+    to?: RouteLocationRaw,
+    action?: () => void,
+  };
+
+  const links: NavLink[] = [
+    {
+      label: 'Меню',
+      to: { name: 'menu.section.index', params: { section: 'sety' } },
+    },
+    {
+      label: 'Банкетное меню',
+      action() {
+        emit('showBanquet');
+      },
+    },
+    {
+      label: 'Кейтеринг',
+      to: { name: 'catering' },
+    },
+    {
+      label: 'Залы для мероприятий',
+      to: { name: 'halls' },
+    },
+    {
+      label: 'Программы питания',
+      to: { name: 'programs' },
+    },
+    {
+      label: 'Портфолио',
+      to: { name: 'portfolio' },
+    },
+    {
+      label: 'Оплата и доставка',
+      to: { name: 'payment' },
+    },
+    {
+      label: 'О компании',
+      to: { name: 'about' },
+    },
+  ];
 </script>
 
 <style scoped lang="scss">

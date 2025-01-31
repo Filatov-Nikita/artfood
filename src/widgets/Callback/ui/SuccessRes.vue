@@ -9,7 +9,9 @@
       <p class="text">Менеджер свяжется с вами в ближайшее время</p>
     </div>
     <div class="tw-grow actions">
-      <AppButton size="48" lg-size="56" design="outline-neutral" :to="{ name: 'home' }">На главную</AppButton>
+      <AppButton size="48" lg-size="56" design="outline-neutral" :to="{ name: 'home' }" @click="$emit('ok')">
+        На главную
+      </AppButton>
       <AppButton size="48" lg-size="56" @click="$emit('ok')">Хорошо</AppButton>
     </div>
   </div>

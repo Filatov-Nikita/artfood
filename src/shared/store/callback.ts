@@ -27,16 +27,12 @@ export const useCallbackStore = defineStore('callbackStore', () => {
 
   function show(_meta: Partial<Meta> = {}) {
     showedCallback.value = true;
-    console.log(showedCallback.value);
-    
     setMeta({
       ..._meta,
       title: _meta.title ?? 'Связаться с менеджером',
     });
   };
   function showOther(_meta: Partial<Meta> = {}) {
-  
-    
     showedCallbackOther.value = true;
     setMeta({
       ..._meta,

@@ -2,17 +2,19 @@
   <div class="primary-layout">
     <div class="primary-layout__header-wrap">
       <div class="wrapper">
-        <Header v-model:showedMenu="showedMenu" @showBasket="showedBasket = true" />
+        <Header v-model:showedMenu="showedMenu" @showBasket="showedBasket = true" @showBanquet="showedBanquet = true" />
+        <ModalAlertBanquet v-model="showedBanquet" />
         <ModalDetailed v-model="showedBasket" />
         <NavMenu
           :showed="showedMenu"
           headerSelector=".primary-layout__header-wrap"
+          @showBanquet="showedBanquet = true; showedMenu = false"
         />
       </div>
     </div>
     <slot></slot>
     <div class="primary-layout__footer-wrap">
-      <Footer />
+      <Footer @showBanquet="showedBanquet = true" />
     </div>
   </div>
 </template>
@@ -21,6 +23,7 @@
   import { Header } from '@/widgets/Header';
   import { Footer } from '@/widgets/Footer';
   import { NavMenu } from '@/widgets/NavMenu';
+  import { ModalAlert as ModalAlertBanquet } from '@/entities/banquet';
   import { ref, watch } from 'vue';
   import { ModalDetailed } from '@/entities/basket';
   import { useRoute } from 'vue-router';
@@ -29,6 +32,7 @@
 
   const showedMenu = ref(false);
   const showedBasket = ref(false);
+  const showedBanquet = ref(false);
 
   watch(showedMenu, (val) => {
     if(val) {

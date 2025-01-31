@@ -1,8 +1,11 @@
 <template>
   <div class="nav-item">
-    <router-link class="nav-item__link" :to="to">
+    <router-link v-if="to" class="nav-item__link" :to="to">
       {{ label }}
     </router-link>
+    <button v-else-if="action" class="nav-item__link" type="button" @click.prevent="action">
+      {{ label }}
+    </button>
   </div>
 </template>
 
@@ -11,7 +14,8 @@
 
   defineProps<{
     label: string,
-    to: RouteLocationRaw,
+    to?: RouteLocationRaw,
+    action?: () => void,
   }>();
 </script>
 
