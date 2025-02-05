@@ -41,7 +41,7 @@
             </div>
           </div>
           <div class="footer__col-wrap">
-            <AppButton theme="primary" leftIcon="whatsapp-logo-regular" size="48" :href="contacts.wa" target="_blank" class="tw-w-full">
+            <AppButton class="footer__btn" theme="primary" leftIcon="whatsapp-logo-regular" size="48" :href="contacts.wa" target="_blank">
               Написать нам
             </AppButton>
           </div>
@@ -270,6 +270,14 @@
       width: 104px;
       &:hover {
         opacity: 0.7;
+      }
+    }
+
+    &__btn {
+      width: 100%;
+
+      @include lg {
+        width: auto;
       }
     }
 
