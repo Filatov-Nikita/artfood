@@ -56,7 +56,7 @@
       position: sticky;
       top: 0;
       padding: 8px 0;
-      z-index: 3;
+      z-index: 10;
        @include lg {
         padding-top: 16px  ;
        }
