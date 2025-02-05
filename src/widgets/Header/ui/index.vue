@@ -190,6 +190,10 @@
 
     &__logo {
       width: 107px;
+
+      &:hover {
+        color: theme('colors.primary') !important;
+      }
     }
 
     &__actions {
@@ -229,7 +233,7 @@
         @apply tw-text-body-s-medium;
 
         &:hover {
-          opacity: 0.7;
+          @apply tw-text-primary;
         }
       }
     }
