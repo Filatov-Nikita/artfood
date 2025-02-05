@@ -1,8 +1,8 @@
 export default {
   conf: {
-    path: '#',
+    path: '/docs/privacy.pdf',
   },
   sogl: {
-    path: '#',
+    path: '/docs/soglashenie.pdf',
   }
 };

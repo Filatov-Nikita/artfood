@@ -41,7 +41,7 @@
             </div>
           </div>
           <div class="footer__col-wrap">
-            <AppButton theme="primary" leftIcon="whatsapp-logo-regular" size="48" :model="{ is: 'link-native', href: contacts.wa }" target="_blank" class=" tw-w-full">
+            <AppButton theme="primary" leftIcon="whatsapp-logo-regular" size="48" :href="contacts.wa" target="_blank" class="tw-w-full">
               Написать нам
             </AppButton>
           </div>
@@ -50,15 +50,14 @@
           <div class="footer__info">{{ infoLabel }}</div>
           <div class="footer__docs">
             <div class="footer__doc-link-wrap">
-              <a class="footer__doc-link" :href="docs.conf.path">Политика конфиденциальности</a>
+              <a class="footer__doc-link" :href="docs.conf.path" target="_blank">Политика конфиденциальности</a>
             </div>
             <div class="footer__doc-link-wrap">
-              <a class="footer__doc-link" :href="docs.sogl.path">Пользовательское соглашение</a>
+              <a class="footer__doc-link" :href="docs.sogl.path" target="_blank">Пользовательское соглашение</a>
             </div>
           </div>
           <div class="footer__logo-yes-wrap">
-            <a href="#" target="_blank" class="footer__logo-yes">
-
+            <a href="https://yes-idea.ru/" target="_blank" class="footer__logo-yes">
               <img class="" width="104" height="44" src="./assets/logo-yes.svg" alt="logo yes">
             </a>
           </div>
