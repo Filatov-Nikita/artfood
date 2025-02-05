@@ -5,6 +5,7 @@
       :key="item.id"
       :name="item.name"
       :products="item.goods"
+      :showPersonsCount="item.code === 'sety'"
       @change:product="$emit('change:product', $event)"
     />
   </div>

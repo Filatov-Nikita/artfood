@@ -8,11 +8,10 @@
         :src="item.img"
         :showCount="count > 0"
         :count="count"
-        
       />
       <div class="name-wrap">
         <div class="name" v-html="item.name"></div>
-        <div class="notice">на {{ item.presons_count }} персон</div>
+        <div v-if="showPersonsCount && item.presons_count" class="notice">на {{ item.presons_count }} персон</div>
       </div>
       <div class="gram">{{ item.ves }} г</div>
       <div class="text">{{ item.podpis }}</div>
@@ -32,7 +31,8 @@
     defineProps<{
       item: MenuElement,
       disabled? : boolean,
-      clickable?: boolean
+      clickable?: boolean,
+      showPersonsCount?: boolean,
     }>(),
     {
       disabled: false,
@@ -63,7 +63,7 @@
     &--disabled {
       opacity: 0.5;
       pointer-events: none;
-    } 
+    }
 
     &__badge {
       position: absolute;

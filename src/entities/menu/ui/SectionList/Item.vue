@@ -7,6 +7,7 @@
         v-for="product in products"
         :key="product.id"
         :item="product"
+        :showPersonsCount="showPersonsCount"
         @show:product="$emit('change:product', product.id)"
       >
         <template #action="{ count }">
@@ -32,6 +33,7 @@
 
   defineProps<{
     name: string,
+    showPersonsCount?: boolean,
     products: MenuElement[],
   }>();
 

@@ -9,6 +9,7 @@
           v-if="products.length > 0"
           :name="products[0].section_name"
           :products="products"
+          :showPersonsCount="products[0].section_code === 'sety'"
           @change:product="changeProduct"
         />
       </div>
