@@ -4,9 +4,11 @@
       <BannersSlider class="section--mb" />
       <MenuSections />
       <HomeSectionList
+        class="section--mb"
         :items="sections"
         @change:product="changeProduct"
       />
+      <HallsSection />
       <TeamSection />
       <FaqSection />
       <CardDetailed v-if="activeProduct" v-model="showedProduct" :productId="activeProduct" />
@@ -24,6 +26,7 @@
   import { useRepositories } from '@/shared/repositories';
   import useDataOrFail from '@/shared/lib/useDataOrFail';
   import { CardDetailed } from '@/entities/menu';
+  import { AboutSection as HallsSection } from '@/entities/hall';
   import { ref } from 'vue';
 
   const api = useRepositories();

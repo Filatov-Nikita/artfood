@@ -8,7 +8,7 @@
       </div>
     </div>
     <div class="img-wrap">
-      <img width="637" height="456" src="./image.png" />
+      <img width="637" height="456" src="@/entities/hall/assets/image.png" />
      </div>
      <div v-if="grid.breakpoint !== 'lg'" class="content">
       <p class="text">Банкетные залы для вашего торжества</p>

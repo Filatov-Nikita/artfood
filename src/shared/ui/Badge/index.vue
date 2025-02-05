@@ -42,6 +42,10 @@
         background-color: rgba(76, 175, 80, 1);
         @apply tw-text-white;
       }
+
+      &.white {
+        @apply tw-text-text00 tw-bg-white;
+      }
     }
 
     &-secondary {
@@ -75,7 +79,7 @@
     }
     &-neutral {
       @apply tw-bg-neutral;
-      
+
     }
   }
 
