@@ -4,7 +4,10 @@
       v-if="showed"
       class="nav-menu"
       :class="{ 'nav-menu--showed': showed }"
-      :style="{ '--headerHeight': headerHeight + 'px' }"
+      :style="{
+        '--headerHeight': headerHeight + 'px',
+        '--scrollbarWidth': scrollbarWidth + 'px',
+      }"
     >
       <div class="wrapper tw-h-full">
         <div class="nav-menu__wrap">
@@ -49,10 +52,22 @@
   }>();
 
   const headerHeight = ref(0);
+  const scrollbarWidth = ref(0);
 
   onMounted(() => {
     initHeaderHeight();
+    initScrollbarWidth();
   });
+
+  function initScrollbarWidth() {
+    const div = document.createElement('div');
+    div.style['overflow'] = 'scroll';
+    div.style['width'] = '50px';
+    document.body.append(div);
+    const diff = div.offsetWidth - div.clientWidth;
+    div.remove();
+    scrollbarWidth.value = diff;
+  }
 
   function initHeaderHeight() {
     const headerEl = document.querySelector(props.headerSelector);
@@ -64,8 +79,10 @@
     const body = document.body;
     const scrollOffClass = ['tw-overflow-hidden', 'tw-bg-overlay'];
     if(val) {
+      body.style['paddingRight'] = scrollbarWidth.value + 'px';
       body.classList.add(...scrollOffClass);
     } else {
+      body.style['paddingRight'] = '';
       body.classList.remove(...scrollOffClass);
     }
   }
@@ -152,6 +169,7 @@
       left: 0;
       top: var(--headerHeight);
       height: calc(100% - var(--headerHeight) - var(--offset-b));
+      padding-right: var(--scrollbarWidth);
     }
 
     &__wrap {
@@ -190,7 +208,7 @@
       z-index: 1;
       height: 100%;
       max-height: 100%;
-      overflow: auto;
+      overflow-x: hidden;
       display: flex;
       flex-direction: column;
       gap: 16px;
