@@ -9,7 +9,7 @@
     <router-link v-if="to" class="nav-item__link" active-class="nav-item__link--active" :to="to">
       {{ label }}
     </router-link>
-    <router-link v-else="action" class="nav-item__link" active-class="nav-item__link--active" to="#" @click.prevent="action">
+    <router-link v-else="action" class="nav-item__link" to="#" @click.prevent="action">
       {{ label }}
     </router-link>
   </div>
