@@ -5,6 +5,7 @@ import type { BasketItem, MiniBasket } from '@/shared/repositories/banquet';
 
 export const useBanquetStore = defineStore('banquetStore', () => {
   const api = useRepositories();
+  const showedModal = ref(false);
   const basketId = ref<number | null>(null);
   const basket = ref<BasketItem[]>([]);
   const miniBasket = ref<MiniBasket | null>(null);
@@ -96,6 +97,7 @@ export const useBanquetStore = defineStore('banquetStore', () => {
   }
 
   return {
+    showedModal,
     basketId,
     basket,
     personsCount,

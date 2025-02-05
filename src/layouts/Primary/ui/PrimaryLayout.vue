@@ -2,19 +2,23 @@
   <div class="primary-layout">
     <div class="primary-layout__header-wrap">
       <div class="wrapper">
-        <Header v-model:showedMenu="showedMenu" @showBasket="showedBasket = true" @showBanquet="showedBanquet = true" />
-        <ModalAlertBanquet v-model="showedBanquet" />
+        <Header
+          v-model:showedMenu="showedMenu"
+          @showBasket="showedBasket = true"
+          @showBanquet="banquetStore.showedModal = true"
+        />
+        <ModalAlertBanquet v-model="banquetStore.showedModal" />
         <ModalDetailed v-model="showedBasket" />
         <NavMenu
           :showed="showedMenu"
           headerSelector=".primary-layout__header-wrap"
-          @showBanquet="showedBanquet = true; showedMenu = false"
+          @showBanquet="banquetStore.showedModal = true; showedMenu = false"
         />
       </div>
     </div>
     <slot></slot>
     <div class="primary-layout__footer-wrap">
-      <Footer @showBanquet="showedBanquet = true" />
+      <Footer @showBanquet="banquetStore.showedModal = true" />
     </div>
   </div>
 </template>
@@ -27,12 +31,13 @@
   import { ref, watch } from 'vue';
   import { ModalDetailed } from '@/entities/basket';
   import { useRoute } from 'vue-router';
+  import { useBanquetStore } from '@/shared/store/banquet';
 
+  const banquetStore = useBanquetStore();
   const route = useRoute();
 
   const showedMenu = ref(false);
   const showedBasket = ref(false);
-  const showedBanquet = ref(false);
 
   watch(showedMenu, (val) => {
     if(val) {
