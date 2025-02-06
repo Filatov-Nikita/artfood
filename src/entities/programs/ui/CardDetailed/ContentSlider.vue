@@ -50,6 +50,7 @@
       belki: props.item.belki,
       giri: props.item.giri,
       uglevodi: props.item.uglevodi,
+      cal: props.item.calories,
     }
   });
 </script>
