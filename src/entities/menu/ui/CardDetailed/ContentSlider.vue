@@ -1,6 +1,6 @@
 <template>
   <div>
-    <AppTabs class="tab-items" v-model:activeIndex="currentInd" :items="[ 'Описание', 'Пищевая ценность' ]" />
+    <AppTabs class="tab-items" v-model:activeIndex="currentInd" :items="[ 'Состав', 'Пищевая ценность' ]" />
     <Swiper
       :initialSlide="currentInd"
       :allowTouchMove="false"
