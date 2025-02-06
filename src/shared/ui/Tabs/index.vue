@@ -1,6 +1,7 @@
 <template>
   <div class="tabs">
     <Item
+      class="tabs__item"
       v-for="(item, index) in items"
       :active="index === activeIndex"
       @click="$emit('update:activeIndex', index)"
@@ -26,5 +27,9 @@
 <style scoped lang="scss">
   .tabs {
     display: flex;
+
+    &__item {
+      white-space: nowrap;
+    }
   }
 </style>
