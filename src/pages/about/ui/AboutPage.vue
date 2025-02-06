@@ -4,7 +4,7 @@
       <InnerSection />
       <TeamSection class="section--mb" />
       <PartnersLogo class="section--mb" />
-      <StaffSection class="section--mb" />
+      <StaffSection class="staff-sec" />
       <SetySection />
     </div>
   </main>
@@ -16,3 +16,13 @@
   import { PartnersLogo, StaffSection } from '@/entities/company';
   import SetySection from './SetySection.vue';
 </script>
+
+<style scoped lang="scss">
+  .staff-sec {
+    @apply tw-mb-40;
+
+    @include xl {
+      @apply tw-mb-64;
+    }
+  }
+</style>

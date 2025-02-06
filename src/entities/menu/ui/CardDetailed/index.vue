@@ -33,7 +33,7 @@
           :productId="product.id"
           design="primary"
         />
-        
+
       </div>
       <div class="card-actions" v-if="product && !grid.lg">
         <ButtonToggle
@@ -116,6 +116,7 @@
       display: grid;
       row-gap: 32px;
       column-gap: 20px;
+      grid-template-rows: min-content min-content;
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       grid-template-areas:
             "a b"

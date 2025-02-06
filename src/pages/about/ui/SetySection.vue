@@ -44,10 +44,6 @@
     @include lg {
       @apply tw-mb-32;
     }
-
-    @include xl {
-      @apply tw-mb-48;
-    }
   }
 
   .items {

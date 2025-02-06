@@ -33,7 +33,7 @@
   }
 
   .name {
-    @apply tw-text-body-m-bold -tw-tracking-2 tw-mb-8;
+    @apply tw-text-body-l-bold -tw-tracking-2 tw-mb-8;
   }
 
   .text {
