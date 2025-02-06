@@ -68,14 +68,16 @@
     }
 
     &__footer-wrap {
-      padding: 16px 0;
+      padding: 16px;
 
       @include lg {
-        padding-bottom: 24px;
+        padding: 24px;
+        padding-top: 40px;
       }
 
       @include xl {
-        padding-bottom: 40px;
+        padding: 40px;
+        padding-top: 64px;
       }
     }
   }
