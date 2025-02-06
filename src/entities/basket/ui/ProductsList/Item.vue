@@ -7,6 +7,7 @@
       <div class="name-wrap">
         <p class="name" v-html="item.name"></p>
         <AppButton
+          class="tw-shrink-0"
           design="ghost-neutral"
           size="56"
           leftIcon="trash-regular"
@@ -15,6 +16,7 @@
       </div>
       <div class="price-wrap">
         <ButtonMinMaxMini
+          class="tw-shrink-0"
           :count="count"
           @reduce="basketStore.reduce(item.good_id)"
           @append="basketStore.append(item.good_id)"
@@ -112,7 +114,6 @@
 
   .price-wrap {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
@@ -121,7 +122,7 @@
   .price {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    column-gap: 8px;
     @apply tw-text-body-m-bold -tw-tracking-2;
 
     @include lg {
@@ -143,7 +144,6 @@
 
   .name-wrap {
     display: flex;
-    flex-wrap: wrap;
     gap: 24px;
     align-items: flex-start;
     margin-bottom: 8px;
