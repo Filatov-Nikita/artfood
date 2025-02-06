@@ -1,6 +1,6 @@
 <template>
   <button class="basket" :class="{ 'basket--active': hasItems }">
-    <AppIcon :name="hasItems ? 'shopping-cart-fill' : 'shopping-cart-regular'" fit />
+    <AppIcon name="shopping-cart-regular" fit />
   </button>
 </template>
 
@@ -26,8 +26,6 @@
     }
 
     &--active {
-      @apply tw-bg-neutral;
-
       &::before {
         content: '';
         width: 8px;
