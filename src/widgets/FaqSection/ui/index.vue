@@ -2,7 +2,7 @@
   <section class="faq">
     <div class="title-wrap">
       <h2 class="h1">Вопрос→<span class="tw-text-primary">ответ</span></h2>
-      <p class="subtitle">Отвечаем на частозадавамые вопросы наших клиентов</p>
+      <p class="subtitle">Отвечаем на часто задаваемые вопросы наших клиентов</p>
     </div>
     <div class="items">
       <SlideItem class="item" bordered label="Почему правильная пища так важна для организма?">
