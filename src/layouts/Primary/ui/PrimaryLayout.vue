@@ -4,7 +4,7 @@
       <div class="wrapper">
         <Header
           v-model:showedMenu="showedMenu"
-          @showBasket="showedBasket = true"
+          @showBasket="showedBasket = true; showedMenu = false"
           @showBanquet="banquetStore.showedModal = true"
         />
         <ModalAlertBanquet v-model="banquetStore.showedModal" />
@@ -61,7 +61,7 @@
       position: sticky;
       top: 0;
       padding: 8px 0;
-      z-index: 10;
+      z-index: 1000;
        @include lg {
         padding-top: 16px  ;
        }
