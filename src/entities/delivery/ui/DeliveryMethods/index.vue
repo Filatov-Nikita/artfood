@@ -2,6 +2,7 @@
   <div>
     <div class="tabs-wrap">
       <AppTabs
+        design="bordered"
         :items="[ 'Доставка', 'Самовывоз' ]"
         :activeIndex="form.type_delivery === '1' ? 0 : 1"
         @update:activeIndex="form.type_delivery = ($event + 1).toString()"

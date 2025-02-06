@@ -3,7 +3,7 @@
     <ProgressIndicator :loading="loading" />
     <div class="wrapper">
       <InnerSection />
-      <AppTabs class="tw-mb-24" v-model:activeIndex="activeTab" :items="tabs" />
+      <AppTabs class="tw-mb-24" v-model:activeIndex="activeTab" :items="tabs" design="bordered" />
       <ProgramList v-if="elements" :items="elements" @change:program="changeProgram" />
       <CardDetailed v-if="activeProgram" v-model="showedProgram" :programId="activeProgram" />
     </div>

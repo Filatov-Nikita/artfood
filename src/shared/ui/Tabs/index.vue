@@ -1,9 +1,10 @@
 <template>
-  <div class="tabs">
+  <div class="tabs" :class="`tabs--${design}`">
     <Item
       class="tabs__item"
       v-for="(item, index) in items"
       :active="index === activeIndex"
+      :design="design"
       @click="$emit('update:activeIndex', index)"
     >
       {{ item }}
@@ -17,6 +18,7 @@
   defineProps<{
     items: string[],
     activeIndex: number,
+    design?: 'bordered' | 'flat',
   }>();
 
   defineEmits<{
@@ -27,6 +29,10 @@
 <style scoped lang="scss">
   .tabs {
     display: flex;
+
+    &--bordered {
+      gap: 16px;
+    }
 
     &__item {
       white-space: nowrap;
