@@ -3,11 +3,13 @@
     <div class="content">
       <p class="text">Соберите банкетное и фуршетное меню самостоятельно или обратитесь за помощью к нашему специалисту</p>
       <div class="actions">
-        
-        <AppButton class="action " size="48" leftIcon="bow-flood-regular"  @click="showCallbackBanket">Банкетное меню</AppButton>
-        <!-- <AppButton class="action" size="48" leftIcon="bow-flood-regular" :to="{ name: 'menu.section.index', params: { section: 'sety' } }">Банкетное меню</AppButton> -->
-        <AppButton class="action hall-btn" size="48" @click="showCallback">Фуршетное меню</AppButton>
-        <!-- <AppButton class="callback" size="48" @click="showCallback">Получить консультацию</AppButton> -->
+        <AppButton class="action" size="48" leftIcon="bow-flood-regular"  @click="banquetStore.showedModal = true">Банкетное меню</AppButton>
+        <AppButton class="action hall-btn" size="48" href="https://docs.google.com/spreadsheets/d/1o29CDlOjgajxbPowKe5M-cpAYkfqirgYH2qQrmKJFiE/edit#gid=1108339809" target="_blank">
+          Фуршетное меню
+        </AppButton>
+        <AppButton class="tw-w-full" size="48" design="secondary-neutral" @click="callbackStore.show({ title: 'Получить консультацию' })">
+          Получить консультацию
+        </AppButton>
         <AppButton v-if="!grid.lg" class="action video-btn" size="48" leftIcon="play-circle-fill" @click="showedVideo = true">
           Видео
         </AppButton>
@@ -26,31 +28,17 @@
 <script setup lang="ts">
   import ModalVideo from './ModalVideo.vue';
   import { useAppGrid } from '@/shared/lib/useScreen';
-  import { ref } from 'vue';
+  import { useBanquetStore } from '@/shared/store/banquet';
   import { useCallbackStore } from '@/shared/store/callback';
+  import { ref } from 'vue';
+
+  const callbackStore = useCallbackStore();
+
+  const banquetStore = useBanquetStore();
+
   const grid = useAppGrid();
 
-const showedVideo = ref(false);
-const callbackStore = useCallbackStore();
-function showCallback() {
-  
-  
-  callbackStore.showOther({
-    link: 'http://artfood.yes-idea.ru/furshet.pdf',
-    link_title:"Скачать фуршетное меню",
-    title: `Получить консультацию`,
-    titleBtn: "Получить консультацию"
-    });
-}
-
-function showCallbackBanket() {
-  callbackStore.showOther({
-    link: 'http://artfood.yes-idea.ru/banket.pdf',
-    link_title:"Скачать банкетное меню",
-    title: `Получить консультацию`,
-    titleBtn: "Получить консультацию"
-    });
-}
+  const showedVideo = ref(false);
 </script>
 
 <style scoped lang="scss">
@@ -59,13 +47,13 @@ function showCallbackBanket() {
 
     @include lg {
       display: grid;
-      
+
       grid-template-columns: 1fr 400px;
       column-gap: 32px;
       // align-items: center;
       @apply tw-p-32;
     }
-    @include xl { 
+    @include xl {
       grid-template-columns: 500px 1fr;
     }
     &__img {
@@ -78,7 +66,7 @@ function showCallbackBanket() {
           top: 0;
           height: 100%;
           object-fit: contain;
-        } 
+        }
       }
     }
   }
@@ -115,14 +103,14 @@ function showCallbackBanket() {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
-
-    @include lg {
-     flex-wrap: nowrap;
-    }
   }
 
   .action {
     width: 100%;
+
+    @include lg {
+      width: calc(50% - 6px);
+    }
   }
 
   .play-btn {
