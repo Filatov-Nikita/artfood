@@ -1,7 +1,7 @@
 <template>
   <main class="page--py">
     <div class="wrapper">
-      <InnerSection />
+      <InnerSection class="section--mb" />
       <OrderSection class="section--mb" />
       <PriceTable />
     </div>

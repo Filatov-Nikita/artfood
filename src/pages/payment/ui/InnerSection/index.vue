@@ -1,5 +1,5 @@
 <template>
-  <div class="inner-section inner-section--mb payment">
+  <div class="inner-section payment">
     <div class="title">
       <h1 class="h1">Оплата и доставка</h1>
       <p v-if="grid.breakpoint === 'lg'" class="text tw-mt-16">Доставляем по Уфе и пригороду</p>
