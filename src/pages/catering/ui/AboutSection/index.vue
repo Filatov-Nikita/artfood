@@ -4,7 +4,7 @@
       <p class="text">Соберите банкетное и фуршетное меню самостоятельно или обратитесь за помощью к нашему специалисту</p>
       <div class="actions">
         <AppButton class="action" size="48" leftIcon="bow-flood-regular"  @click="banquetStore.showedModal = true">Банкетное меню</AppButton>
-        <AppButton class="action hall-btn" size="48" href="https://docs.google.com/spreadsheets/d/1o29CDlOjgajxbPowKe5M-cpAYkfqirgYH2qQrmKJFiE/edit#gid=1108339809" target="_blank">
+        <AppButton class="action hall-btn" size="48" :href="config.furshetMenuHref" target="_blank">
           Фуршетное меню
         </AppButton>
         <AppButton class="tw-w-full" size="48" design="secondary-neutral" @click="callbackStore.show({ title: 'Получить консультацию' })">
@@ -26,6 +26,7 @@
 </template>
 
 <script setup lang="ts">
+  import { useAppConfig } from '@/shared/config/app';
   import ModalVideo from './ModalVideo.vue';
   import { useAppGrid } from '@/shared/lib/useScreen';
   import { useBanquetStore } from '@/shared/store/banquet';
@@ -39,6 +40,8 @@
   const grid = useAppGrid();
 
   const showedVideo = ref(false);
+
+  const config = useAppConfig();
 </script>
 
 <style scoped lang="scss">

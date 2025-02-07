@@ -7,7 +7,8 @@ export default function initConfig() {
     percHref: '#',
     polzSoglHref: '#',
     minOrderSum: 800,
-    banquetMenuHref: '/docs/ArtFood_Menu_Furshet.pdf',
+    banquetMenuHref: '/docs/ArtFood_Menu_Banket.pdf',
+    furshetMenuHref: '/docs/ArtFood_Menu_Furshet.pdf',
   }
 }
 
