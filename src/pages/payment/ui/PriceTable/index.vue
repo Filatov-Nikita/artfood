@@ -1,6 +1,12 @@
 <template>
   <section>
-    <h2 class="title">Стоимость доставки заказов в&nbsp;зависимости от района города:</h2>
+    <div class="title-wrap">
+      <h2 class="title">Стоимость доставки заказов в&nbsp;зависимости от района города:</h2>
+      <AppButton class="map-btn" leftIcon="map-trifold-regular" size="48" design="outline" @click="showedMap = true">
+        Карта
+      </AppButton>
+    </div>
+    <DistrictMapModal v-model="showedMap" />
     <div class="scroll-x scroll-x--pb-8">
       <table class="table">
         <thead>
@@ -31,16 +37,42 @@
 </template>
 
 <script setup lang="ts">
+  import { DistrictMapModal } from '@/entities/delivery';
+  import { ref } from 'vue';
 
+  const showedMap = ref(false);
 </script>
 
 <style scoped lang="scss">
+  .title-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    row-gap: 16px;
+    column-gap: 40px;
+    @apply tw-mb-24;
+
+    @include lg {
+      @apply tw-mb-32;
+    }
+  }
+
+  .map-btn {
+    width: 100%;
+
+    @include lg {
+      width: auto;
+      flex-shrink: 0;
+    }
+  }
+
   .title {
-    @apply tw-text-body-l-bold -tw-tracking-2 tw-mb-24;
+    @apply tw-text-body-l-bold -tw-tracking-2;
 
     @include lg {
       max-width: 500px;
-      @apply tw-text-heading-3-bold tw-mb-32;
+      @apply tw-text-heading-3-bold;
     }
   }
 
