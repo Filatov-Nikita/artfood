@@ -8,8 +8,8 @@
 </template>
 
 <script setup lang="ts">
-  type Color = 'red' | 'orange' | 'yellow' | 'green' | 'white';
-  type Design = 'primary' | 'secondary' | 'outline' | 'neutral';
+  type Color = 'red' | 'orange' | 'yellow' | 'green' | 'white' | 'neutral';
+  type Design = 'primary' | 'secondary' | 'outline';
 
   interface Props {
     color: Color,
@@ -46,6 +46,10 @@
       &.white {
         @apply tw-text-text00 tw-bg-white;
       }
+
+      &.neutral {
+        @apply tw-bg-neutral;
+      }
     }
 
     &-secondary {
@@ -76,10 +80,6 @@
         border: 1px solid rgba(76, 175, 80, 1);
         color: rgba(76, 175, 80, 1);
       }
-    }
-    &-neutral {
-      @apply tw-bg-neutral;
-
     }
   }
 

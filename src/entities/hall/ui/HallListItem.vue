@@ -11,13 +11,13 @@
       </div>
       <div class="text-col">
         <div class="badges">
-          <Badge leftIcon="car-profile-bold" design="primary" color="green">
+          <Badge leftIcon="car-profile-bold" color="neutral" design="primary">
             {{ hall.parking }}
           </Badge>
-          <Badge leftIcon="fork-knife-bold" design="primary" color="green">
+          <Badge leftIcon="fork-knife-bold" color="neutral" design="primary">
             {{ hall.kitchen }}
           </Badge>
-          <Badge leftIcon="users-three-bold" design="primary" color="green">
+          <Badge leftIcon="users-three-bold" color="neutral" design="primary">
             {{ hall.persons }}
           </Badge>
         </div>
