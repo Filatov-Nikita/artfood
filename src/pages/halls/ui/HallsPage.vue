@@ -4,12 +4,16 @@
       <InnerSection />
       <HallList :halls="halls" class="section--mb" />
       <AboutSection />
+      <GallerySection baseUrl="/" :images="[ 'images/halls/1.jpg', 'images/halls/1.jpg' ]" />
+      <FaqSection />
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
   import InnerSection from './InnerSection/index.vue';
+  import GallerySection from './GallerySection.vue';
+  import { FaqSection } from '@/widgets/FaqSection';
   import { HallList } from '@/entities/hall';
   import { AboutSection } from '@/entities/catering'
   import { useRepositories } from '@/shared/repositories';
