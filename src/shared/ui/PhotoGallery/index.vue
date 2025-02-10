@@ -14,7 +14,7 @@
     <SwiperSlide
       v-for="img in images"
     >
-      <AppImg class="photo" :src="img" />
+      <AppImg class="photo" :baseUrl="baseUrl" :src="img" />
     </SwiperSlide>
     <template #container-end>
       <Badge v-if="tag" class="tag" design="primary" color="green">{{ tag }}</Badge>
@@ -31,6 +31,7 @@
   defineProps<{
     images: string[],
     tag?: string,
+    baseUrl?: string,
   }>();
 </script>
 
