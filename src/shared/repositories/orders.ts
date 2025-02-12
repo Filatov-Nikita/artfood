@@ -11,7 +11,7 @@ export default function(http: AxiosInstance) {
   }
 }
 
-export type TypeOfPayment = '5' | '6';
+export type TypeOfPayment = '5' | '6' | '7';
 export type Location = '3' | '4';
 export type TypeOfDelivery = '1' | '2';
 
