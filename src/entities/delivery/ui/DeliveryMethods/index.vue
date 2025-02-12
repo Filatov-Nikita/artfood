@@ -12,10 +12,22 @@
 
     <template v-if="form.type_delivery === '2'">
       <PickupLocation  />
+      <DatePicker
+        color="green"
+        v-model.string="form.date"
+        :popover="{ visibility: 'click' }"
+        :masks="{ input: 'DD.MM.YYYY', modelValue: 'DD.MM.YYYY' }"
+        :disabledDates="[{ start: null, end: yesterday  }]"
+      >
+        <template #default="{ inputValue, inputEvents }">
+          <AppInput class="tw-mt-32" name="date" label="Выберите дату" :rules="schema.date" :modelValue="inputValue" :inputEvents="inputEvents" maska="##.##.####"/>
+        </template>
+      </DatePicker>
       <TimeSlotButton
-        class="tw-mt-32"
+        class="tw-mt-12"
         label="Заберу еду"
         modalLabel="Время получения заказа"
+        :date="form.date"
         :workBefore="20"
         :rules="schema.timeline"
         v-model="form.timeline"
@@ -36,9 +48,21 @@
         <AppInput class="tw-grow" name="entrance" label="Подъезд" :rules="schema.entrance" v-model="form.entrance" />
         <AppInput class="tw-grow" name="floor" label="Этаж" :rules="schema.floor" v-model="form.floor" />
       </div>
+      <DatePicker
+        color="green"
+        v-model.string="form.date"
+        :popover="{ visibility: 'click' }"
+        :masks="{ input: 'DD.MM.YYYY', modelValue: 'DD.MM.YYYY' }"
+        :disabledDates="[{ start: null, end: yesterday  }]"
+      >
+        <template #default="{ inputValue, inputEvents }">
+          <AppInput class="tw-mt-32" name="date" label="Выберите дату" :rules="schema.date" :modelValue="inputValue" :inputEvents="inputEvents" maska="##.##.####"/>
+        </template>
+      </DatePicker>
       <TimeSlotButton
-        class="tw-mt-32"
+        class="tw-mt-12"
         label="Доставим"
+        :date="form.date"
         :workBefore="23"
         modalLabel="Время доставки"
         :rules="schema.timeline"
@@ -53,6 +77,9 @@
   import PickupLocation from '../PickupLocation/index.vue';
   import TimeSlotButton from '../TimeSlot/Button.vue';
   import { type RuleExpression } from 'vee-validate';
+  import { DatePicker } from 'v-calendar';
+  import 'v-calendar/style.css';
+  import { watch } from 'vue';
 
   interface Schema {
     address: RuleExpression<string>,
@@ -60,6 +87,7 @@
     entrance: RuleExpression<string>,
     floor: RuleExpression<string>,
     timeline: RuleExpression<string>,
+    date: RuleExpression<string>,
   }
 
   interface Form {
@@ -71,9 +99,20 @@
     type_delivery: string,
     timeline: string,
     location: '3' | '4',
+    date: string,
   }
 
-  defineProps<{ schema: Schema, form: Form }>();
+  const props = defineProps<{ schema: Schema, form: Form }>();
+
+  const yesterday = (() => {
+    const dt = new Date();
+    dt.setDate(dt.getDate() - 1);
+    return dt;
+  })();
+
+  watch(() => props.form.date, () => {
+    props.form.timeline = '';
+  });
 </script>
 
 

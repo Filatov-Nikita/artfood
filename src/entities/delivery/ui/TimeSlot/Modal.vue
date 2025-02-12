@@ -16,7 +16,7 @@
             v-for="slot in slots"
             name="timeline_temp"
             :checkedValue="slot"
-            :label="`${slot}, сегодня`"
+            :label="`${slot}, ${getLabel()}`"
             :rules="rules"
             v-model="timeslot"
           />
@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-  import { computed, watch } from 'vue';
+  import { watch, ref } from 'vue';
   import RadioItem from './Radio.vue';
   import { type RuleExpression } from 'vee-validate';
 
@@ -35,13 +35,56 @@
     label: string,
     workBefore: number,
     rules?: RuleExpression<string>,
+    date: string,
   }>();
 
   const value = defineModel({ default: false });
   const timeslot = defineModel('timeslot', { default: '' });
 
-  let startDate = getStartDate();
   let curDate = new Date();
+  let startDate = start();
+  const slots = ref(slotsList());
+
+  function getLabel() {
+    return isToday() ?
+      'сегодня' :
+      startDate.toLocaleDateString(
+        'ru-RU',
+        { day: 'numeric', month: 'long' }
+      );
+  }
+
+  function slotsList() {
+    return getSlots(
+      startDate.getHours(),
+      startDate.getMinutes(),
+      props.workBefore,
+      () => curDate.getHours() >= props.workBefore || curDate.getHours() < 10,
+    );
+  }
+
+  function start() {
+    if(isToday()) return getStartDate();
+    const dt = new Date(getIsoDate());
+    curDate.setHours(11);
+    curDate.setMinutes(0);
+    dt.setHours(11);
+    dt.setMinutes(0);
+    return dt;
+  }
+
+  function isToday() {
+    return getIsoCur() === getIsoDate();
+  }
+
+  function getIsoDate() {
+    return props.date.split('.').reverse().join('-');
+  }
+
+  function getIsoCur() {
+    const iso = curDate.toISOString();
+    return iso.substring(0, iso.indexOf('T'));
+  }
 
   function getStartDate() {
     const date = new Date();
@@ -57,14 +100,12 @@
     return date;
   }
 
-  const slots = computed(() => {
+  function getSlots(hours: number, minutes: number, workBefore: number, isEmpty: () => boolean) {
+    if(isEmpty()) return [];
+
     const list: string[] = [];
-    let hours = startDate.getHours();
-    let minutes = startDate.getMinutes();
 
-    if(curDate.getHours() >= props.workBefore || curDate.getHours() < 10) return [];
-
-    while(hours < props.workBefore) {
+    while(hours < workBefore) {
       if(minutes === 0) {
         list.push(`${hours}:00 - ${hours}:${30}`);
         minutes += 30;
@@ -78,12 +119,13 @@
     }
 
     return list;
-  });
+  }
 
   watch(value, (val) => {
     if(val) {
-      startDate = getStartDate();
       curDate = new Date();
+      startDate = start();
+      slots.value = slotsList();
     }
   });
 </script>

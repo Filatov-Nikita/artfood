@@ -31,6 +31,7 @@ export interface OrderBody {
   type_of_payment: TypeOfPayment,
   comment: string,
   sdacha: string,
+  date: string,
 }
 
 export type CreateSuccessRes = {

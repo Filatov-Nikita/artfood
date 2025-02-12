@@ -17,7 +17,15 @@ export default function() {
     comment: string().label('Комментарий'),
     sdacha: string().required().label('Сдача'),
     timeline: string().required().label('Время'),
+    date: string().required().label('Дата'),
   };
+
+  function today() {
+    const dt = new Date();
+    const d = dt.getDate();
+    const m = dt.getMonth() + 1;
+    return `${d > 10 ? d : `0${d}`}.${m > 10 ? m : `0${m}`}.${dt.getFullYear()}`;
+  }
 
   const form: FormCreate = reactive({
     name: '',
@@ -34,6 +42,7 @@ export default function() {
     type_of_payment: '5',
     comment: '',
     sdacha: '',
+    date: today(),
     meta: { need_sdacha: '' }
   });
 

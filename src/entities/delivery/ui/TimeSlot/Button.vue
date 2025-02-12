@@ -4,7 +4,7 @@
       <div class="body">
         <div class="label">{{ label }}</div>
         <div class="value">
-          {{ timeslot ? 'Сегодня с ' + timeslot : 'Укажите время' }}
+          {{ timeslot ? timeslot : 'Укажите время' }}
         </div>
       </div>
       <AppButton :design="errorMessage ? 'primary' : 'outline'" size="36" @click="showed = true">Изменить время</AppButton>
@@ -14,6 +14,7 @@
   <TimeSlotModal
     :label="modalLabel"
     :workBefore="workBefore"
+    :date="date"
     v-model="showed"
     v-model:timeslot="timeslot"
     @update:timeslot="showed = false"
@@ -34,6 +35,7 @@
     modalLabel: string,
     workBefore: number,
     rules?: RuleExpression<string>,
+    date: string,
   }>();
 
   const timeslot = defineModel({ default: '' });
