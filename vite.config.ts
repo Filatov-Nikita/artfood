@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import { fileURLToPath, URL } from 'url';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import path from 'path';
+import { ViteEjsPlugin } from 'vite-plugin-ejs';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -19,6 +20,9 @@ export default defineConfig({
     ]
   },
   plugins: [
+    ViteEjsPlugin({
+      title: 'ARTFOOD - доставка здоровой и вкусной еды Уфа. - Правильное питание. Комплексные программы питания. Регулярная доставка еды.',
+    }),
     vue(),
     createSvgIconsPlugin({
       iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
