@@ -7,8 +7,53 @@
     <link rel="icon" type="image/svg+xml" href="/favicon/16.svg" sizes="16x16">
     <link rel="icon" type="image/svg+xml" href="/favicon/32.svg" sizes="32x32">
     <link rel="icon" type="image/svg+xml" href="/favicon/64.svg" sizes="64x64">
+    <% if(!isDev){ %>
+    <!-- This site is optimized with the Yoast SEO plugin v21.5 - https://yoast.com/wordpress/plugins/seo/ -->
+    <meta name="description" content="Правильное питание. Комплексные программы питания. Регулярная доставка еды." />
+    <link rel="canonical" href="https://artfood.su/" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="ARTFOOD - доставка здоровой и вкусной еды Уфа." />
+    <meta property="og:description" content="Правильное питание. Комплексные программы питания. Регулярная доставка еды." />
+    <meta property="og:url" content="https://artfood.su/" />
+    <meta property="og:site_name" content="ARTFOOD - доставка здоровой и вкусной еды Уфа." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://artfood.su/","url":"https://artfood.su/","name":"ARTFOOD - доставка здоровой и вкусной еды Уфа. - Правильное питание. Комплексные программы питания. Регулярная доставка еды.","isPartOf":{"@id":"https://artfood.su/#website"},"description":"Правильное питание. Комплексные программы питания. Регулярная доставка еды.","breadcrumb":{"@id":"https://artfood.su/#breadcrumb"},"inLanguage":"ru-RU"},{"@type":"BreadcrumbList","@id":"https://artfood.su/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная страница"}]},{"@type":"WebSite","@id":"https://artfood.su/#website","url":"https://artfood.su/","name":"ARTFOOD - доставка здоровой и вкусной еды Уфа.","description":"Правильное питание. Комплексные программы питания. Регулярная доставка еды.","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://artfood.su/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"ru-RU"}]}</script>
+    <!-- / Yoast SEO plugin. -->
+    <script type="text/javascript">
+      (function (d, w, c) {
+          (w[c] = w[c] || []).push(function() {
+              try {
+                  w.yaCounter37546660 = new Ya.Metrika({
+                      id:37546660,
+                      clickmap:true,
+                      trackLinks:true,
+                      accurateTrackBounce:true,
+                      webvisor:true,
+                      trackHash:true,
+                      ecommerce:"dataLayer"
+                  });
+              } catch(e) { }
+          });
+
+          var n = d.getElementsByTagName("script")[0],
+              s = d.createElement("script"),
+              f = function () { n.parentNode.insertBefore(s, n); };
+          s.type = "text/javascript";
+          s.async = true;
+          s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+          if (w.opera == "[object Opera]") {
+              d.addEventListener("DOMContentLoaded", f, false);
+          } else { f(); }
+      })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <% } %>
   </head>
   <body>
+    <% if(!isDev){ %>
+    <noscript><div><img src="https://mc.yandex.ru/watch/37546660" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <% } %>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
   </body>
