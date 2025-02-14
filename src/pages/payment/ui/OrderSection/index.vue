@@ -33,6 +33,14 @@
               наличными курьеру при доставке заказа;
             </p>
           </div>
+          <div class="payment-item">
+            <span class="payment-item__icon">
+              <AppIcon name="device-mobile-fill" colorClass="tw-fill-primary" fit />
+            </span>
+            <p class="payment-item__text">
+              переводом на карту через банковское приложение
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -117,7 +125,7 @@
     flex-wrap: wrap;
     gap: 16px;
 
-    @include lg {
+    @include xl {
       flex-wrap: nowrap;
     }
   }
@@ -129,6 +137,8 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      flex-basis: 200px;
+      flex-grow: 1;
     }
 
     &__icon {

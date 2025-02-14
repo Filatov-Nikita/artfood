@@ -14,21 +14,18 @@
             <th class="table__th">Район</th>
             <th class="table__th">Мин. сумма заказа</th>
             <th class="table__th">Доставка</th>
-            <th class="table__th">Бесплатная доставка</th>
           </tr>
         </thead>
         <tbody>
           <tr class="table__tr">
             <td class="table__td">Город <span class="table__ost">(ост. Галле, Проспект СЮ, ост. Телецентр)</span></td>
-            <td class="table__td">800 ₽</td>
-            <td class="table__td">100 ₽</td>
-            <td class="table__td">от 2000 ₽</td>
+            <td class="table__td">1000 ₽</td>
+            <td class="table__td">200 ₽</td>
           </tr>
           <tr class="table__tr">
             <td class="table__td">Пригород</td>
-            <td class="table__td">1000 ₽</td>
-            <td class="table__td">Сумма доставки уточняется у менеджера</td>
-            <td class="table__td">от 10 000 ₽</td>
+            <td class="table__td">2000 ₽</td>
+            <td class="table__td">Уточняйте у менеджера</td>
           </tr>
         </tbody>
       </table>
@@ -82,14 +79,6 @@
 
     &__th, &__td {
       @apply tw-px-10;
-    }
-
-    &__tr &__td:first-child, &__th:first-child {
-      @apply tw-pl-0;
-    }
-
-    &__tr &__td:last-child, &__th:last-child {
-      @apply tw-text-primary;
     }
 
     &__th {
