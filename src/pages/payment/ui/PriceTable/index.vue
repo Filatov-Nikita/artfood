@@ -19,12 +19,12 @@
         <tbody>
           <tr class="table__tr">
             <td class="table__td">Город <span class="table__ost">(ост. Галле, Проспект СЮ, ост. Телецентр)</span></td>
-            <td class="table__td">1000 ₽</td>
-            <td class="table__td">200 ₽</td>
+            <td class="table__td">800 ₽</td>
+            <td class="table__td">100 ₽</td>
           </tr>
           <tr class="table__tr">
             <td class="table__td">Пригород</td>
-            <td class="table__td">2000 ₽</td>
+            <td class="table__td">1000 ₽</td>
             <td class="table__td">Уточняйте у менеджера</td>
           </tr>
         </tbody>
