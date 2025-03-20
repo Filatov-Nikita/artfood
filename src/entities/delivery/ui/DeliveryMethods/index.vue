@@ -23,7 +23,7 @@
           <AppInput class="tw-mt-32" name="date" label="Выберите дату" :rules="schema.date" :modelValue="inputValue" :inputEvents="inputEvents" maska="##.##.####"/>
         </template>
       </DatePicker>
-      <TimeSlotButton
+      <!-- <TimeSlotButton
         class="tw-mt-12"
         label="Заберу еду"
         modalLabel="Время получения заказа"
@@ -31,7 +31,7 @@
         :workBefore="20"
         :rules="schema.timeline"
         v-model="form.timeline"
-      />
+      /> -->
     </template>
     <template v-else>
       <AppInput class="tw-mb-12" name="address" label="Адрес" :rules="schema.address" v-model="form.address" />
@@ -59,7 +59,7 @@
           <AppInput class="tw-mt-32" name="date" label="Выберите дату" :rules="schema.date" :modelValue="inputValue" :inputEvents="inputEvents" maska="##.##.####"/>
         </template>
       </DatePicker>
-      <TimeSlotButton
+      <!-- <TimeSlotButton
         class="tw-mt-12"
         label="Доставим"
         :date="form.date"
@@ -67,7 +67,7 @@
         modalLabel="Время доставки"
         :rules="schema.timeline"
         v-model="form.timeline"
-      />
+      /> -->
     </template>
   </div>
 </template>
@@ -75,7 +75,7 @@
 <script setup lang="ts">
   import LocationInput from '../LocationInput.vue';
   import PickupLocation from '../PickupLocation/index.vue';
-  import TimeSlotButton from '../TimeSlot/Button.vue';
+  // import TimeSlotButton from '../TimeSlot/Button.vue';
   import { type RuleExpression } from 'vee-validate';
   import { DatePicker } from 'v-calendar';
   import 'v-calendar/style.css';
