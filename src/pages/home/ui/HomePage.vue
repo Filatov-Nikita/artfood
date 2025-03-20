@@ -11,7 +11,7 @@
       <HallsSection />
       <TeamSection />
       <FaqSection />
-      <CardDetailed v-if="activeProduct" v-model="showedProduct" :productId="activeProduct" />
+      <CardDetailed v-if="activeProduct" v-model="showedProduct" :productId="activeProduct" @change:product="activeProduct = $event" />
     </div>
   </main>
 </template>

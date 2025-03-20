@@ -2,7 +2,7 @@
   <AppModal v-model="value" x-pos="right" y-pos="top" animation="slide-right">
     <div class="card-wrap">
       <ButtonClose v-if="grid.lg" class="card-close-xl" size="40px" padding="0.2em" @click="value = false" />
-      <div class="card" v-if="product">
+      <div class="card" ref="cardRef" v-if="product">
         <div class="photos">
           <PhotoGallery class="gallery" :images="product.additional_imgs" :tag="product.tag" />
         </div>
@@ -24,6 +24,7 @@
           class="card-recommend"
           title="Попробуйте другие блюда"
           :products="product.reccomendations"
+          @change:product="changeProduct"
         />
       </div>
       <div class="cart-btn-lg" v-if="product && grid.lg">
@@ -57,7 +58,7 @@
   import { useRepositories } from '@/shared/repositories';
   import useRequest from '@/shared/lib/useRequest';
   import useDataOrAlert from '@/shared/lib/useDataOrAlert';
-  import { computed, watch, toRef } from 'vue';
+  import { computed, watch, toRef, ref } from 'vue';
   import { useAppGrid } from '@/shared/lib/useScreen';
   import { ButtonToggle, useBasketItem } from '@/entities/basket';
 
@@ -69,12 +70,17 @@
     default: false,
   });
 
+  const emit = defineEmits<{
+    (event: 'change:product', id: string): void,
+  }>();
+
   const grid = useAppGrid();
 
   const api = useRepositories();
 
   const res = await useRequest(() => api.menu.show(props.productId), {
     immediate: false,
+    watch: [ () => props.productId ],
   });
 
   const { data, loading } = useDataOrAlert(res);
@@ -84,6 +90,13 @@
   });
 
   const { count } = useBasketItem(toRef(props, 'productId'));
+
+  const cardRef = ref<HTMLElement | null>(null);
+
+  function changeProduct(id: string) {
+    emit('change:product', id);
+    cardRef.value?.scrollTo({ behavior: 'smooth', top: 0 });
+  }
 
   watch(value, (v) => {
     if(v) {

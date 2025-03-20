@@ -7,7 +7,8 @@
         v-for="product in products"
         :key="product.id"
         :item="product"
-        :clickable="false"
+        clickable
+        @show:product="$emit('change:product', product.id)"
       >
         <template #action="{ count }">
           <ButtonToggle
@@ -29,6 +30,10 @@
   defineProps<{
     title: string,
     products: MenuElement[],
+  }>();
+
+  defineEmits<{
+    (event: 'change:product', id: string): void,
   }>();
 </script>
 
